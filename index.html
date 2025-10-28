@@ -5,13 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>متجر هدايا الإمارات - 263 منتج فاخر | ساعات وعطور أصلية</title>
     <meta name="description" content="متجر هدايا الإمارات الرائد في الساعات الفاخرة والعطور الأصلية. أكثر من 263 منتج فاخر بأفضل الأسعار مع شحن مجاني داخل الإمارات وضمان الأصالة 100%">
+    <link rel="canonical" href="https://hadaya-emirates.arabsad.com/">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="متجر هدايا الإمارات - 263 منتج فاخر">
+    <meta property="og:description" content="197 ساعة فاخرة و 66 عطر أصلي بأفضل الأسعار مع شحن مجاني داخل الإمارات">
+    <meta property="og:image" content="https://hadaya-emirates.arabsad.com/og-image.jpg">
+    <meta property="og:url" content="https://hadaya-emirates.arabsad.com/">
+    <meta property="og:site_name" content="متجر هدايا الإمارات">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="متجر هدايا الإمارات - 263 منتج فاخر">
+    <meta name="twitter:description" content="197 ساعة فاخرة و 66 عطر أصلي بأفضل الأسعار">
+    <meta name="twitter:image" content="https://hadaya-emirates.arabsad.com/og-image.jpg">
     
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🇦🇪</text></svg>">
     
     <style>
-        /* ===== RESET & BASE ===== */
+        /* Previous CSS remains the same - truncated for space */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
@@ -48,39 +65,7 @@
             padding: 0 1rem;
         }
 
-        /* ===== LOADING ===== */
-        #loadingScreen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            color: white;
-            transition: opacity 0.5s ease;
-        }
-
-        .loading-spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(255,255,255,0.3);
-            border-top: 4px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 1rem;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* ===== HEADER ===== */
+        /* Header */
         .site-header {
             background: white;
             box-shadow: var(--shadow-lg);
@@ -186,7 +171,7 @@
             transform: translateY(-2px);
         }
 
-        /* ===== MAIN ===== */
+        /* Main */
         main {
             background: white;
             margin: 2rem 1rem;
@@ -196,7 +181,7 @@
             overflow: hidden;
         }
 
-        /* ===== HERO ===== */
+        /* Hero Section */
         .hero-section {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
@@ -236,7 +221,7 @@
             color: var(--gold);
         }
 
-        /* ===== FILTERS ===== */
+        /* Filters */
         .filters-section {
             background: var(--light);
             padding: 1.5rem;
@@ -310,7 +295,7 @@
             height: 35px;
         }
 
-        /* ===== PRODUCTS ===== */
+        /* Products */
         .products-section {
             padding: 2rem;
         }
@@ -330,14 +315,7 @@
             margin-bottom: 2rem;
         }
 
-        .no-products {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: var(--text-light);
-            grid-column: 1 / -1;
-        }
-
-        /* ===== PRODUCT CARD ===== */
+        /* Product Card */
         .product-card {
             background: white;
             border-radius: var(--radius);
@@ -386,42 +364,6 @@
             color: var(--dark);
         }
 
-        .product-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .product-card:hover .product-overlay {
-            opacity: 1;
-        }
-
-        .overlay-btn {
-            background: white;
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            color: var(--text);
-            font-size: 1.125rem;
-            transition: var(--transition);
-        }
-
-        .overlay-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
-
         .product-content {
             padding: 1.5rem;
         }
@@ -451,6 +393,11 @@
             font-weight: 700;
             margin-bottom: 1rem;
             line-height: 1.4;
+            cursor: pointer;
+        }
+
+        .product-title:hover {
+            color: var(--primary);
         }
 
         .product-rating {
@@ -513,6 +460,8 @@
             cursor: pointer;
             transition: var(--transition);
             font-size: 0.875rem;
+            text-decoration: none;
+            text-align: center;
         }
 
         .btn-view-details:hover {
@@ -535,7 +484,7 @@
             background: #128c7e;
         }
 
-        /* ===== LOAD MORE ===== */
+        /* Load More */
         .load-more-section {
             text-align: center;
             padding: 2rem;
@@ -558,7 +507,7 @@
             transform: translateY(-2px);
         }
 
-        /* ===== FOOTER ===== */
+        /* Footer */
         .site-footer {
             background: var(--dark);
             color: white;
@@ -601,7 +550,7 @@
             text-align: center;
         }
 
-        /* ===== RESPONSIVE ===== */
+        /* Responsive */
         @media (max-width: 768px) {
             .hero-title { font-size: 2rem; }
             .hero-stats { flex-direction: column; gap: 1rem; }
@@ -612,46 +561,74 @@
             .nav-menu { display: none; }
         }
 
-        /* ===== NOTIFICATIONS ===== */
-        .notification-container {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 10000;
+        /* Loading */
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(102, 126, 234, 0.3);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 2rem;
         }
 
-        .notification {
-            background: white;
-            padding: 1rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-lg);
-            margin-bottom: 0.5rem;
-            min-width: 300px;
-            border-left: 4px solid var(--success);
-            transform: translateX(400px);
-            opacity: 0;
-            transition: var(--transition);
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        .notification.show {
-            transform: translateX(0);
-            opacity: 1;
+        .no-products {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-light);
+            grid-column: 1 / -1;
         }
 
-        .notification.error { border-left-color: var(--danger); }
-        .notification.warning { border-left-color: #f59e0b; }
-        .notification.info { border-left-color: var(--primary); }
+        .hidden {
+            display: none;
+        }
     </style>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "متجر هدايا الإمارات",
+        "url": "https://hadaya-emirates.arabsad.com",
+        "logo": "https://hadaya-emirates.arabsad.com/logo.png",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+201110760081",
+            "contactType": "customer service",
+            "availableLanguage": ["Arabic", "English"]
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "AE"
+        },
+        "sameAs": [
+            "https://wa.me/201110760081"
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "متجر هدايا الإمارات",
+        "url": "https://hadaya-emirates.arabsad.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://hadaya-emirates.arabsad.com/?search={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
 </head>
 
 <body>
-    <!-- Loading Screen -->
-    <div id="loadingScreen">
-        <div class="loading-spinner"></div>
-        <div class="loading-text">🇦🇪 متجر هدايا الإمارات</div>
-        <div class="loading-subtext">جاري تحميل 263 منتج فاخر...</div>
-    </div>
-
     <!-- Header -->
     <header class="site-header">
         <div class="header-top">
@@ -686,11 +663,11 @@
                     </div>
                     
                     <ul class="nav-menu">
-                        <li><a href="#" class="nav-link active" onclick="filterProducts('all'); return false;">جميع المنتجات <span id="allNavCount">(263)</span></a></li>
-                        <li><a href="#" class="nav-link" onclick="filterProducts('watches'); return false;">الساعات <span id="watchesNavCount">(197)</span></a></li>
-                        <li><a href="#" class="nav-link" onclick="filterProducts('perfumes'); return false;">العطور <span id="perfumesNavCount">(66)</span></a></li>
-                        <li><a href="#" class="nav-link" onclick="filterProducts('featured'); return false;">منتجات مميزة <span id="featuredNavCount">(78)</span></a></li>
-                        <li><a href="#contact" class="nav-link">اتصل بنا</a></li>
+                        <li><a href="/" class="nav-link active">جميع المنتجات <span id="allNavCount">(263)</span></a></li>
+                        <li><a href="/?category=watches" class="nav-link">الساعات <span id="watchesNavCount">(197)</span></a></li>
+                        <li><a href="/?category=perfumes" class="nav-link">العطور <span id="perfumesNavCount">(66)</span></a></li>
+                        <li><a href="/?category=featured" class="nav-link">منتجات مميزة <span id="featuredNavCount">(78)</span></a></li>
+                        <li><a href="/privacy-policy.html" class="nav-link">سياسة الخصوصية</a></li>
                     </ul>
                     
                     <div class="header-actions">
@@ -800,17 +777,28 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>🇦🇪 متجر هدايا الإمارات</h3>
-                    <p>المتجر الإماراتي الرائد في الساعات الفاخرة والعطور الأصلية. 197 ساعة فاخرة و 66 عطر أصلي بأفضل الأسعار مع ضمان الأصالة وخدمة عملاء متميزة.</p>
+                    <p>المتجر الإماراتي الرائد في الساعات الفاخرة والعطور الأصلية. 263 منتج فاخر بأفضل الأسعار مع ضمان الأصالة وخدمة عملاء متميزة.</p>
                 </div>
                 
                 <div class="footer-section">
                     <h4>روابط سريعة</h4>
                     <ul>
-                        <li><a href="#" onclick="filterProducts('all'); return false;">جميع المنتجات (263)</a></li>
-                        <li><a href="#" onclick="filterProducts('watches'); return false;">الساعات الفاخرة (197)</a></li>
-                        <li><a href="#" onclick="filterProducts('perfumes'); return false;">العطور الأصلية (66)</a></li>
-                        <li><a href="#" onclick="filterProducts('featured'); return false;">منتجات مميزة</a></li>
-                        <li><a href="#contact">اتصل بنا</a></li>
+                        <li><a href="/">جميع المنتجات (263)</a></li>
+                        <li><a href="/?category=watches">الساعات الفاخرة (197)</a></li>
+                        <li><a href="/?category=perfumes">العطور الأصلية (66)</a></li>
+                        <li><a href="/?category=featured">منتجات مميزة</a></li>
+                        <li><a href="/privacy-policy.html">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>صفحات مهمة</h4>
+                    <ul>
+                        <li><a href="/terms-of-service.html">الشروط والأحكام</a></li>
+                        <li><a href="/return-policy.html">سياسة الإرجاع</a></li>
+                        <li><a href="/feed.xml">RSS Feed</a></li>
+                        <li><a href="/sitemap.xml">خريطة الموقع</a></li>
+                        <li><a href="/404.html">صفحة الخطأ</a></li>
                     </ul>
                 </div>
                 
@@ -821,16 +809,6 @@
                         <li><i class="fas fa-envelope"></i> بريد إلكتروني: sherow1982@gmail.com</li>
                         <li><i class="fas fa-map-marker-alt"></i> الإمارات العربية المتحدة</li>
                         <li><i class="fas fa-clock"></i> خدمة عملاء 24/7</li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>خدماتنا</h4>
-                    <ul>
-                        <li><i class="fas fa-shipping-fast"></i> شحن مجاني داخل الإمارات</li>
-                        <li><i class="fas fa-shield-alt"></i> ضمان الأصالة 100%</li>
-                        <li><i class="fas fa-undo"></i> إرجاع خلال 14 يوم</li>
-                        <li><i class="fas fa-headset"></i> دعم فني متخصص</li>
                     </ul>
                 </div>
             </div>
@@ -844,110 +822,15 @@
         </div>
     </footer>
 
-    <!-- Notification Container -->
-    <div id="notificationContainer" class="notification-container"></div>
+    <!-- Products Data -->
+    <script src="products-data.js"></script>
 
-    <!-- JavaScript with ALL 263 PRODUCTS -->
+    <!-- Main JavaScript -->
     <script>
-        // ===== ALL PRODUCTS DATA (263 PRODUCTS) =====
-        
-        // WATCHES DATA (197 products from sa3at.json)
-        const watchesData = [
-            {"id": 1, "title": "ساعة رولكس يخت ماستر - فضي", "price": 370, "salePrice": 320, "image": "https://m5zoon.com/public/uploads/products/1689086291310824.webp", "category": "ساعات", "brand": "رولكس", "featured": true, "rating": 4.8, "reviewsCount": 23},
-            {"id": 2, "title": "ساعة Rolex كلاسيكية 41 ملم 2022", "price": 375, "salePrice": 325, "image": "https://m5zoon.com/public/uploads/products/1741223185271965.png", "category": "ساعات", "brand": "رولكس", "featured": false, "rating": 4.6, "reviewsCount": 18},
-            {"id": 3, "title": "ساعة rolex باللون الأسود R21", "price": 364, "salePrice": 314, "image": "https://m5zoon.com/public/uploads/products/1681005528571671.webp", "category": "ساعات", "brand": "رولكس", "featured": true, "rating": 4.7, "reviewsCount": 15},
-            {"id": 4, "title": "ساعة rolex 40ملم R54", "price": 365, "salePrice": 315, "image": "https://m5zoon.com/public/uploads/products/1681164046332341.webp", "category": "ساعات", "brand": "رولكس", "featured": false, "rating": 4.5, "reviewsCount": 12},
-            {"id": 5, "title": "ساعة rolex باللون الأخضر الملكي", "price": 364, "salePrice": 314, "image": "https://m5zoon.com/public/uploads/products/1741222920546873.png", "category": "ساعات", "brand": "رولكس", "featured": true, "rating": 4.9, "reviewsCount": 28},
-            {"id": 6, "title": "ساعة rolex باللون الذهبي والأسود", "price": 360, "salePrice": 310, "image": "https://m5zoon.com/public/uploads/products/1757284688463569.webp", "category": "ساعات", "brand": "رولكس", "featured": false, "rating": 4.4, "reviewsCount": 9},
-            {"id": 7, "title": "ساعة rolex باللون الأسود والفضي", "price": 390, "salePrice": 340, "image": "https://m5zoon.com/public/uploads/products/1741222642273682.png", "category": "ساعات", "brand": "رولكس", "featured": true, "rating": 4.8, "reviewsCount": 21},
-            {"id": 8, "title": "ساعة اوميغا سواتش بيبي بلو", "price": 375, "salePrice": 325, "image": "https://m5zoon.com/public/uploads/products/1720305672749191.webp", "category": "ساعات", "brand": "اوميغا", "featured": true, "rating": 4.7, "reviewsCount": 17},
-            {"id": 9, "title": "ساعة اوميغا سواتش نبيتى", "price": 375, "salePrice": 325, "image": "https://m5zoon.com/public/uploads/products/1741222388454456.png", "category": "ساعات", "brand": "اوميغا", "featured": false, "rating": 4.6, "reviewsCount": 14},
-            {"id": 10, "title": "ساعة اوميغا سواتش صفراء", "price": 375, "salePrice": 325, "image": "https://m5zoon.com/public/uploads/products/1741221412352160.png", "category": "ساعات", "brand": "اوميغا", "featured": false, "rating": 4.5, "reviewsCount": 11},
-            {"id": 11, "title": "ساعة اوميغا سواتش اسود", "price": 375, "salePrice": 325, "image": "https://m5zoon.com/public/uploads/products/174122229293204.png", "category": "ساعات", "brand": "اوميغا", "featured": false, "rating": 4.6, "reviewsCount": 13},
-            {"id": 12, "title": "ساعة اوميغا سواتش خضراء", "price": 375, "salePrice": 325, "image": "https://m5zoon.com/public/uploads/products/1741222202630361.png", "category": "ساعات", "brand": "اوميغا", "featured": true, "rating": 4.8, "reviewsCount": 19},
-            {"id": 13, "title": "ساعة اوميغا سواتش زرقاء", "price": 375, "salePrice": 325, "image": "https://m5zoon.com/public/uploads/products/1741221794295947.png", "category": "ساعات", "brand": "اوميغا", "featured": false, "rating": 4.7, "reviewsCount": 16},
-            {"id": 14, "title": "ساعة اوميغا سواتش رصاصي", "price": 375, "salePrice": 325, "image": "https://m5zoon.com/public/uploads/products/1741221694642499.png", "category": "ساعات", "brand": "اوميغا", "featured": false, "rating": 4.5, "reviewsCount": 10},
-            {"id": 15, "title": "ساعة سربنتي توبوغاس", "price": 470, "salePrice": 420, "image": "https://m5zoon.com/public/uploads/products/1741220746882687.png", "category": "ساعات", "brand": "بولغاري", "featured": true, "rating": 4.9, "reviewsCount": 25},
-            {"id": 16, "title": "ساعة نسائية ديور - مينا صغير SL0012", "price": 385, "salePrice": 335, "image": "https://m5zoon.com/public/uploads/products/1741220693290036.png", "category": "ساعات", "brand": "ديور", "featured": false, "rating": 4.6, "reviewsCount": 14},
-            {"id": 17, "title": "ساعة سربنتي توبوغاس gold", "price": 470, "salePrice": 420, "image": "https://m5zoon.com/public/uploads/products/1741220582559375.png", "category": "ساعات", "brand": "بولغاري", "featured": true, "rating": 4.8, "reviewsCount": 22},
-            {"id": 18, "title": "ساعة اوميغا سواتش بنى", "price": 375, "salePrice": 325, "image": "https://m5zoon.com/public/uploads/products/1731699670370340.webp", "category": "ساعات", "brand": "اوميغا", "featured": false, "rating": 4.4, "reviewsCount": 8},
-            {"id": 19, "title": "بوكس الساعة والايربودز 6 في 1", "price": 410, "salePrice": 360, "image": "https://m5zoon.com/public/uploads/products/1693928071589621.webp", "category": "ساعات", "brand": "سمارت تك", "featured": true, "rating": 4.3, "reviewsCount": 34},
-            {"id": 20, "title": "ساعة Ultra مع ايربودز هدية", "price": 352, "salePrice": 302, "image": "https://m5zoon.com/public/uploads/products/1731698702725313.webp", "category": "ساعات", "brand": "سمارت تك", "featured": true, "rating": 4.3, "reviewsCount": 34},
-            {"id": 21, "title": "ساعة رولكس يخت ماستر - ذهبي", "price": 364, "salePrice": 314, "image": "https://m5zoon.com/public/uploads/products/1731699218702214.webp", "category": "ساعات", "brand": "رولكس", "featured": true, "rating": 4.7, "reviewsCount": 18},
-            {"id": 22, "title": "ساعة ذكية مزودة بكاميرا", "price": 356, "salePrice": 306, "image": "https://m5zoon.com/public/uploads/products/1731362264876264.webp", "category": "ساعات", "brand": "سمارت تك", "featured": false, "rating": 4.2, "reviewsCount": 22},
-            {"id": 23, "title": "ساعة rolex باللون الازرق", "price": 364, "salePrice": 314, "image": "https://m5zoon.com/public/uploads/products/1731361953514688.webp", "category": "ساعات", "brand": "رولكس", "featured": false, "rating": 4.6, "reviewsCount": 16},
-            {"id": 24, "title": "ساعة فورسينغ كلاسيكي فضي", "price": 421, "salePrice": 371, "image": "https://m5zoon.com/public/uploads/products/1731361789334824.webp", "category": "ساعات", "brand": "فورسينغ", "featured": false, "rating": 4.5, "reviewsCount": 11},
-            {"id": 25, "title": "ساعة فورسينغ كلاسيكي ذهبي", "price": 421, "salePrice": 371, "image": "https://m5zoon.com/public/uploads/products/1731361642576895.webp", "category": "ساعات", "brand": "فورسينغ", "featured": false, "rating": 4.5, "reviewsCount": 13},
-            {"id": 26, "title": "ساعة اوميغا سواتش أحمر", "price": 375, "salePrice": 325, "image": "https://m5zoon.com/public/uploads/products/1731361206322275.webp", "category": "ساعات", "brand": "اوميغا", "featured": false, "rating": 4.4, "reviewsCount": 12},
-            {"id": 27, "title": "ساعة ذكية A58 plus", "price": 360, "salePrice": 310, "image": "https://m5zoon.com/public/uploads/products/1741220160853406.png", "category": "ساعات", "brand": "سمارت تك", "featured": false, "rating": 4.1, "reviewsCount": 28},
-            {"id": 28, "title": "ساعة Rolex باللون الأخضر الملكي + البوكس الأصلي", "price": 390, "salePrice": 340, "image": "https://m5zoon.com/public/uploads/products/1737384308361283.webp", "category": "ساعات", "brand": "رولكس", "featured": true, "rating": 4.8, "reviewsCount": 19},
-            {"id": 29, "title": "ساعة Rolex كلاسيكية 41 ملم 2022 + البوكس الأصلي", "price": 405, "salePrice": 355, "image": "https://m5zoon.com/public/uploads/products/1737396086718850.webp", "category": "ساعات", "brand": "رولكس", "featured": true, "rating": 4.7, "reviewsCount": 21},
-            {"id": 30, "title": "ساعة رولكس يخت ماستر ذهبي + البوكس الأصلي", "price": 394, "salePrice": 344, "image": "https://m5zoon.com/public/uploads/products/1737397213723650.webp", "category": "ساعات", "brand": "رولكس", "featured": true, "rating": 4.8, "reviewsCount": 17}
-        ];
-
-        // More watches (continuing the pattern for all 197)
-        for(let i = 31; i <= 197; i++) {
-            watchesData.push({
-                "id": i,
-                "title": `ساعة فاخرة ${i} - تصميم حصري`,
-                "price": 300 + Math.floor(Math.random() * 300),
-                "salePrice": 250 + Math.floor(Math.random() * 250),
-                "image": "https://m5zoon.com/public/uploads/products/default-watch.webp",
-                "category": "ساعات",
-                "brand": ["رولكس", "اوميغا", "بولغاري", "ديور", "فورسينغ", "سمارت تك"][Math.floor(Math.random() * 6)],
-                "featured": Math.random() > 0.7,
-                "rating": 4.0 + Math.random() * 1.0,
-                "reviewsCount": Math.floor(Math.random() * 30) + 5
-            });
-        }
-
-        // PERFUMES DATA (66 products from otor.json)
-        const perfumesData = [
-            {"id": 201, "title": "عطر كوكو شانيل 100 مل", "price": 352, "salePrice": 252, "image": "https://m5zoon.com/public/uploads/products/1722352332177124.webp", "category": "عطور", "brand": "شانيل", "featured": true, "rating": 4.9, "reviewsCount": 45},
-            {"id": 202, "title": "عطر جوتشي فلورا", "price": 352, "salePrice": 252, "image": "https://m5zoon.com/public/uploads/products/1720344963790342.webp", "category": "عطور", "brand": "جوتشي", "featured": false, "rating": 4.6, "reviewsCount": 32},
-            {"id": 203, "title": "عطر جوتشي بلوم", "price": 352, "salePrice": 252, "image": "https://m5zoon.com/public/uploads/products/1720344971935939.webp", "category": "عطور", "brand": "جوتشي", "featured": false, "rating": 4.5, "reviewsCount": 28},
-            {"id": 204, "title": "عطر سوفاج ديور 100 مل", "price": 352, "salePrice": 252, "image": "https://m5zoon.com/public/uploads/products/1720344979304336.webp", "category": "عطور", "brand": "ديور", "featured": true, "rating": 4.8, "reviewsCount": 38},
-            {"id": 205, "title": "عطر فرزاتشي ايروس", "price": 352, "salePrice": 252, "image": "https://m5zoon.com/public/uploads/products/1720345001981811.webp", "category": "عطور", "brand": "فرزاتشي", "featured": true, "rating": 4.7, "reviewsCount": 29},
-            {"id": 206, "title": "فواحة عطرية للسيارة قابلة لإعادة الشحن", "price": 364, "salePrice": 264, "image": "https://m5zoon.com/public/uploads/products/1722352237120309.webp", "category": "عطور", "brand": "سمارت كار", "featured": false, "rating": 4.2, "reviewsCount": 56},
-            {"id": 207, "title": "Eau The Audacity Penhaligons Green", "price": 385, "salePrice": 285, "image": "https://m5zoon.com/public/uploads/products/175669385359976.webp", "category": "عطور", "brand": "بينهالجونز", "featured": false, "rating": 4.6, "reviewsCount": 21},
-            {"id": 208, "title": "Eau The Audacity Penhaligons white", "price": 385, "salePrice": 285, "image": "https://m5zoon.com/public/uploads/products/1756693962685036.webp", "category": "عطور", "brand": "بينهالجونز", "featured": false, "rating": 4.5, "reviewsCount": 19},
-            {"id": 209, "title": "Fleurs Bohemes Inverness", "price": 385, "salePrice": 285, "image": "https://m5zoon.com/public/uploads/products/1756694224611806.webp", "category": "عطور", "brand": "فلورز بوهيمز", "featured": true, "rating": 4.7, "reviewsCount": 24},
-            {"id": 210, "title": "Tom Ford Vanilla Sex", "price": 365, "salePrice": 265, "image": "https://m5zoon.com/public/uploads/products/1757731212122499.webp", "category": "عطور", "brand": "توم فورد", "featured": true, "rating": 4.8, "reviewsCount": 33},
-            {"id": 211, "title": "Tom Ford Myrrhe Mystere", "price": 365, "salePrice": 265, "image": "https://m5zoon.com/public/uploads/products/175773127350287.webp", "category": "عطور", "brand": "توم فورد", "featured": false, "rating": 4.6, "reviewsCount": 27},
-            {"id": 212, "title": "Tom Ford Eau De Soleil Blanc", "price": 365, "salePrice": 265, "image": "https://m5zoon.com/public/uploads/products/175773142284159.webp", "category": "عطور", "brand": "توم فورد", "featured": false, "rating": 4.5, "reviewsCount": 22},
-            {"id": 213, "title": "Tom Ford Ombre Leather", "price": 365, "salePrice": 265, "image": "https://m5zoon.com/public/uploads/products/1757731526832014.webp", "category": "عطور", "brand": "توم فورد", "featured": true, "rating": 4.7, "reviewsCount": 31},
-            {"id": 214, "title": "Tomber", "price": 419, "salePrice": 319, "image": "https://m5zoon.com/public/uploads/products/175899730567885.webp", "category": "عطور", "brand": "تومبر", "featured": true, "rating": 4.8, "reviewsCount": 26},
-            {"id": 215, "title": "Aromatic", "price": 419, "salePrice": 319, "image": "https://m5zoon.com/public/uploads/products/1758997399436910.webp", "category": "عطور", "brand": "أروماتيك", "featured": false, "rating": 4.6, "reviewsCount": 18},
-            {"id": 216, "title": "Khaneen", "price": 419, "salePrice": 319, "image": "https://m5zoon.com/public/uploads/products/1758997512844520.webp", "category": "عطور", "brand": "خنين", "featured": true, "rating": 4.9, "reviewsCount": 35},
-            {"id": 217, "title": "Paradise (Black) 50ml", "price": 419, "salePrice": 319, "image": "https://m5zoon.com/public/uploads/products/1758997664611779.webp", "category": "عطور", "brand": "بارادايس", "featured": true, "rating": 4.7, "reviewsCount": 23},
-            {"id": 218, "title": "Paradise (white) 30ml", "price": 381, "salePrice": 281, "image": "https://m5zoon.com/public/uploads/products/1758997816586574.webp", "category": "عطور", "brand": "بارادايس", "featured": false, "rating": 4.5, "reviewsCount": 17},
-            {"id": 219, "title": "De louvre (black) 50ml", "price": 419, "salePrice": 319, "image": "https://m5zoon.com/public/uploads/products/1758998016168560.webp", "category": "عطور", "brand": "دو لوفر", "featured": true, "rating": 4.8, "reviewsCount": 29},
-            {"id": 220, "title": "De louvre (white) 30ml", "price": 381, "salePrice": 281, "image": "https://m5zoon.com/public/uploads/products/1758998095266894.webp", "category": "عطور", "brand": "دو لوفر", "featured": false, "rating": 4.4, "reviewsCount": 15}
-        ];
-
-        // More perfumes (continuing the pattern for all 66)
-        for(let i = 221; i <= 266; i++) {
-            perfumesData.push({
-                "id": i,
-                "title": `عطر فاخر ${i - 200} - رائحة مميزة`,
-                "price": 250 + Math.floor(Math.random() * 200),
-                "salePrice": 200 + Math.floor(Math.random() * 150),
-                "image": "https://m5zoon.com/public/uploads/products/default-perfume.webp",
-                "category": "عطور",
-                "brand": ["شانيل", "ديور", "توم فورد", "جوتشي", "فرزاتشي", "ايف سان لوران"][Math.floor(Math.random() * 6)],
-                "featured": Math.random() > 0.7,
-                "rating": 4.0 + Math.random() * 1.0,
-                "reviewsCount": Math.floor(Math.random() * 40) + 10
-            });
-        }
-
-        // COMBINE ALL PRODUCTS
-        const allProductsData = [...watchesData, ...perfumesData];
-
         // ===== STORE OBJECT =====
         window.store = {
-            products: allProductsData,
-            filteredProducts: allProductsData,
+            products: [],
+            filteredProducts: [],
             displayedProducts: [],
             currentPage: 1,
             productsPerPage: 20,
@@ -955,10 +838,37 @@
             initialized: false,
             
             init: function() {
+                // Wait for products data to be available
+                if (typeof window.productsData === 'undefined') {
+                    setTimeout(() => this.init(), 100);
+                    return;
+                }
+                
+                this.products = window.productsData;
+                this.filteredProducts = this.products;
                 this.initialized = true;
                 this.updateCounters();
                 this.renderProducts();
+                
+                // Check URL parameters
+                this.checkURLFilters();
+                
                 console.log(`✅ تم تحميل ${this.products.length} منتج`);
+            },
+            
+            checkURLFilters: function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const category = urlParams.get('category');
+                const search = urlParams.get('search');
+                
+                if (category) {
+                    filterProducts(category);
+                }
+                
+                if (search) {
+                    document.getElementById('searchInput').value = search;
+                    applyFilters();
+                }
             },
             
             updateCounters: function() {
@@ -1016,28 +926,17 @@
                 
                 return `
                     <div class="product-card" data-product-id="${product.id}">
-                        <div class="product-image" onclick="orderWhatsApp(${product.id})">
+                        <div class="product-image">
                             <img src="${product.image}" alt="${product.title}" onerror="this.src='https://via.placeholder.com/300x300/667eea/FFFFFF?text=منتج'">
                             ${discount > 0 ? `<div class="product-badge">-${discount}%</div>` : ''}
                             ${product.featured ? `<div class="product-badge featured">مميز</div>` : ''}
-                            <div class="product-overlay">
-                                <button onclick="event.stopPropagation(); orderWhatsApp(${product.id})" class="overlay-btn" title="اطلب عبر واتساب">
-                                    <i class="fab fa-whatsapp"></i>
-                                </button>
-                                <button onclick="event.stopPropagation(); window.open('tel:+201110760081')" class="overlay-btn" title="اتصل بنا">
-                                    <i class="fas fa-phone"></i>
-                                </button>
-                                <button onclick="event.stopPropagation(); shareProduct(${product.id})" class="overlay-btn" title="مشاركة">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </div>
                         </div>
                         <div class="product-content">
                             <div class="product-category">
                                 <span class="category">${product.category}</span>
                                 <span class="brand">${product.brand}</span>
                             </div>
-                            <h3 class="product-title" onclick="orderWhatsApp(${product.id})">${product.title}</h3>
+                            <h3 class="product-title" onclick="openProductPage('${product.slug}')">${product.title}</h3>
                             <div class="product-rating">
                                 <div class="stars">
                                     ${this.generateStars(rating)}
@@ -1051,10 +950,10 @@
                                 ${discount > 0 ? `<span class="savings">وفر ${product.price - (product.salePrice || product.price)} درهم</span>` : ''}
                             </div>
                             <div class="product-buttons">
-                                <button onclick="orderWhatsApp(${product.id})" class="btn-view-details">
+                                <a href="/product.html?slug=${product.slug}" target="_blank" rel="noopener" class="btn-view-details">
                                     <i class="fas fa-eye"></i>
                                     شاهد التفاصيل
-                                </button>
+                                </a>
                                 <button onclick="orderWhatsApp(${product.id})" class="btn-whatsapp">
                                     <i class="fab fa-whatsapp"></i>
                                     اطلب الآن
@@ -1107,14 +1006,15 @@
             }
         };
 
-        // ===== FILTERING =====
+        // ===== FUNCTIONS =====
+        function openProductPage(slug) {
+            window.open(`/product.html?slug=${slug}`, '_blank', 'noopener');
+        }
+
         function filterProducts(category) {
-            if (!window.store.initialized) {
-                showNotification('جاري تحميل المنتجات...', 'info');
-                return;
-            }
+            if (!window.store.initialized) return;
             
-            // Update filter buttons
+            // Update active filter button
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
                 if (btn.dataset.filter === category) {
@@ -1139,17 +1039,23 @@
                 const searchTerm = searchInput.value.trim().toLowerCase();
                 filtered = filtered.filter(p => 
                     p.title.toLowerCase().includes(searchTerm) ||
-                    p.brand.toLowerCase().includes(searchTerm)
+                    p.brand.toLowerCase().includes(searchTerm) ||
+                    p.description.toLowerCase().includes(searchTerm)
                 );
             }
             
             window.store.filteredProducts = filtered;
-            window.store.currentPage = 1;
             window.store.loadedProducts = 0;
-            
             window.store.renderProducts();
             
-            showNotification(`تم عرض ${filtered.length} منتج`, 'success');
+            // Update URL without reloading
+            const url = new URL(window.location);
+            if (category !== 'all') {
+                url.searchParams.set('category', category);
+            } else {
+                url.searchParams.delete('category');
+            }
+            window.history.replaceState({}, '', url);
         }
         
         function applyFilters() {
@@ -1161,7 +1067,6 @@
         function resetFilters() {
             document.getElementById('searchInput').value = '';
             filterProducts('all');
-            showNotification('تم إعادة تعيين الفلاتر', 'success');
         }
         
         function loadMoreProducts() {
@@ -1187,23 +1092,17 @@
                     window.store.displayedProducts = [...window.store.displayedProducts, ...nextProducts];
                     
                     window.store.updateLoadMoreButton();
-                    
-                    showNotification(`تم تحميل ${nextBatch} منتج إضافي`, 'success');
                 }
                 
                 loadMoreBtn.innerHTML = originalContent;
                 loadMoreBtn.disabled = false;
                 
-            }, 800);
+            }, 500);
         }
 
-        // ===== WHATSAPP & ACTIONS =====
         function orderWhatsApp(productId) {
             const product = window.store.products.find(p => p.id === parseInt(productId));
-            if (!product) {
-                showNotification('المنتج غير موجود', 'error');
-                return;
-            }
+            if (!product) return;
             
             const message = `مرحباً، أريد طلب هذا المنتج:
 
@@ -1212,60 +1111,11 @@
 🏷️ الفئة: ${product.category}
 🏪 العلامة التجارية: ${product.brand}
 
+رابط المنتج: ${window.location.origin}/product.html?slug=${product.slug}
+
 شكراً لكم ❤️ 🇦🇪`;
 
             window.open(`https://wa.me/201110760081?text=${encodeURIComponent(message)}`, '_blank');
-        }
-        
-        function shareProduct(productId) {
-            const product = window.store.products.find(p => p.id === parseInt(productId));
-            if (!product) return;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: `${product.title} - متجر هدايا الإمارات`,
-                    text: `اكتشف ${product.title} بسعر ${product.salePrice || product.price} درهم`,
-                    url: window.location.href
-                });
-            } else {
-                const text = `اكتشف ${product.title} بسعر ${product.salePrice || product.price} درهم في متجر هدايا الإمارات: ${window.location.href}`;
-                navigator.clipboard.writeText(text).then(() => {
-                    showNotification('تم نسخ رابط المنتج!', 'success');
-                });
-            }
-        }
-
-        // ===== NOTIFICATIONS =====
-        function showNotification(message, type = 'success') {
-            const container = document.getElementById('notificationContainer');
-            if (!container) return;
-            
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            
-            const icons = {
-                success: 'fas fa-check-circle',
-                error: 'fas fa-exclamation-circle',
-                warning: 'fas fa-exclamation-triangle',
-                info: 'fas fa-info-circle'
-            };
-            
-            notification.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    <i class="${icons[type]}"></i>
-                    <span>${message}</span>
-                    <button onclick="this.parentElement.parentElement.remove()" style="margin-left: auto; background: none; border: none; cursor: pointer; font-size: 1.2rem; color: var(--text-light);">×</button>
-                </div>
-            `;
-            
-            container.appendChild(notification);
-            
-            setTimeout(() => notification.classList.add('show'), 100);
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => notification.remove(), 300);
-            }, 5000);
         }
 
         // ===== SEARCH =====
@@ -1277,6 +1127,15 @@
                 searchInput.addEventListener('input', function() {
                     clearTimeout(searchTimeout);
                     searchTimeout = setTimeout(() => {
+                        // Update URL
+                        const url = new URL(window.location);
+                        if (this.value.trim()) {
+                            url.searchParams.set('search', this.value.trim());
+                        } else {
+                            url.searchParams.delete('search');
+                        }
+                        window.history.replaceState({}, '', url);
+                        
                         applyFilters();
                     }, 300);
                 });
@@ -1293,25 +1152,20 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('🚀 تهيئة متجر هدايا الإمارات - 263 منتج...');
             
-            // Hide loading screen
-            setTimeout(() => {
-                const loadingScreen = document.getElementById('loadingScreen');
-                if (loadingScreen) {
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(() => {
-                        loadingScreen.style.display = 'none';
-                    }, 300);
-                }
-            }, 2500);
-            
             // Initialize store
             setTimeout(() => {
                 window.store.init();
                 console.log('✅ Store initialized with 263 products');
-            }, 1000);
+            }, 100);
         });
 
-        console.log('🎉 متجر هدايا الإمارات جاهز بـ 263 منتج فاخر! 🇦🇪');
+        // Track page views
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                page_title: 'Homepage',
+                page_location: window.location.href
+            });
+        }
     </script>
 </body>
 </html>

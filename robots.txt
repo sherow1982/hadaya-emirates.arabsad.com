@@ -1,64 +1,43 @@
 User-agent: *
 Allow: /
 
-# Allow all pages and resources
+# Sitemaps
+Sitemap: https://hadaya-emirates.arabsad.com/sitemap.xml
+Sitemap: https://hadaya-emirates.arabsad.com/feed.xml
+
+# Allow important pages
+Allow: /product.html
+Allow: /privacy-policy.html
+Allow: /terms-of-service.html
+Allow: /return-policy.html
+Allow: /404.html
+
+# Allow CSS and JavaScript
 Allow: /*.css
-Allow: /*.js  
+Allow: /*.js
+Allow: /*.woff
+Allow: /*.woff2
+Allow: /*.ttf
+Allow: /*.svg
 Allow: /*.png
 Allow: /*.jpg
 Allow: /*.jpeg
-Allow: /*.gif
 Allow: /*.webp
-Allow: /*.svg
 Allow: /*.ico
 
-# Disallow unnecessary paths (adjust if you have them)
+# Block sensitive files (if any)
 Disallow: /admin/
-Disallow: /private/
 Disallow: /.git/
+Disallow: /logs/
 Disallow: /temp/
 
-# Crawl-delay (optional - be nice to search engines)
+# Crawl-delay for respectful crawling
 Crawl-delay: 1
 
-# Sitemap location
-Sitemap: https://hadaya-emirates.arabsad.com/sitemap.xml
+# Host directive
+Host: hadaya-emirates.arabsad.com
 
-# Additional search engines
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: YandexBot
-Allow: /
-
-User-agent: DuckDuckBot
-Allow: /
-
-User-agent: Baiduspider
-Allow: /
-
-# Social media crawlers
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: LinkedInBot
-Allow: /
-
-User-agent: WhatsApp
-Allow: /
-
-# Block bad bots (optional)
-User-agent: MJ12bot
-Disallow: /
-
-User-agent: AhrefsBot
-Disallow: /
-
-User-agent: SemrushBot
-Disallow: /
+# Comments
+# This is Emirates Gifts Store robots.txt
+# 263 premium products: 197 watches + 66 perfumes
+# Last updated: 2025-10-28
