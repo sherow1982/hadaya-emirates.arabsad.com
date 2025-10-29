@@ -1,233 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر هدايا الإمارات 🇦🇪 | ساعات وعطور فاخرة</title>
-    <meta name="description" content="متجر إلكتروني فاخر يضم 263 منتجاً من أرقى الساعات والعطور. شحن مجاني في الإمارات وضمان الأصالة 100%">
-    <meta name="keywords" content="متجر إلكتروني, ساعات فاخرة, عطور أصلية, هدايا, الإمارات, رولكس, ديور, شانيل">
-    
-    <!-- CSP for security -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' https: data:;">
-    
-    <!-- SEO و Open Graph -->
-    <link rel="canonical" href="https://hadaya-emirates.arabsad.com/">
-    <meta property="og:title" content="متجر هدايا الإمارات - ساعات وعطور فاخرة">
-    <meta property="og:description" content="263 منتج فاخر: ساعات رولكس وعطور أصلية مع شحن مجاني">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200">
-    <meta property="og:url" content="https://hadaya-emirates.arabsad.com/">
-    
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎁</text></svg>">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#6366f1">
-</head>
-
-<body>
-    <!-- Header -->
-    <header class="site-header">
-        <div class="header-top">
-            <div class="container">
-                <div class="contact-info">
-                    <div class="contact-item uae-exclusive">
-                        <i class="fas fa-flag"></i>
-                        <span>🇦🇪 خدمة حصرية للمقيمين في الإمارات</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>واتساب: +201110760081</span>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-shipping-fast"></i>
-                    <span>شحن مجاني داخل الإمارات</span>
-                </div>
-            </div>
-        </div>
-        
-        <nav class="main-nav">
-            <div class="container">
-                <div class="nav-content">
-                    <div class="logo">
-                        <h1><a href="/">🇦🇪 متجر هدايا الإمارات</a></h1>
-                        <p class="tagline">أجود الهدايا الفاخرة | 263 منتج مختار</p>
-                    </div>
-                    
-                    <div class="header-actions">
-                        <div class="action-btn" id="cartBtn" onclick="toggleCart()">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span>السلة</span>
-                            <span class="cart-counter" id="cartCounter" style="display:none">0</span>
-                        </div>
-                        <a href="https://wa.me/201110760081" target="_blank" class="action-btn">
-                            <i class="fab fa-whatsapp"></i>
-                            <span>تواصل</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Cart Sidebar -->
-    <div id="cartSidebar" class="cart-sidebar">
-        <div class="cart-header">
-            <h3><i class="fas fa-shopping-cart"></i> سلة التسوق</h3>
-            <button onclick="toggleCart()" class="close-cart"><i class="fas fa-times"></i></button>
-        </div>
-        <div id="cartItems" class="cart-items">
-            <div class="empty-cart">
-                <i class="fas fa-shopping-cart"></i>
-                <p>سلتك فارغة</p>
-                <small>ابدأ بإضافة منتجات للسلة</small>
-            </div>
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total">
-                <strong>الإجمالي: <span id="cartTotal">0</span> درهم</strong>
-            </div>
-            <button id="checkoutBtn" onclick="proceedToWhatsApp()" class="checkout-btn" disabled>
-                <i class="fab fa-whatsapp"></i>
-                أرسل الطلب عبر واتساب
-            </button>
-        </div>
-    </div>
-    <div id="cartOverlay" class="cart-overlay" onclick="toggleCart()"></div>
-
-    <!-- Filters Section -->
-    <section class="filters-section">
-        <div class="container">
-            <div class="filters-container">
-                <div class="search-box">
-                    <input type="text" id="searchInput" class="search-input" placeholder="🔍 ابحث عن منتجات... (ساعات، عطور، رولكس، شانيل)">
-                    <div id="searchSuggestions" class="search-suggestions"></div>
-                </div>
-                
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">
-                        جميع المنتجات <span id="allCount">(263)</span>
-                    </button>
-                    <button class="filter-btn" data-filter="watches">
-                        🕰️ الساعات <span id="watchesCount">(197)</span>
-                    </button>
-                    <button class="filter-btn" data-filter="perfumes">
-                        🌸 العطور <span id="perfumesCount">(66)</span>
-                    </button>
-                    <button class="filter-btn" data-filter="featured">
-                        ⭐ مميزة <span id="featuredCount">(24)</span>
-                    </button>
-                </div>
-                
-                <div class="brand-filters" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap;">
-                    <button class="filter-btn" data-brand="رولكس">رولكس</button>
-                    <button class="filter-btn" data-brand="ديور">ديور</button>
-                    <button class="filter-btn" data-brand="شانيل">شانيل</button>
-                    <button class="filter-btn" data-brand="توم فورد">توم فورد</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            <!-- Results Info -->
-            <div id="resultsInfo" class="results-info">
-                <h2>جميع المنتجات <span class="results-count">(263 منتج)</span></h2>
-                <p class="results-description">اكتشف مجموعتنا الفاخرة من 197 ساعة فاخرة و66 عطر أصلي مع ضمان الجودة والأصالة</p>
-            </div>
-
-            <!-- Loading State -->
-            <div id="loadingState">
-                <div class="loading-spinner"></div>
-                <p style="text-align:center;margin-top:1rem;color:#6b7280">جاري تحميل المنتجات...</p>
-            </div>
-
-            <!-- Products Grid -->
-            <div id="productsGrid" class="products-grid" style="display:none">
-                <!-- Products will be loaded dynamically -->
-            </div>
-
-            <!-- Pagination -->
-            <div id="pagination" class="pagination-container" style="display:none">
-                <div class="pagination">
-                    <button id="prevPage" class="page-btn" disabled>
-                        <i class="fas fa-chevron-right"></i> السابق
-                    </button>
-                    <div id="pageNumbers" class="page-numbers">
-                        <!-- Page numbers will be generated dynamically -->
-                    </div>
-                    <button id="nextPage" class="page-btn">
-                        التالي <i class="fas fa-chevron-left"></i>
-                    </button>
-                </div>
-                <p class="pagination-info">
-                    عرض <span id="currentRange">1-36</span> من <span id="totalCount">263</span> منتج
-                </p>
-            </div>
-
-            <!-- No Results -->
-            <div id="noResults" class="no-products" style="display:none">
-                <i class="fas fa-search-minus" style="font-size:3rem;margin-bottom:1rem;color:#d1d5db"></i>
-                <h3>لا توجد نتائج مطابقة</h3>
-                <p>لم نجد منتجات تطابق بحثك. جرب استخدام كلمات مختلفة</p>
-                <button onclick="resetFilters()" class="btn btn-primary" style="margin-top:1rem">
-                    <i class="fas fa-refresh"></i> عرض جميع المنتجات
-                </button>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>🇦🇪 متجر هدايا الإمارات</h3>
-                    <p>متجرك الموثوق للهدايا الفاخرة في دولة الإمارات العربية المتحدة</p>
-                </div>
-                <div class="footer-section">
-                    <h4>خدماتنا</h4>
-                    <ul>
-                        <li>شحن مجاني داخل الإمارات</li>
-                        <li>ضمان الأصالة 100%</li>
-                        <li>خدمة عملاء 24/7</li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>اتصل بنا</h4>
-                    <div class="contact-links">
-                        <a href="https://wa.me/201110760081" target="_blank">
-                            <i class="fab fa-whatsapp"></i> +201110760081
-                        </a>
-                        <a href="mailto:sherow1982@gmail.com">
-                            <i class="fas fa-envelope"></i> sherow1982@gmail.com
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="footer-links">
-                    <a href="privacy-policy.html">سياسة الخصوصية</a>
-                    <a href="terms-of-service.html">شروط الخدمة</a>
-                    <a href="return-policy.html">سياسة الإرجاع</a>
-                </div>
-                <p>&copy; 2025 متجر هدايا الإمارات. جميع الحقوق محفوظة.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="products-data.js"></script>
-    <script src="main.js"></script>
-</body>
-</html>
