@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شات بوت خدمة العملاء | هدايا الإمارات</title>
+    <meta name="robots" content="noindex,follow">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .chatbot{position:fixed;bottom:80px;right:20px;width:350px;height:500px;background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.15);z-index:10000;display:none;flex-direction:column;overflow:hidden}
+        .chat-header{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:1rem;text-align:center;font-weight:600}
+        .chat-body{flex:1;padding:1rem;overflow-y:auto;background:#f8f9fa}
+        .chat-input{padding:1rem;border-top:1px solid #e5e7eb}
+        .chat-bubble{margin-bottom:1rem;padding:0.8rem 1rem;border-radius:15px;max-width:80%}
+        .bot-bubble{background:#667eea;color:#fff;margin-right:20%}
+        .user-bubble{background:#e5e7eb;color:#333;margin-left:20%}
+        .quick-replies{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem}
+        .quick-reply{background:#667eea;color:#fff;padding:0.5rem 1rem;border-radius:20px;cursor:pointer;font-size:12px}
+    </style>
+</head>
+<body>
+    <!-- Chatbot Widget -->
+    <div class="chatbot" id="chatbot">
+        <div class="chat-header">
+            <h4>🤖 مساعد هدايا الإمارات</h4>
+            <small>مرحباً! كيف يمكنني مساعدتك؟</small>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="chat-bubble bot-bubble">
+                مرحباً بك! 🙋‍♂️<br>
+                أنا هنا لمساعدتك في اختيار أفضل الساعات والعطور
+            </div>
+            <div class="quick-replies">
+                <span class="quick-reply" onclick="askBot('أريد ساعة أنيقة')"⌚ الساعات</span>
+                <span class="quick-reply" onclick="askBot('أريد عطر فاخر')"🌸 العطور</span>
+                <span class="quick-reply" onclick="askBot('ما هي العروض الحالية؟')"🔥 العروض</span>
+                <span class="quick-reply" onclick="askBot('كم وقت التوصيل؟')"🚚 الشحن</span>
+            </div>
+        </div>
+        <div class="chat-input">
+            <div style="display:flex;gap:10px">
+                <input type="text" id="chatInput" placeholder="اكتب رسالتك..." style="flex:1;padding:10px;border:1px solid #ddd;border-radius:20px">
+                <button onclick="sendMessage()" style="background:#667eea;color:#fff;border:none;padding:10px 15px;border-radius:20px;cursor:pointer">إرسال</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot Trigger Button -->
+    <div style="position:fixed;bottom:20px;right:20px;width:60px;height:60px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;cursor:pointer;box-shadow:0 8px 25px rgba(102,126,234,0.3);z-index:9999" onclick="toggleChatbot()">
+        🤖
+    </div>
+
+    <script>
+        // قاعدة بيانات الردود الذكية
+        const responses = {
+            ساعة: 'لدينا مجموعة رائعة من الساعات الأنيقة بأسعار مميزة! هل تفضل ساعة رجالية أم نسائية؟ 👨‍💼👩‍💼',
+            عطر: 'عطورنا فاخرة وثباتها ممتاز! 🌸 هل تبحث عن عطر رجالي أم نسائي؟',
+            عروض: 'لدينا عروض مميزة 🔥 خصومات تصل حتى 30%! هل تريد معرفة العروض الحالية؟',
+            توصيل: 'التوصيل مجاني لجميع الإمارات 🚚 ويصل خلال 2-3 أيام عمل. هل تريد تفاصيل أكثر؟',
+            سعر: 'أسعارنا منافسة جداً ولدينا خصومات مميزة! 💰 هل تريد الاطلاع على عروضنا؟'
+        };
+        
+        function toggleChatbot() {
+            const chatbot = document.getElementById('chatbot');
+            if (chatbot.style.display === 'none' || !chatbot.style.display) {
+                chatbot.style.display = 'flex';
+            } else {
+                chatbot.style.display = 'none';
+            }
+        }
+        
+        function askBot(question) {
+            addMessage(question, 'user');
+            
+            // رد ذكي
+            setTimeout(() => {
+                let response = 'شكراً للتواصل! 😊 هل يمكنك التواصل عبر واتساب للحصول على مساعدة فورية؟';
+                
+                for (let key in responses) {
+                    if (question.includes(key)) {
+                        response = responses[key];
+                        break;
+                    }
+                }
+                
+                addMessage(response, 'bot');
+                
+                // زر واتساب
+                setTimeout(() => {
+                    addMessage('هل تريد التحدث مع مندوب المبيعات؟ <br><a href="https://wa.me/201110760081?text=مرحبا، أحتاج مساعدة" target="_blank" class="btn btn-primary btn-sm" style="margin-top:10px;display:inline-block;text-decoration:none">💬 تواصل عبر واتساب</a>', 'bot');
+                }, 1500);
+            }, 800);
+        }
+        
+        function addMessage(text, sender) {
+            const chatBody = document.getElementById('chatBody');
+            const bubble = document.createElement('div');
+            bubble.className = `chat-bubble ${sender}-bubble`;
+            bubble.innerHTML = text;
+            chatBody.appendChild(bubble);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+        
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            if (input.value.trim()) {
+                askBot(input.value);
+                input.value = '';
+            }
+        }
+        
+        // Enter key
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
