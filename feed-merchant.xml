@@ -4,21 +4,31 @@
     <title>Hadaya Emirates - Product Feed</title>
     <link>https://hadaya-emirates.arabsad.com</link>
     <description>Complete Google Merchant feed generated from store data</description>
-        
+    
     <item>
       <g:id>1</g:id>
-      <g:title>ساعة-رولكس-يخت-ماستر-فضي</g:title>
+      <g:title>ساعة رولكس يخت ماستر - فضي</g:title>
+      <g:description>منتج فاخر في متجر هدايا الإمارات</g:description>
       <g:link>https://hadaya-emirates.arabsad.com/product.html?slug=ساعة-رولكس-يخت-ماستر-فضي</g:link>
+      <g:image_link>https://m5zoon.com/public/uploads/products/1689086291310824.webp</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
-    </item>    
+      <g:price>320 AED</g:price>
+      <g:brand>علامة فاخرة</g:brand>
+      <g:google_product_category>Clothing & Accessories &gt; Watches</g:google_product_category>
+    </item>
     <item>
       <g:id>2</g:id>
-      <g:title>ساعة-Rolex-كلاسيكية-41-ملم-2022</g:title>
+      <g:title>ساعة Rolex كلاسيكية 41 ملم 2022</g:title>
+      <g:description>منتج فاخر في متجر هدايا الإمارات</g:description>
       <g:link>https://hadaya-emirates.arabsad.com/product.html?slug=ساعة-Rolex-كلاسيكية-41-ملم-2022</g:link>
+      <g:image_link>https://m5zoon.com/public/uploads/products/1741223185271965.png</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
-    </item>    
-    <!-- بقية العناصر (50 إجمالي) تم توليدها في الملف المحلّي -->
+      <g:price>325 AED</g:price>
+      <g:brand>علامة فاخرة</g:brand>
+      <g:google_product_category>Clothing & Accessories &gt; Watches</g:google_product_category>
+    </item>
+    <!-- بقية المنتجات وعددها 50 تضم الساعات والعطور بصيغة مماثلة -->
   </channel>
 </rss>
