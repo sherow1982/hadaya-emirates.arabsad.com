@@ -1,296 +1,367 @@
-// ===== EMIRATES GIFTS STORE - COMPLETE PROFESSIONAL DATABASE =====
-// v3.0 - SEO محسن، صور محلولة، روابط محمية، متوافق مع Google Merchant 100%
+// ===== EMIRATES GIFTS STORE - ULTIMATE PRODUCT DATABASE =====
+// v6.0 - قاعدة بيانات شاملة مع وصوف إبداعية وصور عالية الجودة لكل 263 منتج
+// مطابقة تماماً لمتطلبات Google Merchant و SEO المتقدم
 
-function generateSlug(title) {
-    return title
-        .trim()
-        .replace(/\s+/g, '-')
-        .replace(/[^\u0600-\u06FFa-zA-Z0-9\-]/g, '')
-        .replace(/-+/g, '-')
-        .replace(/^-+|-+$/g, '')
-        .toLowerCase();
-}
-
-// === COMPLETE PRODUCTS DATABASE ===
-const allProductsData = [
-    // PREMIUM WATCHES COLLECTION (197 منتج)
-    {
-        "id": 1,
-        "title": "ساعة رولكس يخت ماستر - فضي",
-        "slug": "ساعة-رولكس-يخت-ماستر-فضي",
-        "price": 370,
-        "salePrice": 320,
-        "image": "https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=800&h=800&fit=crop&crop=center",
-        "category": "ساعات",
-        "brand": "رولكس",
-        "featured": true,
-        "rating": 4.8,
-        "reviewsCount": 23,
-        "availability": "in_stock",
-        "condition": "new",
-        "description": "ساعة رولكس يخت ماستر فضية فاخرة بتصميم كلاسيكي أنيق، مصنوعة من أجود المواد مع ضمان الأصالة. مناسبة للمناسبات الرسمية والغير رسمية."
-    },
-    {
-        "id": 2,
-        "title": "ساعة Rolex كلاسيكية 41 ملم 2022",
-        "slug": "rolex-classic-41mm-2022",
-        "price": 375,
-        "salePrice": 325,
-        "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&h=800&fit=crop&crop=center",
-        "category": "ساعات",
-        "brand": "رولكس",
-        "featured": false,
-        "rating": 4.6,
-        "reviewsCount": 18,
-        "availability": "in_stock",
-        "condition": "new",
-        "description": "ساعة رولكس كلاسيكية موديل 2022 بقطر 41 ملم، تصميم عصري يناسب جميع الأوقات مع دقة متناهية في الصنع."
-    },
-    {
-        "id": 3,
-        "title": "ساعة rolex باللون الأسود R21",
-        "slug": "rolex-black-r21",
-        "price": 364,
-        "salePrice": 314,
-        "image": "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=800&h=800&fit=crop&crop=center",
-        "category": "ساعات",
-        "brand": "رولكس",
-        "featured": true,
-        "rating": 4.7,
-        "reviewsCount": 15,
-        "availability": "in_stock",
-        "condition": "new",
-        "description": "ساعة رولكس سوداء أنيقة موديل R21، تجمع بين الفخامة والعملية مع لون أسود جذاب يناسب الإطلالات الرسمية."
-    },
-    // المنتج المهم - ساعة سمارت تك بني موديل 23
-    {
-        "id": 23,
-        "title": "ساعة سمارت تك بني موديل 23",
-        "slug": "ساعة-سمارت-تك-بني-موديل-23",
-        "price": 350,
-        "salePrice": 300,
-        "image": "https://images.unsplash.com/photo-1434493651443-7874afb5f6bb?w=800&h=800&fit=crop&crop=center",
-        "category": "ساعات",
-        "brand": "سمارت تك",
-        "featured": true,
-        "rating": 4.4,
-        "reviewsCount": 16,
-        "availability": "in_stock",
-        "condition": "new",
-        "description": "ساعة سمارت تك بلون بني موديل 23، تصميم عصري وجودة عالية مع شحن مجاني داخل الإمارات. تقنية متقدمة وبطارية طويلة المدى."
-    },
-    // منتجات مُصلحة من تقرير Google Merchant
-    {
-        "id": 24,
-        "title": "ساعة ديور بني موديل 24",
-        "slug": "ساعة-ديور-بني-موديل-24",
-        "price": 385,
-        "salePrice": 335,
-        "image": "https://images.unsplash.com/photo-1509048191080-d2fbdafe5681?w=800&h=800&fit=crop&crop=center",
-        "category": "ساعات",
-        "brand": "ديور",
-        "featured": false,
-        "rating": 4.5,
-        "reviewsCount": 12,
-        "availability": "in_stock",
-        "condition": "new",
-        "description": "ساعة ديور بنية فاخرة موديل 24، تصميم فرنسي أنيق بلون بني دافئ يناسب الإطلالات الكلاسيكية."
-    },
-    {
-        "id": 25,
-        "title": "ساعة ديور أخضر موديل 25",
-        "slug": "ساعة-ديور-أخضر-موديل-25",
-        "price": 390,
-        "salePrice": 340,
-        "image": "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=800&h=800&fit=crop&crop=center",
-        "category": "ساعات",
-        "brand": "ديور",
-        "featured": true,
-        "rating": 4.7,
-        "reviewsCount": 19,
-        "availability": "in_stock",
-        "condition": "new",
-        "description": "ساعة ديور خضراء موديل 25، لون مميز وتصميم فرنسي راقي يجمع بين الأناقة والطبيعة."
+(function() {
+    'use strict';
+    
+    // === UTILITY FUNCTIONS ===
+    function generateSlug(title) {
+        return title
+            .trim()
+            .replace(/\s+/g, '-')
+            .replace(/[^\u0600-\u06FFa-zA-Z0-9\-]/g, '')
+            .replace(/-+/g, '-')
+            .replace(/^-+|-+$/g, '')
+            .toLowerCase();
     }
-];
-
-// توليد بقية المنتجات مع صور عالية الجودة
-const brands = ["رولكس", "اوميغا", "بولغاري", "ديور", "فورسينغ", "سمارت تك"];
-const colors = ["أسود", "فضي", "ذهبي", "أزرق", "أخضر", "بني", "رمادي"];
-
-// مجموعة صور ساعات عالية الجودة من Unsplash
-const watchImages = [
-    "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&h=800&fit=crop&crop=center",
-    "https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=800&h=800&fit=crop&crop=center",
-    "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=800&h=800&fit=crop&crop=center",
-    "https://images.unsplash.com/photo-1509048191080-d2fbdafe5681?w=800&h=800&fit=crop&crop=center",
-    "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=800&h=800&fit=crop&crop=center",
-    "https://images.unsplash.com/photo-1434493651443-7874afb5f6bb?w=800&h=800&fit=crop&crop=center",
-    "https://images.unsplash.com/photo-1556688012-d29f48802eac?w=800&h=800&fit=crop&crop=center",
-    "https://images.unsplash.com/photo-1508057198894-247b23fe5ade?w=800&h=800&fit=crop&crop=center",
-    "https://images.unsplash.com/photo-1594576662830-457f0c89eff8?w=800&h=800&fit=crop&crop=center",
-    "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=800&h=800&fit=crop&crop=center"
-];
-
-// إنشاء منتجات إضافية للوصول إلى 197 ساعة
-for(let i = 26; i <= 197; i++) {
-    const brand = brands[i % brands.length];
-    const color = colors[i % colors.length];
-    const title = `ساعة ${brand} ${color} موديل ${i}`;
-    const imageIndex = i % watchImages.length;
     
-    // تجنب التكرار للمنتجات المثبتة يدوياً
-    const existingProduct = allProductsData.find(p => p.id === i);
-    if (existingProduct) continue;
+    function generateCreativeDescription(brand, color, category, model) {
+        const watchDescriptions = {
+            'رولكس': {
+                'أسود': `ساعة رولكس سوداء فاخرة موديل ${model} - تحفة فنية تجسد الأناقة والرقي الملكي. مصنوعة من أجود المواد مع آلية حركة سويسرية دقيقة، تتميز بمقاومة الماء والخدوش. تصميم كلاسيكي خالد يناسب رجال الأعمال والمناسبات الرسمية. إطار من الستانلس ستيل المقاوم للتآكل وزجاج ياقوتي مضاد للانعكاس.`,
+                'ذهبي': `ساعة رولكس ذهبية براقة موديل ${model} - رمز الفخامة والثراء المطلق. مطلية بالذهب الخالص عيار 18 قيراط مع تفاصيل براقة تلفت الأنظار. حركة أوتوماتيكية سويسرية فائقة الدقة مع احتياطي طاقة 48 ساعة. مثالية للمناسبات الخاصة والاحتفالات الفاخرة.`,
+                'فضي': `ساعة رولكس فضية أنيقة موديل ${model} - تمزج بين الكلاسيكية والعصرية بطريقة مذهلة. مصنوعة من الستانلس ستيل عالي الجودة مع لمسة نهائية مصقولة. مقاومة للماء حتى 100 متر ومزودة بتاريخ فوري. تصميم متعدد الاستخدامات يناسب جميع المناسبات.`,
+                'أخضر': `ساعة رولكس خضراء مميزة موديل ${model} - لون جريء يعكس الطبيعة والحيوية. مينا أخضر لامع مع عقارب مضيئة للرؤية الليلية الواضحة. تاج محكم الإغلاق ونظام حماية متقدم. خيار مثالي لعشاق التميز والألوان الجذابة.`,
+                'أزرق': `ساعة رولكس زرقاء ساحرة موديل ${model} - تحاكي عمق المحيط بلونها الأزرق الفاتن. مينا متدرج اللون مع تفاصيل معدنية براقة. حركة دائمة ذاتية التعبئة مع دقة كرونومتر معتمدة. رفيقك المثالي في رحلاتك حول العالم.`,
+                'بني': `ساعة رولكس بنية دافئة موديل ${model} - تجسد الأناقة الكلاسيكية بلمسة عصرية. سوار جلدي فاخر مع إبزيم قابل للتعديل. مقاومة للصدمات والاهتزازات مع ضمان دولي شامل. اختيار مثالي لمحبي الطابع التقليدي الراقي.`,
+                'رمادي': `ساعة رولكس رمادية متطورة موديل ${model} - تصميم مستقبلي بلون رمادي أنثراسيت عصري. مزودة بوظائف متعددة وعرض واضح للوقت. تقنية مقاومة المغناطيسية وحماية من الصدمات. خيار مثالي للشخصية العملية والأنيقة معاً.`
+            },
+            'اوميغا': {
+                'أسود': `ساعة أوميغا سوداء رياضية موديل ${model} - تحفة هندسية تجمع بين القوة والأناقة. مصممة خصيصاً للأداء الرياضي العالي مع مقاومة فائقة للصدمات. آلية كرونوغراف دقيقة ومؤقت رياضي متقدم. مثالية للرياضيين ومحبي المغامرات.`,
+                'ذهبي': `ساعة أوميغا ذهبية فاخرة موديل ${model} - إبداع سويسري خالص يشع بالبريق الذهبي الساحر. مرصعة بتفاصيل ذهبية خالصة ومينا مطلي بالذهب. حركة كوارتز سويسرية فائقة الدقة. رمز الفخامة المطلقة والذوق الرفيع.`,
+                'فضي': `ساعة أوميغا فضية كلاسيكية موديل ${model} - تصميم أبدي لا يتأثر بصيحات الموضة. مصنوعة من التيتانيوم خفيف الوزن وقوي التحمل. مقاومة للخدوش والتآكل مع ضمان مدى الحياة. اختيار حكيم للاستثمار طويل المدى.`,
+                'أخضر': `ساعة أوميغا خضراء عسكرية موديل ${model} - مستوحاة من عالم الطيران والقوات المسلحة. لون أخضر عسكري مع أرقام مضيئة للرؤية في الظلام. مقاومة للظروف الجوية القاسية والبيئات الصعبة. رفيق المغامرين والمحترفين.`,
+                'أزرق': `ساعة أوميغا زرقاء بحرية موديل ${model} - تحتفي بتاريخ أوميغا العريق في عالم الغوص. مقاومة للماء حتى 300 متر مع صمام هيليوم للغواصين المحترفين. بيزل دوار أحادي الاتجاه ومؤشرات مضيئة. خيار الغواصين المحترفين.`,
+                'بني': `ساعة أوميغا بنية كلاسيكية موديل ${model} - تراث عريق يمتد لأكثر من قرن من الإتقان. سوار جلدي طبيعي مدبوغ يدوياً مع إبزيم فولاذي. حركة أوتوماتيكية بدقة كرونومتر وعرض تاريخ فوري. للرجل العملي الأنيق.`,
+                'رمادي': `ساعة أوميغا رمادية تكنولوجية موديل ${model} - تقنية متطورة في تصميم مستقبلي جذاب. مزودة بتقنية Co-Axial المضادة للمغناطيسية. مقاومة لمجال مغناطيسي يصل إلى 15000 غاوس. نافذة على مستقبل صناعة الساعات.`
+            },
+            'ديور': {
+                'أسود': `ساعة ديور سوداء باريسية موديل ${model} - قطعة فنية من عاصمة الموضة العالمية. تصميم فرنسي راقي مع لمسات كوتور مميزة. مرصعة بكريستالات سواروفسكي لامعة وحزام ساتان أنيق. تجسيد حقيقي للأناقة الباريسية الفاخرة.`,
+                'ذهبي': `ساعة ديور ذهبية ملكية موديل ${model} - تحفة مجوهرات تليق بالملكات والأميرات. مطلية بالذهب الوردي الخالص مع زخارف منحوتة يدوياً. علبة هدية فاخرة من المخمل الأحمر وشهادة أصالة. استثمار في الجمال والأناقة الخالدة.`,
+                'فضي': `ساعة ديور فضية أنثوية موديل ${model} - نعومة التصميم الفرنسي مع بريق الفضة الناصعة. مينا مرصع بأحجار كريمة طبيعية وعقارب مطعمة باللؤلؤ. مقاومة للماء والعطور مع حماية من الخدوش. للمرأة العصرية الأنيقة.`,
+                'أخضر': `ساعة ديور خضراء طبيعية موديل ${model} - مستوحاة من حدائق فرساي الخلابة. لون أخضر زمردي مع نقوش نباتية دقيقة. آلية كوارتز فرنسية عالية الدقة وتصميم إيكولوجي مستدام. لعشاق الطبيعة والأناقة البيئية.`,
+                'أزرق': `ساعة ديور زرقاء سماوية موديل ${model} - تحاكي زرقة السماء الصافية فوق الريفييرا الفرنسية. مينا متدرج بتقنية الطلاء المتعدد الطبقات. حزام حرير طبيعي قابل للتبديل وإغلاق مغناطيسي مخفي. قطعة فنية على المعصم.`,
+                'بني': `ساعة ديور بنية شوكولاتة موديل ${model} - دفء اللون البني الشوكولاتي مع فخامة الجلد الإيطالي. مصنوعة من جلد العجل الأصلي المدبوغ في توسكانا. آلية ميكانيكية معقدة مرئية من خلال الظهر الشفاف. للذواقة ومحبي الفنون الراقية.`,
+                'رمادي': `ساعة ديور رمادية عصرية موديل ${model} - تصميم مينيماليستي بلمسة فرنسية معاصرة. سطح مطفي مقاوم لبصمات الأصابع وعاكس للضوء. تقنية الطلاء النانو للحماية الكاملة. اختيار المرأة العملية والعصرية.`
+            },
+            'بولغاري': {
+                'أسود': `ساعة بولغاري سوداء إيطالية موديل ${model} - تحفة من عاصمة الموضة والتصميم الإيطالي. صناعة رومانية عريقة مع تصميم جيومتري مميز. مرصعة بأحجار الأونيكس الأسود الطبيعي. رمز القوة والأناقة الإيطالية الأصيلة.`,
+                'ذهبي': `ساعة بولغاري ذهبية لامعة موديل ${model} - جوهرة حقيقية من أشهر دور المجوهرات في العالم. ذهب أصفر خالص مع نقوش رومانية كلاسيكية. آلية سويسرية فائقة الدقة في علبة إيطالية فاخرة. تحفة للأجيال القادمة.`,
+                'فضي': `ساعة بولغاري فضية أنيقة موديل ${model} - تمزج بين النعومة الإيطالية والدقة السويسرية. مصنوعة من الستانلس ستيل المصقول مع تشطيبات براقة. تصميم لافت للأنظار مع شعار بولغاري المحفور. قطعة أساسية في مجموعة الإكسسوارات.`,
+                'أخضر': `ساعة بولغاري خضراء فريدة موديل ${model} - لون أخضر ملكيتي مستوحى من حدائق الفاتيكان. مينا أخضر عميق مع تدرجات لونية ساحرة. مقاومة للبهتان والتغير اللوني مع مرور الوقت. للشخصية الجريئة المتميزة.`,
+                'أزرق': `ساعة بولغاري زرقاء بحر متوسطية موديل ${model} - تحتفي بجمال البحر المتوسط وسحر الساحل الإيطالي. أزرق عميق مع بريق معدني لامع. مقاومة لماء البحر والكلور مع حماية UV. رفيق المصايف والرحلات البحرية.`,
+                'بني': `ساعة بولغاري بنية توسكانية موديل ${model} - دفء الألوان الترابية لريف توسكانا الخلاب. جلد طبيعي مدبوغ بالطرق التقليدية وخياطة يدوية دقيقة. عطر الجلد الطبيعي وملمس ناعم مع الاستعمال. للرجل الكلاسيكي الأنيق.`,
+                'رمادي': `ساعة بولغاري رمادية حديثة موديل ${model} - تصميم معاصر يواكب روح العصر الحديث. لون رمادي تيتانيوم مع تأثيرات بصرية متطورة. خفيفة الوزن ومقاومة للحساسية والتهيج. الخيار المثالي للحياة العصرية النشطة.`
+            },
+            'فورسينغ': {
+                'أسود': `ساعة فورسينغ سوداء رياضية موديل ${model} - قوة الأداء مع أناقة التصميم في قطعة واحدة. مقاومة للصدمات والاهتزازات مع آلية أوتوماتيكية معقدة. مناسبة للأنشطة الرياضية والحياة العملية النشطة. اختيار الرجل العملي والنشط.`,
+                'ذهبي': `ساعة فورسينغ ذهبية فاخرة موديل ${model} - لمسة ذهبية تضيف الفخامة لشخصيتك المميزة. طلاء ذهبي مقاوم للبهتان والخدوش. آلية ظاهرة من خلال زجاج الظهر الشفاف. مزيج مثالي من القيمة والجودة العالية.`,
+                'فضي': `ساعة فورسينغ فضية كلاسيكية موديل ${model} - بساطة التصميم مع قوة الأداء والمتانة الفائقة. هيكل فولاذي مقاوم للتآكل وآلية موثوقة. سعر مناسب مع جودة لا تقبل المساومة. الخيار الذكي للمشتري الواعي.`,
+                'أخضر': `ساعة فورسينغ خضراء عسكرية موديل ${model} - تصميم تكتيكي متين للظروف الصعبة والبيئات القاسية. لون أخضر مموه مع أرقام كبيرة واضحة. إضاءة ليلية ومقاومة للماء والغبار. رفيق المغامرات والأنشطة الخارجية.`,
+                'أزرق': `ساعة فورسينغ زرقاء بحرية موديل ${model} - مستوحاة من عالم البحرية والملاحة البحرية. أزرق بحري عميق مع بوصلة مدمجة. مقاومة للمياه المالحة والظروف البحرية القاسية. مثالية لعشاق البحر والأنشطة المائية.`,
+                'بني': `ساعة فورسينغ بنية طبيعية موديل ${model} - لون بني ترابي يتناغم مع الطبيعة والبيئة المحيطة. حزام جلدي طبيعي مقاوم للتعرق والرطوبة. تصميم عملي مع وظائف متعددة مفيدة. للحياة العملية اليومية والأنشطة الخارجية.`,
+                'أزرق': `ساعة فورسينغ زرقاء متطورة موديل ${model} - تقنية حديثة مع تصميم أنيق وألوان جذابة. شاشة متعددة الوظائف وإضاءة LED قابلة للتعديل. مقاومة للصدمات ومضادة للماء. تجمع بين الأناقة والوظائف العملية المتقدمة.`
+            },
+            'سمارت تك': {
+                'أسود': `ساعة سمارت تك سوداء ذكية موديل ${model} - تكنولوجيا المستقبل على معصمك اليوم. شاشة لمس عالية الدقة مع إشعارات ذكية. مراقبة معدل ضربات القلب وتتبع اللياقة البدنية. بطارية تدوم أسبوعاً كاملاً مع الاستخدام المكثف.`,
+                'ذهبي': `ساعة سمارت تك ذهبية فاخرة موديل ${model} - تقنية ذكية مع لمسة من الفخامة والأناقة. إطار مطلي بالذهب مع شاشة OLED فائقة الوضوح. تطبيقات صحية متقدمة وإعدادات قابلة للتخصيص. الجمع المثالي بين التقنية والأناقة.`,
+                'فضي': `ساعة سمارت تك فضية عصرية موديل ${model} - تصميم أنيق مع تقنيات متطورة لحياة أفضل. مقاومة للماء والغبار مع شحن لاسلكي سريع. تطبيقات متنوعة للرياضة والصحة والترفيه. استثمار ذكي في صحتك وراحتك.`,
+                'أخضر': `ساعة سمارت تك خضراء بيئية موديل ${model} - تقنية صديقة للبيئة مع تصميم مستدام. مواد معاد تدويرها وطاقة شمسية للشحن. تطبيقات بيئية لمراقبة جودة الهواء والمناخ. للشخص الواعي بيئياً والمهتم بالتكنولوجيا النظيفة.`,
+                'أزرق': `ساعة سمارت تك زرقاء مائية موديل ${model} - مقاومة فائقة للماء مع تطبيقات السباحة والغوص. تتبع أنواع مختلفة من الرياضات المائية. GPS مدمج ونظام ملاحة متقدم. رفيق مثالي لعشاق الرياضات المائية والمغامرات البحرية.`,
+                'بني': `ساعة سمارت تك بنية كلاسيكية موديل ${model} - تجمع بين الطابع الكلاسيكي والتقنية الحديثة. حزام جلدي أصلي مع حساسات صحية متطورة. مراقبة النوم وتحليل الأنماط الصحية اليومية. للشخص الكلاسيكي المحب للتطور التقني.`,
+                'رمادي': `ساعة سمارت تك رمادية مهنية موديل ${model} - تصميم أنيق للبيئة المهنية مع وظائف الأعمال المتقدمة. إشعارات البريد الإلكتروني والمكالمات والرسائل. تطبيقات الإنتاجية وإدارة الوقت المتقدمة. الأداة المثالية للمحترف الناجح.`
+            }
+        };
+        
+        const perfumeDescriptions = {
+            'شانيل': {
+                'رجالي': `عطر شانيل رجالي فاخر حجم ${model} مل - عبق الأناقة الفرنسية الأصيلة في زجاجة واحدة. مزيج ساحر من الروائح الخشبية والعطرية مع لمسات من الياسمين والعود الطبيعي. يدوم لأكثر من 12 ساعة على البشرة مع فواح عطري يلفت الأنظار. صناعة فرنسية أصلية 100% مع ضمان الجودة والأصالة. مثالي للرجل الأنيق الذي يقدر الفخامة والتميز.`,
+                'نسائي': `عطر شانيل نسائي راقي حجم ${model} مل - سحر الأنوثة الفرنسية في تركيبة عطرية خالدة. باقة من الورود البلغارية والفل الطبيعي مع نفحات من الفانيليا والمسك الأبيض. عطر يعكس شخصية المرأة القوية والأنيقة في آن واحد. يترك أثراً عطرياً دائماً وذكريات لا تُنسى. الخيار الأمثل للمرأة التي تريد أن تترك انطباعاً لا يُمحى.`,
+                'مشترك': `عطر شانيل مشترك عصري حجم ${model} مل - تركيبة عطرية متوازنة تناسب الرجال والنساء على حد سواء. مزيج فريد من الحمضيات المنعشة والأزهار الطبيعية مع خشب الصندل الفاخر. يتكيف مع كيمياء الجسم ليعطي رائحة مميزة لكل شخص. مثالي للأزواج الذين يحبون مشاركة نفس العطر الراقي.`
+            },
+            'ديور': {
+                'رجالي': `عطر ديور رجالي أنيق حجم ${model} مل - تحفة عطرية من عاصمة الموضة العالمية باريس. تركيبة معقدة من البرغموت الإيطالي والخزامى الفرنسي مع العنبر الطبيعي. رائحة قوية وثابتة تعكس شخصية الرجل الواثق من نفسه. يناسب جميع المناسبات من الرسمية إلى الكاجوال. استثمار في الأناقة والحضور المميز.`,
+                'نسائي': `عطر ديور نسائي ساحر حجم ${model} مل - قطعة فنية عطرية تجسد روح الأنوثة الفرنسية الراقية. مزيج من الورد الدمشقي والياسمين مع نفحات من الكشمير والحرير. يلف المرأة بهالة من السحر والأنوثة الطاغية. عطر يحكي قصة الحب والجمال بلغة الروائح الخالدة.`,
+                'مشترك': `عطر ديور مشترك فاخر حجم ${model} مل - تركيبة عطرية معاصرة تتخطى حدود النوع والعمر. مزيج متناغم من الأزهار البيضاء والخشب الأبيض مع الكشميران الناعم. يخلق أجواء من الهدوء والسكينة مع لمسة من الفخامة. العطر المثالي للثنائي الأنيق والعصري.`
+            },
+            'توم فورد': {
+                'رجالي': `عطر توم فورد رجالي قوي حجم ${model} مل - عطر الرجل العصري القوي والواثق من ذاته. تركيبة جريئة من التبغ والفانيليا مع الكاكاو الداكن والجلد الطبيعي. رائحة ذكورية صافية تترك انطباعاً قوياً وثقة مطلقة. مثالي للرجل الذي يريد أن يكون محط الأنظار والإعجاب في كل مكان.`,
+                'نسائي': `عطر توم فورد نسائي مغرٍ حجم ${model} مل - تحفة عطرية تجسد الإغراء والأنوثة الطاغية. مزيج من الأوركيد الأسود والتوت البري مع الشوكولاته الداكنة والمسك الشرقي. يخلق هالة من الغموض والإثارة حول المرأة. العطر الذي يحول كل امرأة إلى فاتنة لا تقاوم.`,
+                'مشترك': `عطر توم فورد مشترك جريء حجم ${model} مل - تركيبة عطرية جريئة ومعاصرة تكسر القواعد التقليدية. مزيج من العود الكمبودي والزعفران الإيراني مع الباتشولي والورد البلغاري. عطر يعبر عن الشخصية القوية والمتمردة. للثنائي الذي يريد التميز والاختلاف.`
+            },
+            'جوتشي': {
+                'رجالي': `عطر غوتشي رجالي إيطالي حجم ${model} مل - أناقة إيطالية خالصة مع لمسة من الحداثة والعصرية. تركيبة من النعناع الطازج والسرو مع خشب الأرز والعنبر الأشقر. يعكس روح الرجل الإيطالي الأنيق والمتحضر. عطر يناسب الحياة العملية والاجتماعية بنفس القدر من التميز.`,
+                'نسائي': `عطر غوتشي نسائي راقي حجم ${model} مل - تجسيد للأناقة الإيطالية والذوق الرفيع في زجاجة فاخرة. باقة من الفاوانيا والكمثرى مع الباتشولي والعنبر الطبيعي. يلائم المرأة العصرية التي تقدر الجمال والفن. عطر يحكي قصة الحب للحياة والجمال والطبيعة.`,
+                'مشترك': `عطر غوتشي مشترك عصري حجم ${model} مل - روح إيطاليا الحديثة في تركيبة عطرية متطورة ومعاصرة. مزيج من الحمضيات الإيطالية والبازيليك مع خشب الأطلس والمسك الأبيض. يجمع بين الحيوية والهدوء في توازن مثالي. للثنائي الذي يعيش الحياة بشغف وأناقة.`
+            },
+            'فرزاتشي': {
+                'رجالي': `عطر فيرزاتشي رجالي فاخر حجم ${model} مل - قوة التصميم الإيطالي مع جرأة العطور المتوسطية. تركيبة من الليمون الصقلي والنيرولي مع التونكا والمسك الأبيض. يعبر عن شخصية الرجل الجريء والمتميز. عطر يحمل طاقة إيجابية عالية ويبعث على الثقة والحيوية.`,
+                'نسائي': `عطر فيرزاتشي نسائي ملكي حجم ${model} مل - تاج الأنوثة الإيطالية بكل ما تحمله من سحر وجاذبية. مزيج من الياسمين والمغنوليا مع الفانيليا والعود الهندي. يحول المرأة إلى آلهة من آلهة الجمال الإغريقي. العطر الذي يخلق حولك هالة من السحر والجاذبية الطبيعية.`,
+                'مشترك': `عطر فيرزاتشي مشترك ذهبي حجم ${model} مل - تركيبة ذهبية فاخرة تليق بالأسرة المالكة الإيطالية. مزيج من الزهور البيضاء والمسك الأبيض مع العنبر والصندل. يخلق أجواء من الفخامة والرقي المطلق. للثنائي الذي يستحق الأفضل دائماً.`
+            },
+            'ايف سان لوران': {
+                'رجالي': `عطر إيف سان لوران رجالي باريسي حجم ${model} مل - عبق باريس الليلية وسحر الأضواء الفرنسية. تركيبة من البرغموت والهيل مع الباتشولي والعنبر الرمادي. يناسب الرجل الرومانسي والحالم. عطر يحمل قصص الحب الباريسية والليالي الساحرة تحت أضواء برج إيفل.`,
+                'نسائي': `عطر إيف سان لوران نسائي أنثوي حجم ${model} مل - قمة الأنوثة الفرنسية والإغراء الباريسي في زجاجة واحدة. باقة من الورد والفريزيا مع الفانيليا والكشمير. يجعل من كل امرأة باريسية أصيلة مهما كانت جنسيتها. العطر الذي يحول الحياة العادية إلى فيلم رومانسي فرنسي.`,
+                'مشترك': `عطر إيف سان لوران مشترك أنيق حجم ${model} مل - روح باريس العصرية في تركيبة عطرية خالدة ومعاصرة. مزيج من الحمضيات الفرنسية والأزهار البيضاء مع خشب الأرز والمسك. يجسد أسلوب الحياة الباريسي الأنيق والمتحضر. للثنائي الذي يعيش الحياة كعمل فني.`
+            },
+            'أرماني': {
+                'رجالي': `عطر أرماني رجالي كلاسيكي حجم ${model} مل - الأناقة الإيطالية الخالدة في أبهى صورها وأرقى تجلياتها. تركيبة من البرغموت والأوكاليبتوس مع خشب الصندل والمسك الأبيض. يعكس شخصية الرجل الناجح والأنيق. عطر الثقة والنجاح والحضور المميز في عالم الأعمال.`,
+                'نسائي': `عطر أرماني نسائي راقي حجم ${model} مل - جوهرة عطرية تعكس أناقة المرأة العصرية والمتحضرة. مزيج من الكشمش الأسود والفريزيا مع الباتشولي والعنبر. يناسب المرأة القوية والمستقلة والناجحة. عطر يحكي قصة النجاح الأنثوي والتميز المهني.`,
+                'مشترك': `عطر أرماني مشترك معاصر حجم ${model} مل - تركيبة عطرية متوازنة تعكس روح العصر الحديث والأناقة الإيطالية. مزيج من المندرين والورد مع الأرز والمسك. يجسد أسلوب الحياة العصري والأنيق. للثنائي الذي يقدر البساطة الأنيقة والجودة العالية.`
+            }
+        };
+        
+        if (category === 'ساعات' && watchDescriptions[brand] && watchDescriptions[brand][color]) {
+            return watchDescriptions[brand][color];
+        } else if (category === 'عطور' && perfumeDescriptions[brand] && perfumeDescriptions[brand][color]) {
+            return perfumeDescriptions[brand][color];
+        }
+        
+        // Fallback descriptions
+        if (category === 'ساعات') {
+            return `ساعة ${brand} ${color} فاخرة موديل ${model} - تصميم أنيق وجودة عالية تناسب جميع المناسبات والأوقات. مصنوعة من أجود المواد مع حركة دقيقة وموثوقة. مقاومة للماء والخدوش مع ضمان شامل. استثمار في الأناقة والجودة يدوم مدى الحياة.`;
+        } else {
+            return `عطر ${brand} ${color} راقي حجم ${model} مل - تركيبة عطرية فاخرة من أجود الخامات الطبيعية. رائحة مميزة تدوم طويلاً وتترك انطباعاً رائعاً. مناسب لجميع المناسبات والأوقات. صناعة أصلية مع ضمان الجودة والأصالة 100%.`;
+        }
+    }
     
-    allProductsData.push({
-        "id": i,
-        "title": title,
-        "slug": generateSlug(title),
-        "price": 300 + (i * 3) % 200,
-        "salePrice": 250 + (i * 2) % 150,
-        "image": watchImages[imageIndex],
-        "category": "ساعات",
-        "brand": brand,
-        "featured": (i % 7 === 0),
-        "rating": 4.0 + Math.random() * 1.0,
-        "reviewsCount": Math.floor(Math.random() * 30) + 5,
-        "availability": "in_stock",
-        "condition": "new",
-        "description": `ساعة ${brand} فاخرة باللون ${color} موديل ${i}، تصميم عصري وجودة عالية تناسب جميع المناسبات والأوقات. شحن مجاني داخل الإمارات.`
+    // === HIGH-QUALITY PRODUCT IMAGES ===
+    const productImages = {
+        watches: [
+            'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&h=800&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=800&h=800&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=800&h=800&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1509048191080-d2fbdafe5681?w=800&h=800&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=800&h=800&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1434493651443-7874afb5f6bb?w=800&h=800&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1556688012-d29f48802eac?w=800&h=800&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1508057198894-247b23fe5ade?w=800&h=800&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1594576662830-457f0c89eff8?w=800&h=800&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=800&h=800&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=800&h=800&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&h=800&fit=crop&crop=center'
+        ],
+        perfumes: [
+            'https://images.unsplash.com/photo-1588405748880-12d1d2a59d32?w=800&h=800&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=800&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=800&h=800&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800&h=800&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1587017539504-67cfbddac569?w=800&h=800&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?w=800&h=800&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=800&h=800&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop&crop=center'
+        ]
+    };
+    
+    // === PRODUCT DATA GENERATION ===
+    const productsDatabase = [];
+    
+    // LUXURY WATCHES COLLECTION (197 products)
+    const watchBrands = ['رولكس', 'اوميغا', 'بولغاري', 'ديور', 'فورسينغ', 'سمارت تك'];
+    const watchColors = ['أسود', 'ذهبي', 'فضي', 'أخضر', 'أزرق', 'بني', 'رمادي'];
+    
+    // First, add the critical fixed product (ID 23)
+    productsDatabase.push({
+        id: 23,
+        title: 'ساعة سمارت تك بني موديل 23',
+        slug: 'ساعة-سمارت-تك-بني-موديل-23',
+        price: 350,
+        salePrice: 300,
+        image: productImages.watches[5], // High-quality watch image
+        category: 'ساعات',
+        brand: 'سمارت تك',
+        color: 'بني',
+        featured: true,
+        rating: 4.4,
+        reviewsCount: 16,
+        availability: 'in_stock',
+        condition: 'new',
+        description: generateCreativeDescription('سمارت تك', 'بني', 'ساعات', '23')
     });
-}
-
-// مجموعة صور عطور عالية الجودة
-const perfumeImages = [
-    "https://images.unsplash.com/photo-1588405748880-12d1d2a59d32?w=800&h=800&fit=crop&crop=center",
-    "https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=800&fit=crop&crop=center",
-    "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=800&h=800&fit=crop&crop=center",
-    "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800&h=800&fit=crop&crop=center",
-    "https://images.unsplash.com/photo-1587017539504-67cfbddac569?w=800&h=800&fit=crop&crop=center",
-    "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?w=800&h=800&fit=crop&crop=center"
-];
-
-// PREMIUM PERFUMES COLLECTION (66 منتج)
-const perfumeBrands = ["شانيل", "ديور", "توم فورد", "جوتشي", "فرزاتشي", "ايف سان لوران", "أرماني"];
-const perfumeTypes = ["رجالي", "نسائي", "مشترك"];
-const perfumeSizes = ["30", "50", "75", "100"];
-
-for(let i = 201; i <= 266; i++) {
-    const brand = perfumeBrands[(i-201) % perfumeBrands.length];
-    const type = perfumeTypes[(i-201) % perfumeTypes.length];
-    const size = perfumeSizes[(i-201) % perfumeSizes.length];
-    const title = `عطر ${brand} ${type} ${size} مل`;
-    const imageIndex = (i-201) % perfumeImages.length;
     
-    allProductsData.push({
-        "id": i,
-        "title": title,
-        "slug": generateSlug(title),
-        "price": 250 + ((i-200) * 4) % 200,
-        "salePrice": 200 + ((i-200) * 3) % 150,
-        "image": perfumeImages[imageIndex],
-        "category": "عطور",
-        "brand": brand,
-        "featured": ((i-200) % 5 === 0),
-        "rating": 4.2 + Math.random() * 0.8,
-        "reviewsCount": Math.floor(Math.random() * 40) + 8,
-        "availability": "in_stock",
-        "condition": "new",
-        "description": `عطر ${brand} ${type} فاخر بحجم ${size} مل، رائحة مميزة وجودة عالية تناسب جميع الأوقات والمناسبات. أصلي 100% مع ضمان الجودة.`
-    });
-}
-
-// ترتيب المنتجات حسب ID
-allProductsData.sort((a, b) => a.id - b.id);
-
-// Export للاستخدام العام
-window.productsData = allProductsData;
-
-// === HELPER FUNCTIONS ===
-window.getProductBySlug = function(slug) {
-    // بحث مباشر أولاً
-    let product = allProductsData.find(p => p.slug === slug);
-    if (product) return product;
+    // Generate remaining watches (IDs 1-22, 24-197)
+    for (let i = 1; i <= 197; i++) {
+        if (i === 23) continue; // Skip the fixed product
+        
+        const brand = watchBrands[i % watchBrands.length];
+        const color = watchColors[i % watchColors.length];
+        const title = `ساعة ${brand} ${color} موديل ${i}`;
+        const imageIndex = i % productImages.watches.length;
+        
+        // Price calculation with some variation
+        const basePrice = 280 + (i * 2) % 180;
+        const salePrice = Math.round(basePrice * 0.85); // 15% discount
+        
+        productsDatabase.push({
+            id: i,
+            title: title,
+            slug: generateSlug(title),
+            price: basePrice,
+            salePrice: salePrice,
+            image: productImages.watches[imageIndex],
+            category: 'ساعات',
+            brand: brand,
+            color: color,
+            featured: (i % 8 === 0), // Every 8th product is featured
+            rating: 4.0 + Math.round(Math.random() * 10) / 10, // 4.0-5.0 rating
+            reviewsCount: Math.floor(Math.random() * 35) + 5,
+            availability: 'in_stock',
+            condition: 'new',
+            description: generateCreativeDescription(brand, color, 'ساعات', i.toString())
+        });
+    }
     
-    // بحث مع تطبيع للروابط القديمة
-    const normalizedSlug = slug.replace(/\s/g, '-').toLowerCase();
-    product = allProductsData.find(p => p.slug.replace(/\s/g, '-').toLowerCase() === normalizedSlug);
-    if (product) return product;
+    // PREMIUM PERFUMES COLLECTION (66 products - IDs 201-266)
+    const perfumeBrands = ['شانيل', 'ديور', 'توم فورد', 'جوتشي', 'فرزاتشي', 'ايف سان لوران', 'أرماني'];
+    const perfumeTypes = ['رجالي', 'نسائي', 'مشترك'];
+    const perfumeSizes = ['30', '50', '75', '100'];
     
-    // بحث بفك التشفير
-    try {
-        const decodedSlug = decodeURIComponent(slug);
-        product = allProductsData.find(p => p.slug === decodedSlug || p.title.includes(decodedSlug.replace(/-/g, ' ')));
+    for (let i = 201; i <= 266; i++) {
+        const brandIndex = (i - 201) % perfumeBrands.length;
+        const typeIndex = (i - 201) % perfumeTypes.length;
+        const sizeIndex = (i - 201) % perfumeSizes.length;
+        
+        const brand = perfumeBrands[brandIndex];
+        const type = perfumeTypes[typeIndex];
+        const size = perfumeSizes[sizeIndex];
+        
+        const title = `عطر ${brand} ${type} ${size} مل`;
+        const imageIndex = (i - 201) % productImages.perfumes.length;
+        
+        // Price based on brand prestige and size
+        const brandMultiplier = brandIndex <= 2 ? 1.3 : 1.0; // Premium brands cost more
+        const sizeMultiplier = parseInt(size) / 50; // Size factor
+        const basePrice = Math.round((200 + (i - 200) * 3) * brandMultiplier * sizeMultiplier);
+        const salePrice = Math.round(basePrice * 0.82); // 18% discount
+        
+        productsDatabase.push({
+            id: i,
+            title: title,
+            slug: generateSlug(title),
+            price: basePrice,
+            salePrice: salePrice,
+            image: productImages.perfumes[imageIndex],
+            category: 'عطور',
+            brand: brand,
+            color: type, // Using 'type' as color field for perfumes
+            size: size + ' مل',
+            featured: ((i - 200) % 6 === 0), // Every 6th perfume is featured
+            rating: 4.1 + Math.round(Math.random() * 9) / 10, // 4.1-5.0 rating
+            reviewsCount: Math.floor(Math.random() * 40) + 8,
+            availability: 'in_stock',
+            condition: 'new',
+            description: generateCreativeDescription(brand, type, 'عطور', size)
+        });
+    }
+    
+    // Sort products by ID
+    productsDatabase.sort((a, b) => a.id - b.id);
+    
+    // === EXPORTS ===
+    window.productsData = productsDatabase;
+    
+    // === HELPER FUNCTIONS ===
+    window.getProductBySlug = function(slug) {
+        // Direct match first
+        let product = productsDatabase.find(p => p.slug === slug);
         if (product) return product;
-    } catch(e) {}
+        
+        // Normalized match for legacy URLs
+        const normalizedSlug = slug.replace(/\s/g, '-').toLowerCase();
+        product = productsDatabase.find(p => p.slug.replace(/\s/g, '-').toLowerCase() === normalizedSlug);
+        if (product) return product;
+        
+        // Decoded match for Arabic URLs
+        try {
+            const decodedSlug = decodeURIComponent(slug);
+            product = productsDatabase.find(p => 
+                p.slug === decodedSlug || 
+                p.title.includes(decodedSlug.replace(/-/g, ' '))
+            );
+            if (product) return product;
+        } catch(e) {}
+        
+        return null;
+    };
     
-    return null;
-};
-
-window.getProductsByCategory = function(category) {
-    if (category === 'watches') return allProductsData.filter(p => p.category === 'ساعات');
-    if (category === 'perfumes') return allProductsData.filter(p => p.category === 'عطور');
-    if (category === 'featured') return allProductsData.filter(p => p.featured);
-    return allProductsData;
-};
-
-window.getFeaturedProducts = function() {
-    return allProductsData.filter(p => p.featured);
-};
-
-window.searchProducts = function(query) {
-    const searchTerm = query.toLowerCase();
-    return allProductsData.filter(p => 
-        p.title.toLowerCase().includes(searchTerm) ||
-        p.brand.toLowerCase().includes(searchTerm) ||
-        p.description.toLowerCase().includes(searchTerm) ||
-        p.category.toLowerCase().includes(searchTerm)
-    );
-};
-
-// === PROFESSIONAL E-COMMERCE FUNCTIONS ===
-window.getProductsByBrand = function(brand) {
-    return allProductsData.filter(p => p.brand === brand);
-};
-
-window.getProductsByPriceRange = function(min, max) {
-    return allProductsData.filter(p => {
-        const price = p.salePrice || p.price;
-        return price >= min && price <= max;
-    });
-};
-
-window.getBrands = function() {
-    return [...new Set(allProductsData.map(p => p.brand))].sort();
-};
-
-window.getCategories = function() {
-    return [...new Set(allProductsData.map(p => p.category))].sort();
-};
-
-// === ANALYTICS FUNCTIONS ===
-window.trackProductView = function(productId) {
-    const product = allProductsData.find(p => p.id === productId);
-    if (!product) return;
+    window.getProductsByCategory = function(category) {
+        if (category === 'watches') return productsDatabase.filter(p => p.category === 'ساعات');
+        if (category === 'perfumes') return productsDatabase.filter(p => p.category === 'عطور');
+        if (category === 'featured') return productsDatabase.filter(p => p.featured);
+        return productsDatabase;
+    };
     
-    // تتبع محلي بسيط
-    const views = JSON.parse(localStorage.getItem('productViews') || '{}');
-    views[productId] = (views[productId] || 0) + 1;
-    localStorage.setItem('productViews', JSON.stringify(views));
+    window.getFeaturedProducts = function() {
+        return productsDatabase.filter(p => p.featured);
+    };
     
-    console.log(`📊 تم تتبع مشاهدة: ${product.title}`);
-};
+    window.searchProducts = function(query) {
+        const searchTerm = query.toLowerCase();
+        return productsDatabase.filter(p => 
+            p.title.toLowerCase().includes(searchTerm) ||
+            p.brand.toLowerCase().includes(searchTerm) ||
+            p.description.toLowerCase().includes(searchTerm) ||
+            p.category.toLowerCase().includes(searchTerm) ||
+            (p.color && p.color.toLowerCase().includes(searchTerm))
+        );
+    };
+    
+    window.getProductsByBrand = function(brand) {
+        return productsDatabase.filter(p => p.brand === brand);
+    };
+    
+    window.getProductsByPriceRange = function(min, max) {
+        return productsDatabase.filter(p => {
+            const price = p.salePrice || p.price;
+            return price >= min && price <= max;
+        });
+    };
+    
+    window.getBrands = function() {
+        return [...new Set(productsDatabase.map(p => p.brand))].sort();
+    };
+    
+    window.getCategories = function() {
+        return [...new Set(productsDatabase.map(p => p.category))].sort();
+    };
+    
+    // === ANALYTICS & TRACKING ===
+    window.trackProductView = function(productId) {
+        const product = productsDatabase.find(p => p.id === productId);
+        if (!product) return;
+        
+        // Local view tracking
+        const views = JSON.parse(localStorage.getItem('productViews') || '{}');
+        views[productId] = (views[productId] || 0) + 1;
+        localStorage.setItem('productViews', JSON.stringify(views));
+        
+        console.log(`📈 تم تسجيل مشاهدة: ${product.title}`);
+    };
+    
+    window.getPopularProducts = function(limit = 10) {
+        const views = JSON.parse(localStorage.getItem('productViews') || '{}');
+        return productsDatabase
+            .map(p => ({ ...p, views: views[p.id] || 0 }))
+            .sort((a, b) => b.views - a.views)
+            .slice(0, limit);
+    };
+    
+    // === INITIALIZATION LOG ===
+    console.log(`\n🎉 قاعدة البيانات الاحترافية جاهزة!`);
+    console.log(`📊 إجمالي المنتجات: ${productsDatabase.length}`);
+    console.log(`⌚ الساعات: ${productsDatabase.filter(p => p.category === 'ساعات').length}`);
+    console.log(`🌸 العطور: ${productsDatabase.filter(p => p.category === 'عطور').length}`);
+    console.log(`⭐ المنتجات المميزة: ${productsDatabase.filter(p => p.featured).length}`);
+    console.log(`🏷️ العلامات التجارية: ${getBrands().length}`);
+    console.log(`\n✅ جميع المنتجات تحتوي على:`);
+    console.log(`   🖼️  صور عالية الجودة من Unsplash`);
+    console.log(`   📝  وصوف إبداعية مفصلة`);
+    console.log(`   💰  أسعار وعروض جذابة`);
+    console.log(`   ⭐  تقييمات ومراجعات`);
+    console.log(`   🔗  روابط SEO محسنة`);
+    console.log(`\n🚀 المتجر جاهز للعمل الاحترافي!`);
+    
+})();
 
-window.getPopularProducts = function(limit = 10) {
-    const views = JSON.parse(localStorage.getItem('productViews') || '{}');
-    return allProductsData
-        .map(p => ({ ...p, views: views[p.id] || 0 }))
-        .sort((a, b) => b.views - a.views)
-        .slice(0, limit);
-};
-
-console.log(`✅ تم تحميل قاعدة بيانات احترافية: ${allProductsData.length} منتج`);
-console.log(`📊 التفاصيل: ${allProductsData.filter(p => p.category === 'ساعات').length} ساعة + ${allProductsData.filter(p => p.category === 'عطور').length} عطر`);
-console.log(`⭐ المنتجات المميزة: ${allProductsData.filter(p => p.featured).length} منتج`);
-console.log(`🎯 المتجر جاهز للعمل الاحترافي مع SEO محسن!`);
+console.log('🏪 مرحباً بك في متجر هدايا الإمارات الاحترافي - قاعدة بيانات شاملة مع 263 منتج فاخر! 🇦🇪✨');
