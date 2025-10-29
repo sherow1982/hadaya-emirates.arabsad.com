@@ -1430,9 +1430,6 @@
         </div>
     </footer>
 
-    <!-- Products Data -->
-    <script src="products-data.js"></script>
-
     <!-- Main JavaScript -->
     <script>
         // ===== PREMIUM STORE OBJECT =====
@@ -1446,9 +1443,10 @@
             initialized: false,
             
             init: function() {
-                // Wait for products data to be available
+                // Load products data from external file
                 if (typeof window.productsData === 'undefined') {
-                    setTimeout(() => this.init(), 100);
+                    // Wait a bit more for products data to load
+                    setTimeout(() => this.init(), 500);
                     return;
                 }
                 
@@ -1542,7 +1540,7 @@
                 return `
                     <article class="product-card" data-product-id="${product.id}" role="gridcell">
                         <div class="product-image">
-                            <img src="${product.image}" alt="${product.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/320x280/667eea/FFFFFF?text=منتج'">
+                            <img src="${product.image}" alt="${product.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop&crop=center'">
                             <div class="product-badges">
                                 ${discount > 0 ? `<span class="product-badge">خصم ${discount}%</span>` : ''}
                                 ${product.featured ? `<span class="product-badge featured">⭐ مميز</span>` : ''}
@@ -1924,12 +1922,12 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('🚀 بدء تحميل متجر هدايا الإمارات الفاخر...');
             
-            // Initialize store
+            // Wait for products data to be available
             setTimeout(() => {
                 window.store.init();
                 console.log('✨ المتجر جاهز بكامل المنتجات والمميزات!');
                 showNotification('مرحباً بك في متجر هدايا الإمارات! 🇦🇪', 'success');
-            }, 100);
+            }, 1000); // Wait 1 second
         });
 
         // Track page views and performance
@@ -1953,5 +1951,8 @@
 
         console.log('🎉 متجر هدايا الإمارات - النسخة المتطورة جاهزة بـ 263 منتج فاخر! 🇦🇪✨');
     </script>
+
+    <!-- Products Data -->
+    <script src="products-data.js"></script>
 </body>
 </html>
