@@ -88,7 +88,7 @@ function setupEventListeners() {
     }
 }
 
-// تحميل المنتجات
+// تحميل المعرضات
 function loadProducts() {
     showLoading(true);
     
@@ -131,7 +131,7 @@ function loadPerfumes() {
     });
 }
 
-// إنشاء بطاقة منتج
+// إنشاء بطاقة معرض
 function createProductCard(product, type) {
     const discount = Math.round(((product.price - product.sale_price) / product.price) * 100);
     const slug = createSlug(product.title);
@@ -158,7 +158,7 @@ function createProductCard(product, type) {
     `;
 }
 
-// عرض نافذة المنتج
+// عرض نافذة المعرض
 function showProductModal(product, type) {
     currentProduct = { ...product, type };
     
@@ -182,7 +182,7 @@ function showProductModal(product, type) {
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
         
-        // تتبع عرض المنتج
+        // تتبع عرض المعرض
         trackEvent('Product', 'View', product.title);
     }
 }
@@ -265,8 +265,8 @@ function addToCart(product = currentProduct, type = null) {
 function buyNow(product = currentProduct) {
     if (!product) return;
     
-    const message = `مرحبا، أريد شراء هذا المنتج:\n\n${product.title}\nالسعر: ${product.sale_price} درهم`;
-    const whatsappUrl = `https://wa.me/971501234567?text=${encodeURIComponent(message)}`;
+    const message = `مرحبا، أريد شراء هذا المعرض:\n\n${product.title}\nالسعر: ${product.sale_price} درهم`;
+    const whatsappUrl = `https://wa.me/201110760081?text=${encodeURIComponent(message)}`;
     
     // تتبع الشراء
     trackEvent('Purchase', 'Initiate', product.title, product.sale_price);
@@ -538,7 +538,7 @@ function setupScrollAnimations() {
         });
     }, observerOptions);
     
-    // مراقبة عناصر المنتجات
+    // مراقبة عناصر المعرضات
     setTimeout(() => {
         document.querySelectorAll('.product-card, .feature-card, .offer-card').forEach(el => {
             observer.observe(el);
