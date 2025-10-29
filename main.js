@@ -1,630 +1,641 @@
-// ===== EMIRATES GIFTS STORE - PROFESSIONAL E-COMMERCE ENGINE =====
-// v4.1 - محرك متجر إلكتروني متقدم مع سلة تسوق وبحث ذكي - إصلاح الروابط
+// Main JavaScript for Hadaya Emirates Store
+// ملف JavaScript الرئيسي لمتجر هدايا الإمارات
 
-(function() {
-    'use strict';
+// Global variables
+let currentPage = 1;
+let currentFilter = 'all';
+let currentSearch = '';
+let cart = JSON.parse(localStorage.getItem('hadayaCart') || '[]');
+
+// DOM elements
+const productsGrid = document.getElementById('productsGrid');
+const loadingState = document.getElementById('loadingState');
+const noResults = document.getElementById('noResults');
+const searchInput = document.getElementById('searchInput');
+const filterButtons = document.querySelectorAll('.filter-btn');
+const cartBtn = document.getElementById('cartBtn');
+const cartCounter = document.getElementById('cartCounter');
+const cartSidebar = document.getElementById('cartSidebar');
+const cartOverlay = document.getElementById('cartOverlay');
+const cartItems = document.getElementById('cartItems');
+const cartTotal = document.getElementById('cartTotal');
+const checkoutBtn = document.getElementById('checkoutBtn');
+
+// Initialize app
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 تم تحميل متجر هدايا الإمارات');
     
-    // === MAIN STORE OBJECT ===
-    const EmiratesGiftsStore = {
-        // Data
-        products: [],
-        filteredProducts: [],
-        displayedProducts: [],
-        cart: [],
-        
-        // State
-        currentPage: 1,
-        productsPerPage: 20,
-        loadedProducts: 0,
-        currentFilter: 'all',
-        searchQuery: '',
-        initialized: false,
-        
-        // === INITIALIZATION ===
-        init() {
-            console.log('🚀 بدء تحميل متجر هدايا الإمارات الاحترافي...');
-            
-            if (typeof window.productsData === 'undefined') {
-                console.log('⏳ في انتظار تحميل بيانات المنتجات...');
-                setTimeout(() => this.init(), 500);
-                return;
-            }
-            
-            this.products = window.productsData || [];
-            this.filteredProducts = [...this.products];
-            this.initialized = true;
-            
-            this.loadCart();
-            this.setupEventListeners();
-            this.checkURLParameters();
-            this.renderProducts();
-            this.updateCounters();
-            this.hideLoading();
-            
-            console.log(`✅ تم تحميل ${this.products.length} منتج بنجاح`);
-            console.log(`📋 تفاصيل: ${this.getWatches().length} ساعة + ${this.getPerfumes().length} عطر`);
-        },
-        
-        // === EVENT LISTENERS ===
-        setupEventListeners() {
-            // Filter buttons
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const filter = btn.getAttribute('data-filter');
-                    this.applyFilter(filter);
-                });
-            });
-            
-            // Search functionality
-            const searchInput = document.getElementById('searchInput');
-            if (searchInput) {
-                let searchTimeout;
-                searchInput.addEventListener('input', (e) => {
-                    clearTimeout(searchTimeout);
-                    searchTimeout = setTimeout(() => {
-                        this.searchQuery = e.target.value.trim();
-                        this.applyFilters();
-                        this.updateURL();
-                    }, 300);
-                });
-                
-                searchInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        this.searchQuery = e.target.value.trim();
-                        this.applyFilters();
-                    }
-                });
-            }
-            
-            // Load more button
-            const loadMoreBtn = document.getElementById('loadMoreBtn');
-            if (loadMoreBtn) {
-                loadMoreBtn.addEventListener('click', () => this.loadMoreProducts());
-            }
-        },
-        
-        // === URL MANAGEMENT ===
-        checkURLParameters() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const category = urlParams.get('category');
-            const search = urlParams.get('search');
-            
-            if (category) {
-                this.currentFilter = category;
-                this.updateFilterButtons();
-            }
-            
-            if (search) {
-                this.searchQuery = search;
-                const searchInput = document.getElementById('searchInput');
-                if (searchInput) searchInput.value = search;
-            }
-            
-            if (category || search) {
-                this.applyFilters();
-            }
-        },
-        
-        updateURL() {
-            const url = new URL(window.location);
-            
-            if (this.currentFilter && this.currentFilter !== 'all') {
-                url.searchParams.set('category', this.currentFilter);
+    // Wait for products data to load
+    if (typeof window.productsData !== 'undefined') {
+        initializeStore();
+    } else {
+        // Retry after a short delay
+        setTimeout(() => {
+            if (typeof window.productsData !== 'undefined') {
+                initializeStore();
             } else {
-                url.searchParams.delete('category');
+                showError('خطأ في تحميل بيانات المنتجات');
             }
-            
-            if (this.searchQuery) {
-                url.searchParams.set('search', this.searchQuery);
-            } else {
-                url.searchParams.delete('search');
-            }
-            
-            window.history.replaceState({}, '', url);
-        },
-        
-        // === FILTERING & SEARCH ===
-        applyFilter(filter) {
-            this.currentFilter = filter;
-            this.updateFilterButtons();
-            this.applyFilters();
-            this.updateURL();
-        },
-        
-        applyFilters() {
-            let filtered = [...this.products];
-            
-            // Category filter
-            if (this.currentFilter === 'watches') {
-                filtered = filtered.filter(p => p.categoryEn === 'watches');
-            } else if (this.currentFilter === 'perfumes') {
-                filtered = filtered.filter(p => p.categoryEn === 'perfumes');
-            } else if (this.currentFilter === 'featured') {
-                filtered = filtered.filter(p => p.featured);
-            }
-            
-            // Search filter
-            if (this.searchQuery) {
-                const query = this.searchQuery.toLowerCase();
-                filtered = filtered.filter(p => 
-                    p.title.toLowerCase().includes(query) ||
-                    (p.brand && p.brand.toLowerCase().includes(query)) ||
-                    p.description.toLowerCase().includes(query) ||
-                    p.category.toLowerCase().includes(query)
-                );
-            }
-            
-            this.filteredProducts = filtered;
-            this.loadedProducts = 0;
-            this.renderProducts();
-            this.updateResultsInfo();
-        },
-        
-        // === PRODUCT RENDERING ===
-        renderProducts() {
-            const productsGrid = document.getElementById('productsGrid');
-            const noResults = document.getElementById('noResults');
-            
-            if (!productsGrid) return;
-            
-            if (this.filteredProducts.length === 0) {
-                productsGrid.style.display = 'none';
-                if (noResults) noResults.style.display = 'block';
-                return;
-            }
-            
-            if (noResults) noResults.style.display = 'none';
-            productsGrid.style.display = 'grid';
-            
-            const productsToShow = Math.min(this.productsPerPage, this.filteredProducts.length);
-            const displayProducts = this.filteredProducts.slice(0, productsToShow);
-            this.displayedProducts = displayProducts;
-            this.loadedProducts = productsToShow;
-            
-            productsGrid.innerHTML = displayProducts.map(product => this.createProductCard(product)).join('');
-            this.updateLoadMoreButton();
-        },
-        
-        createProductCard(product) {
-            const discount = product.price > (product.salePrice || product.price) 
-                ? Math.round((product.price - (product.salePrice || product.price)) / product.price * 100)
-                : 0;
-            
-            const rating = product.rating || 4.5;
-            const reviewsCount = product.reviews || 0;
-            const productSlug = product.slug || `product-${product.id}`;
-            
-            return `
-                <article class="product-card" data-product-id="${product.id}">
-                    <div class="product-image">
-                        <img src="${product.image}" alt="${product.title}" loading="lazy" 
-                             onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop&crop=center'">
-                        <div class="product-badges">
-                            ${discount > 0 ? `<span class="badge discount">خصم ${discount}%</span>` : ''}
-                            ${product.featured ? `<span class="badge featured">⭐ مميز</span>` : ''}
-                        </div>
-                        <div class="product-overlay">
-                            <button onclick="EmiratesGiftsStore.openProductPage('${productSlug}')" class="overlay-btn" title="عرض التفاصيل">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button onclick="EmiratesGiftsStore.addToCart(${product.id})" class="overlay-btn" title="أضف للسلة">
-                                <i class="fas fa-shopping-cart"></i>
-                            </button>
-                            <button onclick="EmiratesGiftsStore.shareProduct(${product.id})" class="overlay-btn" title="مشاركة">
-                                <i class="fas fa-share-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <div class="product-meta">
-                            <span class="product-category">${product.category}</span>
-                            <span class="product-brand">${product.brand || 'علامة فاخرة'}</span>
-                        </div>
-                        <h3 class="product-title" onclick="EmiratesGiftsStore.openProductPage('${productSlug}')">${product.title}</h3>
-                        <div class="product-rating">
-                            <div class="stars">${this.generateStars(rating)}</div>
-                            <span class="rating-number">${rating.toFixed(1)}</span>
-                            ${reviewsCount > 0 ? `<span class="reviews-count">(${reviewsCount})</span>` : ''}
-                        </div>
-                        <div class="product-pricing">
-                            <span class="current-price">${product.salePrice || product.price} درهم</span>
-                            ${product.price > (product.salePrice || product.price) ? `<span class="original-price">${product.price} درهم</span>` : ''}
-                            ${discount > 0 ? `<span class="savings">وفر ${product.price - (product.salePrice || product.price)} درهم!</span>` : ''}
-                        </div>
-                        <div class="product-actions">
-                            <button onclick="EmiratesGiftsStore.addToCart(${product.id})" class="btn btn-primary">
-                                <i class="fas fa-shopping-cart"></i>
-                                أضف للسلة
-                            </button>
-                            <a href="product.html?slug=${productSlug}" class="btn btn-outline-primary">
-                                <i class="fas fa-eye"></i>
-                                التفاصيل
-                            </a>
-                        </div>
-                    </div>
-                </article>
-            `;
-        },
-        
-        generateStars(rating) {
-            const fullStars = Math.floor(rating);
-            const hasHalfStar = rating % 1 >= 0.5;
-            let starsHTML = '';
-            
-            for (let i = 0; i < fullStars; i++) {
-                starsHTML += '<i class="fas fa-star"></i>';
-            }
-            
-            if (hasHalfStar) {
-                starsHTML += '<i class="fas fa-star-half-alt"></i>';
-            }
-            
-            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-            for (let i = 0; i < emptyStars; i++) {
-                starsHTML += '<i class="far fa-star"></i>';
-            }
-            
-            return starsHTML;
-        },
-        
-        // === SHOPPING CART ===
-        addToCart(productId) {
-            const product = this.products.find(p => p.id === parseInt(productId));
-            if (!product) return;
-            
-            const existingItem = this.cart.find(item => item.id === product.id);
-            
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                this.cart.push({
-                    ...product,
-                    quantity: 1,
-                    addedAt: new Date().toISOString()
-                });
-            }
-            
-            this.saveCart();
-            this.updateCartUI();
-            this.showNotification(`تم إضافة "${product.title}" للسلة! 🛍️`, 'success');
-        },
-        
-        removeFromCart(productId) {
-            this.cart = this.cart.filter(item => item.id !== parseInt(productId));
-            this.saveCart();
-            this.updateCartUI();
-            this.showNotification('تم إزالة المنتج من السلة', 'info');
-        },
-        
-        updateCartQuantity(productId, quantity) {
-            const item = this.cart.find(item => item.id === parseInt(productId));
-            if (item) {
-                if (quantity <= 0) {
-                    this.removeFromCart(productId);
-                } else {
-                    item.quantity = quantity;
-                    this.saveCart();
-                    this.updateCartUI();
-                }
-            }
-        },
-        
-        updateCartUI() {
-            const cartCounter = document.getElementById('cartCounter');
-            const cartItems = document.getElementById('cartItems');
-            const cartTotal = document.getElementById('cartTotal');
-            const checkoutBtn = document.getElementById('checkoutBtn');
-            
-            const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
-            const totalPrice = this.cart.reduce((sum, item) => sum + ((item.salePrice || item.price) * item.quantity), 0);
-            
-            // Update counter
-            if (cartCounter) {
-                if (totalItems > 0) {
-                    cartCounter.textContent = totalItems;
-                    cartCounter.style.display = 'flex';
-                } else {
-                    cartCounter.style.display = 'none';
-                }
-            }
-            
-            // Update cart items
-            if (cartItems) {
-                if (this.cart.length === 0) {
-                    cartItems.innerHTML = `
-                        <div class="empty-cart">
-                            <i class="fas fa-shopping-cart"></i>
-                            <p>سلتك فارغة</p>
-                            <small>ابدأ بإضافة منتجات للسلة</small>
-                        </div>
-                    `;
-                } else {
-                    cartItems.innerHTML = this.cart.map(item => `
-                        <div class="cart-item">
-                            <img src="${item.image}" alt="${item.title}" width="60" height="60">
-                            <div class="cart-item-details">
-                                <h4>${item.title}</h4>
-                                <div class="cart-item-price">${item.salePrice || item.price} درهم</div>
-                                <div class="quantity-controls">
-                                    <button onclick="EmiratesGiftsStore.updateCartQuantity(${item.id}, ${item.quantity - 1})" class="qty-btn">-</button>
-                                    <span class="quantity">${item.quantity}</span>
-                                    <button onclick="EmiratesGiftsStore.updateCartQuantity(${item.id}, ${item.quantity + 1})" class="qty-btn">+</button>
-                                </div>
-                            </div>
-                            <button onclick="EmiratesGiftsStore.removeFromCart(${item.id})" class="remove-item">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    `).join('');
-                }
-            }
-            
-            // Update total
-            if (cartTotal) {
-                cartTotal.textContent = totalPrice.toFixed(2);
-            }
-            
-            // Update checkout button
-            if (checkoutBtn) {
-                checkoutBtn.disabled = this.cart.length === 0;
-            }
-        },
-        
-        proceedToWhatsApp() {
-            if (this.cart.length === 0) return;
-            
-            const orderDetails = this.cart.map(item => 
-                `• ${item.title}\n   الكمية: ${item.quantity}\n   السعر: ${(item.salePrice || item.price)} درهم\n   الإجمالي: ${((item.salePrice || item.price) * item.quantity)} درهم`
-            ).join('\n\n');
-            
-            const totalPrice = this.cart.reduce((sum, item) => sum + ((item.salePrice || item.price) * item.quantity), 0);
-            const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
-            
-            const message = `مرحباً 👋\n\n🛍️ أريد طلب هذه المنتجات من متجر هدايا الإمارات:\n\n${orderDetails}\n\n📊 ملخص الطلب:\nعدد المنتجات: ${totalItems} قطعة\nالإجمالي: ${totalPrice.toFixed(2)} درهم (شامل الشحن المجاني)\n\n✨ أرجو تأكيد الطلب وإعلامي بوقت التوصيل\n\nشكراً لكم ❤️ 🇦🇪`;
-            
-            window.open(`https://wa.me/201110760081?text=${encodeURIComponent(message)}`, '_blank');
-        },
-        
-        // === CART STORAGE ===
-        saveCart() {
-            localStorage.setItem('emirates_cart', JSON.stringify(this.cart));
-        },
-        
-        loadCart() {
-            try {
-                const saved = localStorage.getItem('emirates_cart');
-                this.cart = saved ? JSON.parse(saved) : [];
-                this.updateCartUI();
-            } catch (e) {
-                this.cart = [];
-            }
-        },
-        
-        // === UI HELPERS ===
-        updateFilterButtons() {
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.getAttribute('data-filter') === this.currentFilter) {
-                    btn.classList.add('active');
-                }
-            });
-        },
-        
-        updateCounters() {
-            const counts = {
-                all: this.products.length,
-                watches: this.getWatches().length,
-                perfumes: this.getPerfumes().length,
-                featured: this.getFeaturedProducts().length
-            };
-            
-            Object.entries(counts).forEach(([key, count]) => {
-                const element = document.getElementById(`${key}Count`);
-                if (element) element.textContent = `(${count})`;
-            });
-        },
-        
-        updateResultsInfo() {
-            const resultsInfo = document.getElementById('resultsInfo');
-            if (!resultsInfo) return;
-            
-            const count = this.filteredProducts.length;
-            const filterText = this.getFilterText();
-            
-            resultsInfo.innerHTML = `
-                <h2>${filterText} <span class="results-count">(${count} منتج)</span></h2>
-                <p class="results-description">${this.getFilterDescription()}</p>
-            `;
-        },
-        
-        getFilterText() {
-            switch (this.currentFilter) {
-                case 'watches': return 'الساعات الفاخرة';
-                case 'perfumes': return 'العطور الأصلية';
-                case 'featured': return 'المنتجات المميزة';
-                default: return this.searchQuery ? `نتائج البحث: "${this.searchQuery}"` : 'جميع المنتجات';
-            }
-        },
-        
-        getFilterDescription() {
-            if (this.searchQuery) {
-                return `عرض نتائج البحث عن "${this.searchQuery}" في مجموعتنا الفاخرة`;
-            }
-            
-            switch (this.currentFilter) {
-                case 'watches': return 'استكشف مجموعتنا الحصرية من الساعات الفاخرة من أشهر العلامات العالمية';
-                case 'perfumes': return 'عطور أصلية 100% من أرقى دور العطور في العالم';
-                case 'featured': return 'مجموعتنا المختارة بعناية من أفضل المنتجات وأكثرها طلباً';
-                default: return 'اكتشف مجموعتنا الفاخرة من الساعات والعطور مع ضمان الجودة والأصالة';
-            }
-        },
-        
-        updateLoadMoreButton() {
-            const loadMoreContainer = document.getElementById('loadMoreContainer');
-            const remainingCount = document.getElementById('remainingCount');
-            
-            if (!loadMoreContainer) return;
-            
-            const total = this.filteredProducts.length;
-            const loaded = this.loadedProducts;
-            const remaining = total - loaded;
-            
-            if (remaining > 0) {
-                loadMoreContainer.style.display = 'block';
-                if (remainingCount) {
-                    remainingCount.textContent = `متبقي ${remaining} منتج من أصل ${total}`;
-                }
-            } else {
-                loadMoreContainer.style.display = 'none';
-            }
-        },
-        
-        hideLoading() {
-            const loading = document.getElementById('loadingState');
-            const grid = document.getElementById('productsGrid');
-            if (loading) loading.style.display = 'none';
-            if (grid) grid.style.display = 'grid';
-        },
-        
-        showNotification(message, type = 'success') {
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.style.cssText = `
-                position: fixed; top: 20px; right: 20px; background: white;
-                padding: 1rem 1.5rem; border-radius: 0.5rem; box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-                border-left: 4px solid ${type === 'success' ? '#22c55e' : '#ef4444'};
-                z-index: 10000; transform: translateX(400px); opacity: 0;
-                transition: all 0.3s ease; max-width: 300px;
-            `;
-            
-            notification.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}" style="color: ${type === 'success' ? '#22c55e' : '#ef4444'};"></i>
-                    <span>${message}</span>
-                </div>
-            `;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.transform = 'translateX(0)';
-                notification.style.opacity = '1';
-            }, 100);
-            
-            setTimeout(() => {
-                notification.style.transform = 'translateX(400px)';
-                notification.style.opacity = '0';
-                setTimeout(() => notification.remove(), 300);
-            }, 4000);
-        },
-        
-        // === PUBLIC METHODS ===
-        loadMoreProducts() {
-            const btn = document.getElementById('loadMoreBtn');
-            if (!btn) return;
-            
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحميل...';
-            btn.disabled = true;
-            
-            setTimeout(() => {
-                const grid = document.getElementById('productsGrid');
-                const currentLoaded = this.loadedProducts;
-                const nextBatch = Math.min(this.productsPerPage, this.filteredProducts.length - currentLoaded);
-                
-                if (nextBatch > 0) {
-                    const nextProducts = this.filteredProducts.slice(currentLoaded, currentLoaded + nextBatch);
-                    const newHTML = nextProducts.map(product => this.createProductCard(product)).join('');
-                    grid.insertAdjacentHTML('beforeend', newHTML);
-                    
-                    this.loadedProducts += nextBatch;
-                    this.displayedProducts = [...this.displayedProducts, ...nextProducts];
-                }
-                
-                this.updateLoadMoreButton();
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }, 800);
-        },
-        
-        openProductPage(slug) {
-            const url = `product.html?slug=${slug}`;
-            window.open(url, '_blank', 'noopener');
-        },
-        
-        shareProduct(productId) {
-            const product = this.products.find(p => p.id === parseInt(productId));
-            if (!product) return;
-            
-            const productSlug = product.slug || `product-${product.id}`;
-            const shareData = {
-                title: `${product.title} - متجر هدايا الإمارات`,
-                text: `اكتشف ${product.title} بسعر ${product.salePrice || product.price} درهم`,
-                url: `${window.location.origin}/product.html?slug=${productSlug}`
-            };
-            
-            if (navigator.share) {
-                navigator.share(shareData);
-            } else {
-                navigator.clipboard.writeText(`${shareData.text}\n${shareData.url}`)
-                    .then(() => this.showNotification('تم نسخ رابط المنتج! 📋', 'success'));
-            }
-        },
-        
-        resetFilters() {
-            this.currentFilter = 'all';
-            this.searchQuery = '';
-            const searchInput = document.getElementById('searchInput');
-            if (searchInput) searchInput.value = '';
-            
-            this.updateFilterButtons();
-            this.applyFilters();
-            this.updateURL();
-        },
-        
-        // === HELPER METHODS ===
-        getWatches() {
-            return this.products.filter(p => p.categoryEn === 'watches');
-        },
-        
-        getPerfumes() {
-            return this.products.filter(p => p.categoryEn === 'perfumes');
-        },
-        
-        getFeaturedProducts() {
-            return this.products.filter(p => p.featured);
-        }
+        }, 500);
+    }
+});
+
+function initializeStore() {
+    updateCategoryStats();
+    renderProducts();
+    setupEventListeners();
+    updateCartUI();
+    
+    console.log(`✅ تم تحميل ${window.totalProducts} منتج بنجاح`);
+}
+
+function updateCategoryStats() {
+    const stats = {
+        all: window.totalProducts,
+        watches: window.totalWatches,
+        perfumes: window.totalPerfumes,
+        featured: window.totalFeatured
     };
     
-    // === GLOBAL FUNCTIONS ===
-    window.EmiratesGiftsStore = EmiratesGiftsStore;
-    
-    // Cart functions
-    window.toggleCart = function() {
-        const sidebar = document.getElementById('cartSidebar');
-        const overlay = document.getElementById('cartOverlay');
-        const isOpen = sidebar.classList.contains('open');
-        
-        if (isOpen) {
-            sidebar.classList.remove('open');
-            overlay.classList.remove('active');
-        } else {
-            sidebar.classList.add('open');
-            overlay.classList.add('active');
+    Object.keys(stats).forEach(category => {
+        const countElement = document.getElementById(`${category}Count`);
+        if (countElement) {
+            countElement.textContent = `(${stats[category]})`;
         }
-    };
-    
-    window.proceedToWhatsApp = () => EmiratesGiftsStore.proceedToWhatsApp();
-    window.resetFilters = () => EmiratesGiftsStore.resetFilters();
-    
-    // === INITIALIZATION ===
-    document.addEventListener('DOMContentLoaded', () => {
-        EmiratesGiftsStore.init();
-        console.log('✨ متجر هدايا الإمارات جاهز للعمل الاحترافي!');
     });
+}
 
-})();
+function renderProducts(page = 1) {
+    const startTime = Date.now();
+    currentPage = page;
+    
+    // Show loading
+    showLoading();
+    
+    // Get filtered products
+    let filteredProducts = getFilteredProducts();
+    
+    // Check if no results
+    if (filteredProducts.length === 0) {
+        showNoResults();
+        return;
+    }
+    
+    // Get products for current page
+    const pageProducts = getProductsForPage(page, filteredProducts);
+    
+    // Simulate loading time for better UX
+    setTimeout(() => {
+        displayProducts(pageProducts);
+        updatePagination(filteredProducts.length);
+        updateResultsInfo(filteredProducts.length);
+        
+        const loadTime = Date.now() - startTime;
+        console.log(`⌚ تم تحميل ${pageProducts.length} منتج في ${loadTime}ms`);
+    }, 300);
+}
 
-console.log('🎆 متجر هدايا الإمارات الاحترافي جاهز مع سلة تسوق! 🇦🇪');
+function getFilteredProducts() {
+    let products = window.productsData;
+    
+    // Apply category filter
+    if (currentFilter !== 'all') {
+        if (currentFilter === 'featured') {
+            products = getFeaturedProducts();
+        } else {
+            products = getProductsByCategory(currentFilter);
+        }
+    }
+    
+    // Apply search filter
+    if (currentSearch) {
+        products = products.filter(product => 
+            product.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
+            product.brand.toLowerCase().includes(currentSearch.toLowerCase()) ||
+            product.category.toLowerCase().includes(currentSearch.toLowerCase())
+        );
+    }
+    
+    return products;
+}
+
+function displayProducts(products) {
+    if (!products || products.length === 0) {
+        showNoResults();
+        return;
+    }
+    
+    const html = products.map((product, index) => `
+        <div class="product-card" style="animation-delay: ${(index % 12) * 0.1}s" onclick="openProduct('${product.slug}')">
+            ${product.featured ? '<div class="product-badge featured">⭐ مميز</div>' : ''}
+            ${product.discount > 15 ? `<div class="product-badge">-${product.discount}%</div>` : ''}
+            
+            <div class="product-image">
+                <img src="${product.image}" alt="${product.title}" loading="lazy" 
+                     onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop'">
+            </div>
+            
+            <div class="product-info">
+                <h3 class="product-title">${product.title}</h3>
+                <p class="product-category">${product.category} • ${product.brand}</p>
+                
+                <div class="product-rating">
+                    <div class="stars">
+                        ${generateStars(product.rating)}
+                    </div>
+                    <span class="rating-text">(${product.reviews} تقييم)</span>
+                </div>
+                
+                <div class="product-prices">
+                    <span class="current-price">${product.salePrice} درهم</span>
+                    <span class="original-price">${product.price} درهم</span>
+                    <span class="discount">-${product.discount}%</span>
+                </div>
+                
+                <div class="product-actions">
+                    <button class="add-to-cart" onclick="event.stopPropagation(); addToCart(${product.id})">
+                        <i class="fas fa-cart-plus"></i>
+                        أضف للسلة
+                    </button>
+                    <button class="quick-view" onclick="event.stopPropagation(); openProduct('${product.slug}')">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+    
+    productsGrid.innerHTML = html;
+    productsGrid.style.display = 'grid';
+    loadingState.style.display = 'none';
+    noResults.style.display = 'none';
+}
+
+function generateStars(rating) {
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+    
+    let stars = '';
+    
+    // Full stars
+    for (let i = 0; i < fullStars; i++) {
+        stars += '<i class="fas fa-star star"></i>';
+    }
+    
+    // Half star
+    if (hasHalfStar) {
+        stars += '<i class="fas fa-star-half-alt star"></i>';
+    }
+    
+    // Empty stars
+    for (let i = 0; i < emptyStars; i++) {
+        stars += '<i class="far fa-star star empty"></i>';
+    }
+    
+    return stars;
+}
+
+function showLoading() {
+    productsGrid.style.display = 'none';
+    loadingState.style.display = 'block';
+    noResults.style.display = 'none';
+    document.getElementById('pagination').style.display = 'none';
+}
+
+function showNoResults() {
+    productsGrid.style.display = 'none';
+    loadingState.style.display = 'none';
+    noResults.style.display = 'block';
+    document.getElementById('pagination').style.display = 'none';
+}
+
+function showError(message) {
+    productsGrid.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: #ef4444;">
+            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <h3>خطأ في التحميل</h3>
+            <p>${message}</p>
+            <button onclick="location.reload()" class="btn btn-primary" style="margin-top: 1rem;">
+                <i class="fas fa-refresh"></i> إعادة التحميل
+            </button>
+        </div>
+    `;
+    productsGrid.style.display = 'grid';
+    loadingState.style.display = 'none';
+}
+
+function updateResultsInfo(totalResults) {
+    const resultsInfo = document.getElementById('resultsInfo');
+    const title = resultsInfo.querySelector('h2');
+    const description = resultsInfo.querySelector('p');
+    
+    let titleText = 'جميع المنتجات';
+    let descText = `اكتشف مجموعتنا الفاخرة من ${window.totalWatches} ساعة فاخرة و16 عطر أصلي مع ضمان الجودة والأصالة`;
+    
+    if (currentFilter === 'watches') {
+        titleText = 'مجموعة الساعات';
+        descText = 'ساعات فاخرة من أرقى العلامات التجارية العالمية';
+    } else if (currentFilter === 'perfumes') {
+        titleText = 'مجموعة العطور';
+        descText = 'عطور أصلية بتراكيب راقية وروائح مميزة';
+    } else if (currentFilter === 'featured') {
+        titleText = 'المنتجات المميزة';
+        descText = 'منتجات مختارة بعناية من مجموعتنا الفاخرة';
+    }
+    
+    if (currentSearch) {
+        titleText = `نتائج البحث: "${currentSearch}"`;
+        descText = `تم العثور على ${totalResults} منتج مطابق لبحثك`;
+    }
+    
+    title.innerHTML = `${titleText} <span class="results-count">(${totalResults} منتج)</span>`;
+    description.textContent = descText;
+}
+
+function updatePagination(totalResults) {
+    const totalPages = Math.ceil(totalResults / window.productsPerPage);
+    const paginationContainer = document.getElementById('pagination');
+    
+    if (totalPages <= 1) {
+        paginationContainer.style.display = 'none';
+        return;
+    }
+    
+    paginationContainer.style.display = 'flex';
+    
+    // Update navigation buttons
+    const prevBtn = document.getElementById('prevPage');
+    const nextBtn = document.getElementById('nextPage');
+    
+    prevBtn.disabled = currentPage <= 1;
+    nextBtn.disabled = currentPage >= totalPages;
+    
+    // Generate page numbers
+    const pageNumbers = document.getElementById('pageNumbers');
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    
+    if (endPage - startPage < maxVisiblePages - 1) {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+    
+    let pagesHtml = '';
+    
+    // First page
+    if (startPage > 1) {
+        pagesHtml += `<button class="page-number" onclick="renderProducts(1)">1</button>`;
+        if (startPage > 2) {
+            pagesHtml += '<span style="padding: 0 0.5rem;">…</span>';
+        }
+    }
+    
+    // Visible pages
+    for (let i = startPage; i <= endPage; i++) {
+        pagesHtml += `<button class="page-number ${i === currentPage ? 'active' : ''}" onclick="renderProducts(${i})">${i}</button>`;
+    }
+    
+    // Last page
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+            pagesHtml += '<span style="padding: 0 0.5rem;">…</span>';
+        }
+        pagesHtml += `<button class="page-number" onclick="renderProducts(${totalPages})">${totalPages}</button>`;
+    }
+    
+    pageNumbers.innerHTML = pagesHtml;
+    
+    // Update pagination info
+    const start = (currentPage - 1) * window.productsPerPage + 1;
+    const end = Math.min(currentPage * window.productsPerPage, totalResults);
+    
+    document.getElementById('currentRange').textContent = `${start}-${end}`;
+    document.getElementById('totalCount').textContent = totalResults;
+}
+
+function setupEventListeners() {
+    // Search input
+    if (searchInput) {
+        searchInput.addEventListener('input', debounce(handleSearch, 300));
+    }
+    
+    // Filter buttons
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filter = btn.dataset.filter;
+            setActiveFilter(filter);
+        });
+    });
+    
+    // Pagination
+    document.getElementById('prevPage')?.addEventListener('click', () => {
+        if (currentPage > 1) {
+            renderProducts(currentPage - 1);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+    
+    document.getElementById('nextPage')?.addEventListener('click', () => {
+        const totalPages = Math.ceil(getFilteredProducts().length / window.productsPerPage);
+        if (currentPage < totalPages) {
+            renderProducts(currentPage + 1);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+}
+
+function handleSearch(e) {
+    currentSearch = e.target.value.trim();
+    currentPage = 1;
+    renderProducts();
+}
+
+function setActiveFilter(filter) {
+    currentFilter = filter;
+    currentPage = 1;
+    
+    // Update active button
+    filterButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.filter === filter);
+    });
+    
+    renderProducts();
+}
+
+function resetFilters() {
+    currentFilter = 'all';
+    currentSearch = '';
+    currentPage = 1;
+    
+    if (searchInput) searchInput.value = '';
+    
+    filterButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.filter === 'all');
+    });
+    
+    renderProducts();
+}
+
+function openProduct(slug) {
+    const url = `product.html?slug=${encodeURIComponent(slug)}`;
+    window.open(url, '_blank');
+}
+
+// ===== CART FUNCTIONALITY =====
+function addToCart(productId) {
+    const product = getProductById(productId);
+    if (!product) {
+        console.error('منتج غير موجود:', productId);
+        return;
+    }
+    
+    // Check if product already in cart
+    const existingItem = cart.find(item => item.id === productId);
+    
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            id: product.id,
+            title: product.title,
+            price: product.salePrice,
+            image: product.image,
+            slug: product.slug,
+            quantity: 1
+        });
+    }
+    
+    saveCart();
+    updateCartUI();
+    showAddedToCartMessage(product.title);
+    
+    console.log('✅ تمت إضافة للسلة:', product.title);
+}
+
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    saveCart();
+    updateCartUI();
+}
+
+function updateQuantity(productId, quantity) {
+    const item = cart.find(item => item.id === productId);
+    if (item) {
+        if (quantity <= 0) {
+            removeFromCart(productId);
+        } else {
+            item.quantity = quantity;
+            saveCart();
+            updateCartUI();
+        }
+    }
+}
+
+function saveCart() {
+    localStorage.setItem('hadayaCart', JSON.stringify(cart));
+}
+
+function updateCartUI() {
+    // Update cart counter
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    
+    if (totalItems > 0) {
+        cartCounter.style.display = 'flex';
+        cartCounter.textContent = totalItems;
+    } else {
+        cartCounter.style.display = 'none';
+    }
+    
+    // Update cart items
+    if (cart.length === 0) {
+        cartItems.innerHTML = `
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>سلتك فارغة</p>
+                <small>ابدأ بإضافة منتجات للسلة</small>
+            </div>
+        `;
+        checkoutBtn.disabled = true;
+        cartTotal.textContent = '0';
+    } else {
+        const itemsHtml = cart.map(item => `
+            <div class="cart-item">
+                <img src="${item.image}" alt="${item.title}" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100&h=100&fit=crop'">
+                <div class="cart-item-info">
+                    <div class="cart-item-title">${item.title}</div>
+                    <div class="cart-item-price">${item.price} درهم</div>
+                    <div class="cart-item-controls">
+                        <button onclick="updateQuantity(${item.id}, ${item.quantity - 1})">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <span class="quantity">${item.quantity}</span>
+                        <button onclick="updateQuantity(${item.id}, ${item.quantity + 1})">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button onclick="removeFromCart(${item.id})" class="remove-btn">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+        
+        cartItems.innerHTML = itemsHtml;
+        
+        // Calculate total
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        cartTotal.textContent = total;
+        checkoutBtn.disabled = false;
+    }
+}
+
+function toggleCart() {
+    const isActive = cartSidebar.classList.contains('active');
+    
+    if (isActive) {
+        cartSidebar.classList.remove('active');
+        cartOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    } else {
+        cartSidebar.classList.add('active');
+        cartOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function proceedToWhatsApp() {
+    if (cart.length === 0) return;
+    
+    let message = '🛋️ طلب جديد من متجر هدايا الإمارات\n\n';
+    
+    cart.forEach((item, index) => {
+        message += `${index + 1}. ${item.title}\n`;
+        message += `   السعر: ${item.price} درهم\n`;
+        message += `   الكمية: ${item.quantity}\n`;
+        message += `   الإجمالي: ${item.price * item.quantity} درهم\n\n`;
+    });
+    
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    message += `💰 إجمالي الطلب: ${total} درهم\n`;
+    message += `🇦🇪 شحن مجاني داخل الإمارات\n`;
+    message += `\nرابط المتجر: https://hadaya-emirates.arabsad.com`;
+    
+    const whatsappUrl = `https://wa.me/201110760081?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+function showAddedToCartMessage(productTitle) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.innerHTML = `
+        <div style="position: fixed; top: 100px; right: 20px; background: var(--success-color); color: white; 
+                    padding: 1rem 1.5rem; border-radius: var(--border-radius); box-shadow: var(--shadow-lg); 
+                    z-index: 3000; animation: slideInRight 0.3s ease;">
+            <i class="fas fa-check-circle"></i> تمت إضافة المنتج للسلة!
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
+// ===== UTILITY FUNCTIONS =====
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Add CSS for notification animation
+const notificationStyle = document.createElement('style');
+notificationStyle.textContent = `
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    .cart-item-controls {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+    
+    .cart-item-controls button {
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
+        border: 1px solid var(--border-color);
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        transition: var(--transition);
+    }
+    
+    .cart-item-controls button:hover {
+        background: var(--gray-100);
+    }
+    
+    .cart-item-controls .quantity {
+        min-width: 30px;
+        text-align: center;
+        font-weight: 600;
+    }
+    
+    .cart-item-controls .remove-btn {
+        color: var(--danger-color);
+        margin-right: auto;
+    }
+    
+    .cart-item-controls .remove-btn:hover {
+        background: #fee2e2;
+    }
+`;
+
+document.head.appendChild(notificationStyle);
+
+// ===== PWA SUPPORT =====
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => console.log('✅ SW registered'))
+            .catch(error => console.log('❌ SW registration failed'));
+    });
+}
+
+// ===== ERROR HANDLING =====
+window.addEventListener('error', function(e) {
+    console.error('❌ خطأ في التطبيق:', e.error);
+});
+
+// ===== PERFORMANCE MONITORING =====
+if ('performance' in window) {
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const perf = performance.getEntriesByType('navigation')[0];
+            const loadTime = perf.loadEventEnd - perf.loadEventStart;
+            console.log(`⏱️ وقت تحميل الصفحة: ${Math.round(loadTime)}ms`);
+        }, 0);
+    });
+}
+
+console.log('✨ تم تحميل جميع وظائف المتجر بنجاح!');
