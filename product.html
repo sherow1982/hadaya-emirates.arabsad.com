@@ -1,161 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="pageTitle">منتج - متجر هدايا الإمارات</title>
-  <meta id="pageDescription" name="description" content="" />
-  <meta id="pageKeywords" name="keywords" content="" />
-  <link rel="stylesheet" href="style.css" />
-  <!-- CSP relaxed to allow scripts -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' https: data:;" />
-</head>
-<body>
-  <header class="site-header">
-    <nav class="main-nav">
-      <div class="container">
-        <div class="nav-content">
-          <div class="logo">
-            <h1><a href="/">🇦🇪 متجر هدايا الإمارات</a></h1>
-            <p class="tagline">أجود الهدايا الفاخرة</p>
-          </div>
-          <div class="header-actions">
-            <div class="action-btn" id="cartBtn" onclick="toggleCart()">
-              <i class="fas fa-shopping-cart"></i>
-              <span>السلة</span>
-              <span class="cart-counter" id="cartCounter" style="display: none">0</span>
-            </div>
-            <a href="https://wa.me/201110760081" target="_blank" class="action-btn">
-              <i class="fab fa-whatsapp"></i>
-              <span>تواصل</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  <main class="main-content">
-    <div class="container">
-      <a href="/" class="back-btn"><i class="fas fa-arrow-right"></i> عودة للمتجر</a>
-      <div id="loadingState">
-        <div class="loading-spinner"></div>
-        <p style="text-align: center; margin-top: 1rem; color: #6b7280">جاري تحميل تفاصيل المنتج...</p>
-      </div>
-      <div id="productNotFound" class="product-not-found" style="display: none">
-        <i class="fas fa-box-open"></i>
-        <h2>لم يتم العثور على هذا المنتج</h2>
-        <p>تحقق من الرابط أو عُد للمتجر</p>
-        <a href="/" class="btn btn-primary" style="margin-top: 2rem"><i class="fas fa-home"></i> عودة للمتجر</a>
-      </div>
-      <div id="productDetail" class="product-detail" style="display: none">
-        <div class="breadcrumb">
-          <a href="/">الرئيسية</a>
-          <i class="fas fa-chevron-left"></i>
-          <span id="categoryBreadcrumb">المنتجات</span>
-          <i class="fas fa-chevron-left"></i>
-          <span id="productBreadcrumb">المنتج</span>
-        </div>
-        <div class="product-detail-container">
-          <div class="product-images">
-            <div class="main-image">
-              <img id="productImage" src="" alt="" />
-            </div>
-          </div>
-          <div class="product-info-detail">
-            <div>
-              <div class="product-brand" id="productBrand"></div>
-              <h1 class="product-title-detail" id="productTitle"></h1>
-            </div>
-            <div class="product-rating-detail">
-              <div class="stars" id="productStars"></div>
-              <span class="rating-score" id="productRating"></span>
-              <span class="rating-text" id="productReviews"></span>
-            </div>
-            <div class="product-prices-detail">
-              <span class="current-price-detail" id="productSalePrice"></span>
-              <span class="original-price-detail" id="productPrice"></span>
-              <span class="discount-detail" id="productDiscount"></span>
-            </div>
-            <p class="product-description-detail" id="productDescription"></p>
-            <div class="product-actions-detail">
-              <button class="add-to-cart-detail" id="addToCartBtn"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
-              <a id="whatsappBtn" class="whatsapp-btn" href="#" target="_blank"><i class="fab fa-whatsapp"></i> استفسار</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <script src="products-data.js?v=263" defer></script>
-  <script>
-    // Robust loader: try slug, partial, then id
-    window.addEventListener('DOMContentLoaded', () => {
-      const url = new URL(window.location.href);
-      const raw = url.searchParams.get('slug') || '';
-      const idParam = url.searchParams.get('id');
-
-      const find = () => {
-        if (typeof getProductBySlug === 'function') {
-          const exact = getProductBySlug(raw);
-          if (exact) return exact;
-        }
-        const norm = decodeURIComponent(raw).trim().replace(/\s+/g, '-').toLowerCase();
-        const partial = (window.productsData || []).find(p => p.title && p.title.toLowerCase().includes(norm.replace(/-/g, ' ')));
-        if (partial) return partial;
-        if (idParam) {
-          const byId = (window.productsData || []).find(p => p.id === parseInt(idParam));
-          if (byId) return byId;
-        }
-        return null;
-      };
-
-      const showProduct = (p) => {
-        document.getElementById('loadingState').style.display = 'none';
-        if (!p) {
-          document.getElementById('productNotFound').style.display = 'block';
-          return;
-        }
-        document.getElementById('productDetail').style.display = 'block';
-        document.getElementById('productImage').src = p.image;
-        document.getElementById('productImage').alt = p.title;
-        document.getElementById('productBrand').textContent = p.brand || '';
-        document.getElementById('productTitle').textContent = p.title;
-        document.getElementById('productDescription').textContent = p.description || '';
-        document.getElementById('productSalePrice').textContent = `${p.salePrice} درهم`;
-        document.getElementById('productPrice').textContent = `${p.price} درهم`;
-        document.getElementById('productDiscount').textContent = `-${p.discount || 0}%`;
-        document.getElementById('productRating').textContent = (p.rating || 4.6).toFixed(1);
-        document.getElementById('productReviews').textContent = `(${p.reviews || 25} تقييم)`;
-        document.getElementById('productStars').innerHTML = (function(r){
-          const f=Math.floor(r),h=r%1>=0.5,e=5-f-(h?1:0);let s='';
-          for(let i=0;i<f;i++) s+='<i class=\'fas fa-star star\'></i>';
-          if(h) s+='<i class=\'fas fa-star-half-alt star\'></i>';
-          for(let i=0;i<e;i++) s+='<i class=\'far fa-star star empty\'></i>';
-          return s;})(p.rating||4.6);
-        document.getElementById('productBreadcrumb').textContent = p.title;
-        document.getElementById('categoryBreadcrumb').textContent = p.category || 'المنتجات';
-        document.getElementById('addToCartBtn').onclick = ()=>{ 
-          const cart = JSON.parse(localStorage.getItem('hadayaCart')||'[]');
-          const exist = cart.find(i=>i.id===p.id);
-          if(exist) exist.quantity += 1; else cart.push({id:p.id,title:p.title,price:p.salePrice,image:p.image,slug:p.slug,quantity:1});
-          localStorage.setItem('hadayaCart', JSON.stringify(cart));
-          alert('تمت إضافة المنتج إلى السلة');
-        };
-        const msg = `مرحباً! أريد الاستفسار عن هذا المنتج:\n\n${p.title}\nالسعر: ${p.salePrice} درهم\n\nرابط المنتج: ${window.location.href}`;
-        document.getElementById('whatsappBtn').href = `https://wa.me/201110760081?text=${encodeURIComponent(msg)}`;
-      };
-
-      const ensure = () => {
-        if (window.productsData && window.productsData.length) {
-          showProduct(find());
-        } else {
-          setTimeout(ensure, 100);
-        }
-      };
-      ensure();
-    });
-  </script>
-</body>
-</html>
