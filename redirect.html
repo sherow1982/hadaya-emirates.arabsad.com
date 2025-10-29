@@ -17,14 +17,13 @@
   <section class="center">
     <h1>⏳ جاري توجيهك لمنتج مشابه</h1>
     <p>نحاول إيجاد أفضل بديل للمنتج الذي تبحث عنه. سيتم تحويلك تلقائياً.</p>
-    <div>سيتم التحويل خلال <span id="count" class="count">8</span> ثوان</div>
+    <div>سيتم التحويل خلال <span id="count" class="count">5</span> ثوان</div>
     <div id="alts" class="alt-grid"></div>
     <div style="margin-top:1rem"><a href="/" class="btn btn-outline">الانتقال للرئيسية الآن</a></div>
   </section>
 
   <script src="products-data.js"></script>
   <script>
-    // استخراج كلمات من مسار الرابط
     function getTerms(){
       const path = (location.pathname||'').toLowerCase();
       const name = decodeURIComponent(path.split('/').pop().replace('.html',''));
@@ -38,29 +37,22 @@
     function score(p){
       const title = (p.title||'').toLowerCase();
       let s = 0; terms.forEach(t=>{ if(title.includes(t)) s += t.length; });
-      // تفضيل نفس الفئة إن أمكن
       if(title.includes('ساعة')) s += 1; if(title.includes('عطر')) s += 1;
       return s;
     }
 
-    // ترتيب واقتراح 6 بدائل
     const alts = all.map(p=>({p, s:score(p)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,6).map(x=>x.p);
 
     const wrap = document.getElementById('alts');
     if(alts.length){
       wrap.innerHTML = alts.map(p=>{
         const s = slug(p.title);
-        return `<div class="alt-card">
-          <img src="${p.image_link}" alt="${p.title}" style="width:100%;height:140px;object-fit:cover;border-radius:8px;">
-          <h4 style="margin:.5rem 0">${p.title}</h4>
-          <div style="color:#667eea;font-weight:700">${p.sale_price} درهم</div>
-          <a class="btn btn-primary btn-sm" href="/products/${s}.html">شاهد المنتج</a>
-        </div>`
+        return `<div class=\"alt-card\">\n          <img src=\"${p.image_link}\" alt=\"${p.title}\" style=\"width:100%;height:140px;object-fit:cover;border-radius:8px;\">\n          <h4 style=\"margin:.5rem 0\">${p.title}</h4>\n          <div style=\"color:#667eea;font-weight:700\">${p.sale_price} درهم</div>\n          <a class=\"btn btn-primary btn-sm\" href=\"/products/${s}.html\">شاهد المنتج</a>\n        </div>`
       }).join('');
     }
 
-    // عد تنازلي + تحويل تلقائي
-    let c = 8; const el = document.getElementById('count');
+    // عد تنازلي 5 ثوان + تحويل تلقائي
+    let c = 5; const el = document.getElementById('count');
     const timer = setInterval(()=>{ c--; el.textContent = c; if(c<=0){
       clearInterval(timer);
       if(alts.length){ location.href = `/products/${slug(alts[0].title)}.html`; }
