@@ -1,0 +1,36 @@
+{
+  "name": "هدايا الإمارات - متجر الساعات والعطور الفاخرة",
+  "short_name": "هدايا الإمارات",
+  "description": "متجر الساعات والعطور الفاخرة في الإمارات",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#667eea",
+  "theme_color": "#667eea",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192x192/667eea/ffffff?text=هدايا",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "https://via.placeholder.com/512x512/667eea/ffffff?text=هدايا",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["shopping", "lifestyle"],
+  "screenshots": [
+    {
+      "src": "https://via.placeholder.com/1280x720/667eea/ffffff?text=هدايا+الإمارات",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}
