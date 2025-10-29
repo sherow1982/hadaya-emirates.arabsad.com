@@ -25,171 +25,397 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    
     <style>
-    /* styles unchanged for brevity */
+    .container-fluid{width:100%;padding:0 1rem}
+    .filters-row{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap}
+    .breadcrumb{background:var(--gray-50);padding:1rem 2rem;border-bottom:1px solid var(--border)}
+    .breadcrumb-nav{display:flex;align-items:center;gap:.5rem;font-size:.9rem}
+    .breadcrumb-nav a{color:var(--primary);text-decoration:none;font-weight:500}
+    .breadcrumb-nav a:hover{text-decoration:underline}
+    .breadcrumb-nav .current{color:var(--text-light);font-weight:normal}
+    .product-page{padding:3rem 2rem}
+    .product-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:3rem}
+    .product-gallery{position:relative}
+    .main-image{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:var(--gray-100)}
+    .main-image img{width:100%;height:500px;object-fit:cover}
+    .product-badges{position:absolute;top:1rem;right:1rem;display:flex;flex-direction:column;gap:.5rem}
+    .product-badge{background:var(--danger);color:white;padding:.25rem .75rem;border-radius:2rem;font-size:.875rem;font-weight:bold}
+    .product-badge.featured{background:var(--gold);color:var(--dark)}
+    .product-info{display:flex;flex-direction:column;gap:1.5rem}
+    .product-meta{display:flex;justify-content:space-between;align-items:center}
+    .product-category{background:var(--primary);color:white;padding:.25rem .75rem;border-radius:2rem;font-size:.875rem;font-weight:600}
+    .product-brand{color:var(--text-light);font-weight:500}
+    .product-title{font-size:2.25rem;font-weight:900;color:var(--text);line-height:1.2}
+    .quantity-section{background:white;padding:1.5rem;border:1px solid var(--border);border-radius:var(--radius)}
+    .quantity-controls{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+    .quantity-btn{background:var(--primary);color:white;border:none;width:40px;height:40px;border-radius:.5rem;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center}
+    .quantity-input{width:60px;text-align:center;border:1px solid var(--border);border-radius:.25rem;padding:.5rem;font-size:1rem}
+    .action-buttons{display:flex;gap:1rem;flex-wrap:wrap}
+    .action-btn{flex:1;min-width:200px;padding:1rem 2rem;border-radius:.5rem;font-size:1rem;font-weight:700;cursor:pointer;transition:var(--transition);display:flex;align-items:center;justify-content:center;gap:.5rem;text-decoration:none}
+    .btn-whatsapp{background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);color:white;border:none}
+    .btn-email{background:var(--primary);color:white;border:none}
+    .btn-share{background:var(--secondary);color:white;border:none}
+    .action-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+    #loadingState,#errorState,#productContent{transition:opacity .3s ease}
+    .hidden{display:none!important}
+    @media(max-width:768px){.product-grid{grid-template-columns:1fr;gap:2rem}.action-buttons{flex-direction:column}.action-btn{min-width:auto}}
     </style>
 </head>
 
 <body>
-    <!-- markup unchanged for brevity -->
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-top">
+            <div class="container">
+                <div class="contact-info">
+                    <div class="contact-item uae-exclusive">
+                        <i class="fas fa-flag"></i>
+                        <span>🇦🇪 خدمة حصرية للمقيمين في الإمارات</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>واتساب: +201110760081</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="main-nav">
+            <div class="container">
+                <div class="nav-content">
+                    <div class="logo">
+                        <h1><a href="/">🇦🇪 متجر هدايا الإمارات</a></h1>
+                        <p class="tagline">أجود الهدايا الفاخرة</p>
+                    </div>
+                    
+                    <div class="header-actions">
+                        <a href="https://wa.me/201110760081" target="_blank" class="action-btn">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="/" class="action-btn">
+                            <i class="fas fa-home"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-    <!-- Products Data MUST load before logic -->
-    <script src="products-data.js"></script>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <div class="container">
+                <nav class="breadcrumb-nav">
+                    <a href="/">الرئيسية</a>
+                    <i class="fas fa-chevron-left"></i>
+                    <a href="/?category=watches" id="categoryBreadcrumb">الساعات</a>
+                    <i class="fas fa-chevron-left"></i>
+                    <span class="current" id="productBreadcrumb">المنتج</span>
+                </nav>
+            </div>
+        </div>
 
+        <!-- Loading State -->
+        <div id="loadingState" class="product-page">
+            <div class="container">
+                <div class="no-products">
+                    <div class="loading-spinner"></div>
+                    <h3>جاري تحميل تفاصيل المنتج...</h3>
+                    <p>يرجى الانتظار بينما نحمّل معلومات المنتج</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error State -->
+        <div id="errorState" class="product-page hidden">
+            <div class="container">
+                <div class="no-products">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>لم يتم العثور على هذا المنتج</h3>
+                    <p>المنتج الذي تبحث عنه ليس متاحاً حالياً أو قد يكون الرابط غير صحيح</p>
+                    <div style="margin-top: 2rem;">
+                        <a href="/" class="action-btn btn-email">
+                            <i class="fas fa-home"></i>
+                            عودة إلى الرئيسية
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Content -->
+        <div id="productContent" class="product-page hidden">
+            <div class="container">
+                <div class="product-grid">
+                    <!-- Product Gallery -->
+                    <div class="product-gallery">
+                        <div class="main-image">
+                            <img id="productImage" src="" alt="">
+                            <div class="product-badges" id="productBadges">
+                                <!-- Badges will be added dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Info -->
+                    <div class="product-info">
+                        <div class="product-meta">
+                            <span class="product-category" id="productCategory"></span>
+                            <span class="product-brand" id="productBrand"></span>
+                        </div>
+
+                        <h1 class="product-title" id="productTitle"></h1>
+
+                        <div class="product-rating">
+                            <div class="stars" id="productStars"></div>
+                            <div class="rating-info">
+                                <span class="rating-number" id="ratingNumber"></span>
+                                <span class="reviews-count" id="reviewsCount"></span>
+                            </div>
+                        </div>
+
+                        <div class="product-pricing">
+                            <div class="price-row">
+                                <span class="current-price" id="currentPrice"></span>
+                                <span class="original-price" id="originalPrice" style="display:none;"></span>
+                                <span class="savings" id="savingsAmount" style="display:none;"></span>
+                            </div>
+                            <p class="price-note">شامل ضريبة القيمة المضافة + شحن مجاني داخل الإمارات</p>
+                        </div>
+
+                        <div class="product-description">
+                            <h3>وصف المنتج</h3>
+                            <p id="productDescription"></p>
+                        </div>
+
+                        <div class="quantity-section">
+                            <h4>الكمية</h4>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="changeQuantity(-1)" aria-label="تقليل الكمية">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="number" id="productQuantity" class="quantity-input" value="1" min="1" max="10" readonly>
+                                <button class="quantity-btn" onclick="changeQuantity(1)" aria-label="زيادة الكمية">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+
+                            <div class="action-buttons">
+                                <button onclick="orderWhatsApp()" class="action-btn btn-whatsapp">
+                                    <i class="fab fa-whatsapp"></i>
+                                    اطلب عبر واتساب
+                                </button>
+                                <button onclick="emailProduct()" class="action-btn btn-email">
+                                    <i class="fas fa-envelope"></i>
+                                    استفسار بالإيميل
+                                </button>
+                                <button onclick="shareProduct()" class="action-btn btn-share">
+                                    <i class="fas fa-share-alt"></i>
+                                    مشاركة المنتج
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- External Scripts -->
+    <script src="products-data.js" defer></script>
     <script>
-        let currentProduct = null;
-        let retries = 0;
-        const MAX_RETRIES = 10; // 1s total with 100ms steps
+    // Product page specific functionality
+    let currentProduct = null;
+    let retries = 0;
+    const MAX_RETRIES = 10;
 
-        function getURLParameter(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            const val = urlParams.get(name);
-            // Handle Arabic and encoded slugs safely
-            return val ? decodeURIComponent(val) : null;
+    function getURLParameter(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const val = urlParams.get(name);
+        return val ? decodeURIComponent(val) : null;
+    }
+
+    function normalizeSlug(s) {
+        return (s || '')
+            .trim()
+            .replace(/\u200f|\u200e/g, '')
+            .replace(/\s+/g, '-');
+    }
+
+    function generateStars(rating) {
+        const full = Math.floor(rating);
+        const half = rating % 1 >= 0.5;
+        let html = '';
+        for (let i = 0; i < full; i++) html += '<i class="fas fa-star"></i>';
+        if (half) html += '<i class="fas fa-star-half-alt"></i>';
+        for (let i = 0; i < 5 - full - (half ? 1 : 0); i++) html += '<i class="far fa-star"></i>';
+        return html;
+    }
+
+    function updatePageSEO(product) {
+        const baseUrl = window.location.origin;
+        const currentUrl = `${baseUrl}/product.html?slug=${encodeURIComponent(product.slug)}`;
+        document.getElementById('pageTitle').textContent = `${product.title} | متجر هدايا الإمارات`;
+        document.getElementById('pageDescription').content = product.description;
+        document.getElementById('pageCanonical').href = currentUrl;
+        document.getElementById('ogTitle').content = product.title;
+        document.getElementById('ogDescription').content = product.description;
+        document.getElementById('ogImage').content = product.image;
+        document.getElementById('ogUrl').content = currentUrl;
+        document.getElementById('twitterTitle').content = product.title;
+        document.getElementById('twitterDescription').content = product.description;
+        document.getElementById('twitterImage').content = product.image;
+    }
+
+    function displayProduct(product) {
+        currentProduct = product;
+        updatePageSEO(product);
+        
+        // Update breadcrumb
+        document.getElementById('categoryBreadcrumb').textContent = product.category;
+        document.getElementById('productBreadcrumb').textContent = product.title;
+        
+        // Update product info
+        const img = document.getElementById('productImage');
+        img.src = product.image;
+        img.alt = product.title;
+        
+        document.getElementById('productCategory').textContent = product.category;
+        document.getElementById('productBrand').textContent = product.brand;
+        document.getElementById('productTitle').textContent = product.title;
+        document.getElementById('productDescription').textContent = product.description;
+        document.getElementById('productStars').innerHTML = generateStars(product.rating);
+        document.getElementById('ratingNumber').textContent = (product.rating || 0).toFixed(1);
+        document.getElementById('reviewsCount').textContent = `(${product.reviewsCount || 0} تقييم)`;
+        document.getElementById('currentPrice').textContent = `${product.salePrice || product.price} درهم`;
+        
+        // Handle pricing
+        const originalPriceEl = document.getElementById('originalPrice');
+        const savingsAmountEl = document.getElementById('savingsAmount');
+        if (product.price > (product.salePrice || product.price)) {
+            originalPriceEl.textContent = `${product.price} درهم`;
+            originalPriceEl.style.display = 'inline';
+            const savings = product.price - (product.salePrice || product.price);
+            savingsAmountEl.textContent = `وفر ${savings} درهم`;
+            savingsAmountEl.style.display = 'inline';
         }
-
-        function normalizeSlug(s){
-            // remove surrounding spaces and normalize Arabic forms
-            return (s || '')
-                .trim()
-                .replace(/\u200f|\u200e/g,'') // LRM/RLM
-                .replace(/\s+/g,'-');
+        
+        // Handle badges
+        const badges = document.getElementById('productBadges');
+        badges.innerHTML = '';
+        if (product.price > (product.salePrice || product.price)) {
+            const discount = Math.round((product.price - (product.salePrice || product.price)) / product.price * 100);
+            badges.innerHTML += `<span class="product-badge">-${discount}%</span>`;
         }
-
-        function generateStars(rating){
-            const full = Math.floor(rating);
-            const half = rating % 1 >= 0.5;
-            let html='';
-            for(let i=0;i<full;i++) html+='<i class="fas fa-star"></i>';
-            if(half) html+='<i class="fas fa-star-half-alt"></i>';
-            for(let i=0;i<5-full-(half?1:0);i++) html+='<i class="far fa-star"></i>';
-            return html;
+        if (product.featured) {
+            badges.innerHTML += `<span class="product-badge featured">مميز</span>`;
         }
+        
+        // Show content
+        document.getElementById('loadingState').classList.add('hidden');
+        document.getElementById('errorState').classList.add('hidden');
+        document.getElementById('productContent').classList.remove('hidden');
+    }
 
-        function updatePageSEO(product){
-            const baseUrl = window.location.origin;
-            const currentUrl = `${baseUrl}/product.html?slug=${encodeURIComponent(product.slug)}`;
-            document.getElementById('pageTitle').textContent = `${product.title} | متجر هدايا الإمارات`;
-            document.getElementById('pageDescription').content = product.description;
-            document.getElementById('pageCanonical').href = currentUrl;
-            document.getElementById('ogTitle').content = product.title;
-            document.getElementById('ogDescription').content = product.description;
-            document.getElementById('ogImage').content = product.image;
-            document.getElementById('ogUrl').content = currentUrl;
-            document.getElementById('twitterTitle').content = product.title;
-            document.getElementById('twitterDescription').content = product.description;
-            document.getElementById('twitterImage').content = product.image;
-        }
+    function showError() {
+        document.getElementById('loadingState').classList.add('hidden');
+        document.getElementById('productContent').classList.add('hidden');
+        document.getElementById('errorState').classList.remove('hidden');
+    }
 
-        function addStructuredData(product){
-            const script = document.createElement('script');
-            script.type = 'application/ld+json';
-            script.textContent = JSON.stringify({
-                "@context":"https://schema.org/",
-                "@type":"Product",
-                name: product.title,
-                image: product.image,
-                description: product.description,
-                brand:{"@type":"Brand",name:product.brand},
-                category: product.category,
-                offers:{"@type":"Offer",url:`${window.location.origin}/product.html?slug=${encodeURIComponent(product.slug)}`,priceCurrency:"AED",price: product.salePrice||product.price,availability:"https://schema.org/InStock",itemCondition:"https://schema.org/NewCondition"},
-                aggregateRating:{"@type":"AggregateRating",ratingValue:product.rating,reviewCount:product.reviewsCount,bestRating:"5",worstRating:"1"}
-            });
-            document.head.appendChild(script);
-        }
-
-        function displayProduct(product){
-            currentProduct = product;
-            updatePageSEO(product);
-            addStructuredData(product);
-            document.getElementById('categoryBreadcrumb').textContent = product.category;
-            document.getElementById('productBreadcrumb').textContent = product.title;
-            const img = document.getElementById('productImage');
-            img.src = product.image;
-            img.alt = product.title;
-            document.getElementById('productCategory').textContent = product.category;
-            document.getElementById('productBrand').textContent = product.brand;
-            document.getElementById('productTitle').textContent = product.title;
-            document.getElementById('productDescription').textContent = product.description;
-            document.getElementById('productStars').innerHTML = generateStars(product.rating);
-            document.getElementById('ratingNumber').textContent = (product.rating||0).toFixed(1);
-            document.getElementById('reviewsCount').textContent = `(${product.reviewsCount||0} تقييم)`;
-            document.getElementById('currentPrice').textContent = `${product.salePrice||product.price} درهم`;
-            const originalPriceEl = document.getElementById('originalPrice');
-            const savingsAmountEl = document.getElementById('savingsAmount');
-            if(product.price > (product.salePrice||product.price)){
-                originalPriceEl.textContent = `${product.price} درهم`;
-                originalPriceEl.style.display='inline';
-                const savings = product.price - (product.salePrice||product.price);
-                savingsAmountEl.textContent = `وفر ${savings} درهم`;
-                savingsAmountEl.style.display='inline';
+    function tryLoadProduct() {
+        const rawSlug = getURLParameter('slug');
+        if (!rawSlug) { showError(); return; }
+        
+        const slug = normalizeSlug(rawSlug);
+        
+        if (typeof window.getProductBySlug === 'function') {
+            let product = window.getProductBySlug(slug) || 
+                         window.getProductBySlug(encodeURIComponent(slug)) || 
+                         window.getProductBySlug(decodeURIComponent(slug));
+            
+            if (!product && Array.isArray(window.productsData)) {
+                product = window.productsData.find(p => normalizeSlug(p.slug) === slug);
+            }
+            
+            if (product) {
+                displayProduct(product);
+                return;
+            }
+            
+            if (retries < MAX_RETRIES) {
+                retries++;
+                setTimeout(tryLoadProduct, 150);
+                return;
+            }
+            
+            showError();
+        } else {
+            if (retries < MAX_RETRIES) {
+                retries++;
+                setTimeout(tryLoadProduct, 150);
             } else {
-                originalPriceEl.style.display='none';
-                savingsAmountEl.style.display='none';
-            }
-            const badges = document.getElementById('productBadges');
-            badges.innerHTML='';
-            if(product.price > (product.salePrice||product.price)){
-                const discount = Math.round((product.price - (product.salePrice||product.price)) / product.price * 100);
-                badges.innerHTML += `<span class="product-badge">-${discount}%</span>`;
-            }
-            if(product.featured){
-                badges.innerHTML += `<span class="product-badge featured">مميز</span>`;
-            }
-            document.getElementById('loadingState').classList.add('hidden');
-            document.getElementById('errorState').classList.add('hidden');
-            document.getElementById('productContent').classList.remove('hidden');
-        }
-
-        function showError(){
-            document.getElementById('loadingState').classList.add('hidden');
-            document.getElementById('productContent').classList.add('hidden');
-            document.getElementById('errorState').classList.remove('hidden');
-        }
-
-        function tryLoadProduct(){
-            const rawSlug = getURLParameter('slug');
-            if(!rawSlug){ showError(); return; }
-            const slug = normalizeSlug(rawSlug);
-            if(typeof window.getProductBySlug === 'function'){
-                // try exact, then encoded/decoded variations
-                let product = window.getProductBySlug(slug) || window.getProductBySlug(encodeURIComponent(slug)) || window.getProductBySlug(decodeURIComponent(slug));
-                // also try loose match for Arabic title-derived slugs
-                if(!product && Array.isArray(window.productsData)){
-                    product = window.productsData.find(p => normalizeSlug(p.slug) === slug);
-                }
-                if(product){
-                    displayProduct(product); return;
-                }
-                if(retries < MAX_RETRIES){
-                    retries++; setTimeout(tryLoadProduct, 150); return;
-                }
                 showError();
-            } else {
-                if(retries < MAX_RETRIES){ retries++; setTimeout(tryLoadProduct, 150); } else { showError(); }
             }
         }
+    }
 
-        // Start
-        document.addEventListener('DOMContentLoaded', function(){
-            // ensure data script loaded
-            if(typeof window.productsData === 'undefined'){
-                // small delay to allow products-data.js to parse on slow devices
-                setTimeout(tryLoadProduct, 200);
-            } else {
-                tryLoadProduct();
+    // Product actions
+    function changeQuantity(delta) {
+        const input = document.getElementById('productQuantity');
+        let value = parseInt(input.value) || 1;
+        value += delta;
+        if (value < 1) value = 1;
+        if (value > 10) value = 10;
+        input.value = value;
+    }
+
+    function orderWhatsApp() {
+        if (!currentProduct) return;
+        const quantity = document.getElementById('productQuantity').value;
+        const message = `مرحباً 👋\n\n🛍️ أريد طلب هذا المنتج:\n\n📦 ${currentProduct.title}\n💰 السعر: ${currentProduct.salePrice || currentProduct.price} درهم\n🔢 الكمية: ${quantity}\n🏷️ الفئة: ${currentProduct.category}\n🏪 العلامة: ${currentProduct.brand}\n\nرابط المنتج: ${window.location.href}\n\nشكراً لكم ❤️ 🇦🇪`;
+        window.open(`https://wa.me/201110760081?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    function emailProduct() {
+        if (!currentProduct) return;
+        const subject = `استفسار عن ${currentProduct.title}`;
+        const body = `مرحباً،\n\nأريد الاستفسار عن هذا المنتج:\n\n📦 ${currentProduct.title}\n💰 ${currentProduct.salePrice || currentProduct.price} درهم\n🏷️ ${currentProduct.category}\n🏪 ${currentProduct.brand}\n\nرابط: ${window.location.href}\n\nشكراً.`;
+        window.open(`mailto:sherow1982@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank');
+    }
+
+    function shareProduct() {
+        if (!currentProduct) return;
+        const data = {
+            title: `${currentProduct.title} - متجر هدايا الإمارات`,
+            text: `اكتشف ${currentProduct.title} بسعر ${currentProduct.salePrice || currentProduct.price} درهم`,
+            url: window.location.href
+        };
+        
+        if (navigator.share) {
+            navigator.share(data);
+        } else {
+            const text = `${data.text}\n${data.url}`;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('تم نسخ رابط المنتج!');
+                });
             }
-        });
-
-        function changeQuantity(delta){
-            const input = document.getElementById('productQuantity');
-            let v = parseInt(input.value)||1; v += delta; if(v<1) v=1; if(v>10) v=10; input.value=v;
         }
-        function orderWhatsApp(){ if(!currentProduct) return; const q=document.getElementById('productQuantity').value; const msg=`مرحباً، أريد طلب هذا المنتج:\n\n📦 ${currentProduct.title}\n💰 السعر: ${currentProduct.salePrice||currentProduct.price} درهم\n🔢 الكمية: ${q}\n🏷️ الفئة: ${currentProduct.category}\n🏪 العلامة التجارية: ${currentProduct.brand}\n\nرابط المنتج: ${window.location.href}\n\nشكراً لكم ❤️ 🇦🇪`; window.open(`https://wa.me/201110760081?text=${encodeURIComponent(msg)}`,'_blank'); }
-        function emailProduct(){ if(!currentProduct) return; const subject=`استفسار عن ${currentProduct.title}`; const body=`مرحباً،\n\nأريد الاستفسار عن هذا المنتج:\n\n📦 اسم المنتج: ${currentProduct.title}\n💰 السعر: ${currentProduct.salePrice||currentProduct.price} درهم\n🏷️ الفئة: ${currentProduct.category}\n🏪 العلامة التجارية: ${currentProduct.brand}\n\nرابط المنتج: ${window.location.href}\n\nشكراً لكم.`; window.open(`mailto:sherow1982@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,'_blank'); }
-        function shareProduct(){ if(!currentProduct) return; const data={ title:`${currentProduct.title} - متجر هدايا الإمارات`, text:`اكتشف ${currentProduct.title} بسعر ${currentProduct.salePrice||currentProduct.price} درهم`, url: window.location.href }; if(navigator.share){ navigator.share(data); } else { const t=`${data.text} - ${data.url}`; if(navigator.clipboard){ navigator.clipboard.writeText(t).then(()=>alert('تم نسخ رابط المنتج!')); } else { const ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); alert('تم نسخ رابط المنتج!'); } } }
+    }
 
-        if (typeof gtag !== 'undefined') { gtag('event','page_view',{page_title:'Product Page',page_location:window.location.href}); }
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof window.productsData === 'undefined') {
+            setTimeout(tryLoadProduct, 200);
+        } else {
+            tryLoadProduct();
+        }
+    });
     </script>
 </body>
 </html>
