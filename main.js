@@ -1,5 +1,5 @@
 // ===== EMIRATES GIFTS STORE - PROFESSIONAL E-COMMERCE ENGINE =====
-// v4.0 - محرك متجر إلكتروني متقدم مع سلة تسوق وبحث ذكي
+// v4.1 - محرك متجر إلكتروني متقدم مع سلة تسوق وبحث ذكي - إصلاح الروابط
 
 (function() {
     'use strict';
@@ -138,9 +138,9 @@
             
             // Category filter
             if (this.currentFilter === 'watches') {
-                filtered = filtered.filter(p => p.category === 'ساعات');
+                filtered = filtered.filter(p => p.categoryEn === 'watches');
             } else if (this.currentFilter === 'perfumes') {
-                filtered = filtered.filter(p => p.category === 'عطور');
+                filtered = filtered.filter(p => p.categoryEn === 'perfumes');
             } else if (this.currentFilter === 'featured') {
                 filtered = filtered.filter(p => p.featured);
             }
@@ -150,7 +150,7 @@
                 const query = this.searchQuery.toLowerCase();
                 filtered = filtered.filter(p => 
                     p.title.toLowerCase().includes(query) ||
-                    p.brand.toLowerCase().includes(query) ||
+                    (p.brand && p.brand.toLowerCase().includes(query)) ||
                     p.description.toLowerCase().includes(query) ||
                     p.category.toLowerCase().includes(query)
                 );
@@ -171,11 +171,11 @@
             
             if (this.filteredProducts.length === 0) {
                 productsGrid.style.display = 'none';
-                noResults.style.display = 'block';
+                if (noResults) noResults.style.display = 'block';
                 return;
             }
             
-            noResults.style.display = 'none';
+            if (noResults) noResults.style.display = 'none';
             productsGrid.style.display = 'grid';
             
             const productsToShow = Math.min(this.productsPerPage, this.filteredProducts.length);
@@ -193,7 +193,8 @@
                 : 0;
             
             const rating = product.rating || 4.5;
-            const reviewsCount = product.reviewsCount || 0;
+            const reviewsCount = product.reviews || 0;
+            const productSlug = product.slug || `product-${product.id}`;
             
             return `
                 <article class="product-card" data-product-id="${product.id}">
@@ -205,7 +206,7 @@
                             ${product.featured ? `<span class="badge featured">⭐ مميز</span>` : ''}
                         </div>
                         <div class="product-overlay">
-                            <button onclick="EmiratesGiftsStore.openProductPage('${product.slug}')" class="overlay-btn" title="عرض التفاصيل">
+                            <button onclick="EmiratesGiftsStore.openProductPage('${productSlug}')" class="overlay-btn" title="عرض التفاصيل">
                                 <i class="fas fa-eye"></i>
                             </button>
                             <button onclick="EmiratesGiftsStore.addToCart(${product.id})" class="overlay-btn" title="أضف للسلة">
@@ -219,9 +220,9 @@
                     <div class="product-content">
                         <div class="product-meta">
                             <span class="product-category">${product.category}</span>
-                            <span class="product-brand">${product.brand}</span>
+                            <span class="product-brand">${product.brand || 'علامة فاخرة'}</span>
                         </div>
-                        <h3 class="product-title" onclick="EmiratesGiftsStore.openProductPage('${product.slug}')">${product.title}</h3>
+                        <h3 class="product-title" onclick="EmiratesGiftsStore.openProductPage('${productSlug}')">${product.title}</h3>
                         <div class="product-rating">
                             <div class="stars">${this.generateStars(rating)}</div>
                             <span class="rating-number">${rating.toFixed(1)}</span>
@@ -237,7 +238,7 @@
                                 <i class="fas fa-shopping-cart"></i>
                                 أضف للسلة
                             </button>
-                            <a href="/product.html?slug=${encodeURIComponent(product.slug)}" target="_blank" class="btn btn-outline-primary">
+                            <a href="product.html?slug=${productSlug}" class="btn btn-outline-primary">
                                 <i class="fas fa-eye"></i>
                                 التفاصيل
                             </a>
@@ -456,7 +457,7 @@
                 case 'watches': return 'استكشف مجموعتنا الحصرية من الساعات الفاخرة من أشهر العلامات العالمية';
                 case 'perfumes': return 'عطور أصلية 100% من أرقى دور العطور في العالم';
                 case 'featured': return 'مجموعتنا المختارة بعناية من أفضل المنتجات وأكثرها طلباً';
-                default: return 'اكتشف مجموعتنا الفاخرة من 197 ساعة فاخرة و 66 عطر أصلي مع ضمان الجودة والأصالة';
+                default: return 'اكتشف مجموعتنا الفاخرة من الساعات والعطور مع ضمان الجودة والأصالة';
             }
         },
         
@@ -549,7 +550,7 @@
         },
         
         openProductPage(slug) {
-            const url = `/product.html?slug=${encodeURIComponent(slug)}`;
+            const url = `product.html?slug=${slug}`;
             window.open(url, '_blank', 'noopener');
         },
         
@@ -557,10 +558,11 @@
             const product = this.products.find(p => p.id === parseInt(productId));
             if (!product) return;
             
+            const productSlug = product.slug || `product-${product.id}`;
             const shareData = {
                 title: `${product.title} - متجر هدايا الإمارات`,
                 text: `اكتشف ${product.title} بسعر ${product.salePrice || product.price} درهم`,
-                url: `${window.location.origin}/product.html?slug=${encodeURIComponent(product.slug)}`
+                url: `${window.location.origin}/product.html?slug=${productSlug}`
             };
             
             if (navigator.share) {
@@ -584,11 +586,11 @@
         
         // === HELPER METHODS ===
         getWatches() {
-            return this.products.filter(p => p.category === 'ساعات');
+            return this.products.filter(p => p.categoryEn === 'watches');
         },
         
         getPerfumes() {
-            return this.products.filter(p => p.category === 'عطور');
+            return this.products.filter(p => p.categoryEn === 'perfumes');
         },
         
         getFeaturedProducts() {
