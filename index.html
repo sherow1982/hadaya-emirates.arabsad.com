@@ -3,62 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر هدايا الإمارات - 50 منتج فاخر | ساعات وعطور أصلية</title>
-    <meta name="description" content="استكشف 50 منتج فاخر في متجر هدايا الإمارات: 30 ساعة فاخرة و20 عطر أصلي. شحن مجاني داخل الإمارات وضمان الأصالة 100%">
-    <meta name="keywords" content="متجر إلكتروني, ساعات فاخرة, عطور أصلية, هدايا, الإمارات, رولكس, ديور, شانيل, توم فورد">
+    <title>متجر هدايا الإمارات 🇦🇪 | ساعات وعطور فاخرة</title>
+    <meta name="description" content="متجر إلكتروني فاخر يضم 244 منتجاً من أرقى الساعات والعطور. شحن مجاني في الإمارات وضمان الأصالة 100%">
+    <meta name="keywords" content="متجر إلكتروني, ساعات فاخرة, عطور أصلية, هدايا, الإمارات, رولكس, ديور, شانيل">
+    
+    <!-- SEO و Open Graph -->
     <link rel="canonical" href="https://hadaya-emirates.arabsad.com/">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="متجر هدايا الإمارات - 50 منتج فاخر">
-    <meta property="og:description" content="استكشف 50 منتج فاخر: 30 ساعة فاخرة و20 عطر أصلي. شحن مجاني في الإمارات">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200&h=630&fit=crop">
+    <meta property="og:title" content="متجر هدايا الإمارات - ساعات وعطور فاخرة">
+    <meta property="og:description" content="244 منتج فاخر: ساعات رولكس وعطور أصلية مع شحن مجاني">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200">
     <meta property="og:url" content="https://hadaya-emirates.arabsad.com/">
-    <meta property="og:site_name" content="متجر هدايا الإمارات">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="متجر هدايا الإمارات - 50 منتج فاخر">
-    <meta name="twitter:description" content="استكشف 50 منتج فاخر: 30 ساعة فاخرة و20 عطر أصلي">
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200&h=630&fit=crop">
-    
-    <!-- Cache Busting -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "متجر هدايا الإمارات",
-        "url": "https://hadaya-emirates.arabsad.com",
-        "description": "متجر إلكتروني فاخر يضم 50 منتجاً من أرقى الساعات والعطور",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": {
-                "@type": "EntryPoint",
-                "urlTemplate": "https://hadaya-emirates.arabsad.com/?search={search_term_string}"
-            },
-            "query-input": "required name=search_term_string"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "متجر هدايا الإمارات",
-            "url": "https://hadaya-emirates.arabsad.com",
-            "sameAs": [
-                "https://wa.me/201110760081"
-            ]
-        }
-    }
-    </script>
     
     <!-- Fonts & Icons -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
-    <!-- External CSS -->
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
     
     <!-- PWA -->
@@ -93,11 +53,11 @@
                 <div class="nav-content">
                     <div class="logo">
                         <h1><a href="/">🇦🇪 متجر هدايا الإمارات</a></h1>
-                        <p class="tagline">أجود الهدايا الفاخرة | 50 منتج مختار</p>
+                        <p class="tagline">أجود الهدايا الفاخرة | 244 منتج مختار</p>
                     </div>
                     
                     <div class="header-actions">
-                        <div class="action-btn" id="cartBtn" onclick="toggleCart()" style="position:relative">
+                        <div class="action-btn" id="cartBtn" onclick="toggleCart()">
                             <i class="fas fa-shopping-cart"></i>
                             <span>السلة</span>
                             <span class="cart-counter" id="cartCounter" style="display:none">0</span>
@@ -112,7 +72,7 @@
         </nav>
     </header>
 
-    <!-- Shopping Cart Sidebar -->
+    <!-- Cart Sidebar -->
     <div id="cartSidebar" class="cart-sidebar">
         <div class="cart-header">
             <h3><i class="fas fa-shopping-cart"></i> سلة التسوق</h3>
@@ -148,16 +108,16 @@
                 
                 <div class="filter-buttons">
                     <button class="filter-btn active" data-filter="all">
-                        جميع المنتجات <span id="allCount">(50)</span>
+                        جميع المنتجات <span id="allCount">(244)</span>
                     </button>
                     <button class="filter-btn" data-filter="watches">
-                        🕰️ الساعات <span id="watchesCount">(30)</span>
+                        🕰️ الساعات <span id="watchesCount">(178)</span>
                     </button>
                     <button class="filter-btn" data-filter="perfumes">
-                        🌺 العطور <span id="perfumesCount">(20)</span>
+                        🌺 العطور <span id="perfumesCount">(66)</span>
                     </button>
                     <button class="filter-btn" data-filter="featured">
-                        ⭐ مميزة <span id="featuredCount">(9)</span>
+                        ⭐ مميزة <span id="featuredCount">(24)</span>
                     </button>
                 </div>
             </div>
@@ -169,8 +129,8 @@
         <div class="container">
             <!-- Results Info -->
             <div id="resultsInfo" class="results-info">
-                <h2>جميع المنتجات <span class="results-count">(50 منتج)</span></h2>
-                <p class="results-description">اكتشف مجموعتنا الفاخرة من 30 ساعة فاخرة و20 عطر أصلي مع ضمان الجودة والأصالة</p>
+                <h2>جميع المنتجات <span class="results-count">(244 منتج)</span></h2>
+                <p class="results-description">اكتشف مجموعتنا الفاخرة من 178 ساعة فاخرة و66 عطر أصلي مع ضمان الجودة والأصالة</p>
             </div>
 
             <!-- Loading State -->
@@ -184,22 +144,32 @@
                 <!-- Products will be loaded dynamically -->
             </div>
 
+            <!-- Pagination -->
+            <div id="pagination" class="pagination-container" style="display:none">
+                <div class="pagination">
+                    <button id="prevPage" class="page-btn" disabled>
+                        <i class="fas fa-chevron-right"></i> السابق
+                    </button>
+                    <div id="pageNumbers" class="page-numbers">
+                        <!-- Page numbers will be generated dynamically -->
+                    </div>
+                    <button id="nextPage" class="page-btn">
+                        التالي <i class="fas fa-chevron-left"></i>
+                    </button>
+                </div>
+                <p class="pagination-info">
+                    عرض <span id="currentRange">1-36</span> من <span id="totalCount">244</span> منتج
+                </p>
+            </div>
+
             <!-- No Results -->
             <div id="noResults" class="no-products" style="display:none">
                 <i class="fas fa-search-minus" style="font-size:3rem;margin-bottom:1rem;color:#d1d5db"></i>
                 <h3>لا توجد نتائج مطابقة</h3>
                 <p>لم نجد منتجات تطابق بحثك. جرب استخدام كلمات مختلفة</p>
                 <button onclick="resetFilters()" class="btn btn-primary" style="margin-top:1rem">
-                    <i class="fas fa-refresh"></i> عرض جميع المرتجعات
+                    <i class="fas fa-refresh"></i> عرض جميع المنتجات
                 </button>
-            </div>
-
-            <!-- Load More -->
-            <div id="loadMoreContainer" class="load-more-container" style="text-align:center;margin:3rem 0;display:none">
-                <button id="loadMoreBtn" class="btn btn-outline-primary">
-                    تحميل المزيد
-                </button>
-                <p id="remainingCount" class="remaining-count"></p>
             </div>
         </div>
     </main>
@@ -243,22 +213,8 @@
         </div>
     </footer>
 
-    <!-- External Scripts WITH CACHE BUSTING -->
-    <script src="products-data-263.js?v=50" defer></script>
-    <script src="main.js?v=50" defer></script>
-    
-    <!-- Performance & Analytics -->
-    <script defer>
-        // Preload critical resources
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js').catch(() => {});
-        }
-        
-        // Track page load performance
-        window.addEventListener('load', () => {
-            const loadTime = performance.now();
-            console.log(`🚀 المتجر جاهز في ${Math.round(loadTime)} ملي ثانية`);
-        });
-    </script>
+    <!-- Scripts -->
+    <script src="products-data.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
