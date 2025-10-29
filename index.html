@@ -22,6 +22,11 @@
     <meta name="twitter:description" content="استكشف 50 منتج فاخر: 30 ساعة فاخرة و20 عطر أصلي">
     <meta name="twitter:image" content="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200&h=630&fit=crop">
     
+    <!-- Cache Busting -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
@@ -59,41 +64,6 @@
     <!-- PWA -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#6366f1">
-    
-    <style>
-    /* Critical CSS for above-the-fold content */
-    .site-header{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
-    .header-top{background:rgba(0,0,0,0.1);padding:.5rem 0}
-    .header-top .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
-    .contact-info{display:flex;gap:2rem;align-items:center;flex-wrap:wrap}
-    .contact-item{display:flex;align-items:center;gap:.5rem;font-size:.9rem}
-    .uae-exclusive{background:rgba(255,215,0,0.2);padding:.25rem .75rem;border-radius:2rem;font-weight:600}
-    .main-nav{padding:1rem 0}
-    .nav-content{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
-    .logo h1{font-size:2rem;font-weight:900;margin:0}
-    .logo h1 a{color:white;text-decoration:none}
-    .tagline{margin:.25rem 0 0;font-size:.9rem;opacity:.9}
-    .header-actions{display:flex;gap:1rem;align-items:center}
-    .action-btn{background:rgba(255,255,255,0.2);color:white;border:none;padding:.75rem 1rem;border-radius:.5rem;text-decoration:none;transition:all .3s ease;display:flex;align-items:center;gap:.5rem}
-    .action-btn:hover{background:rgba(255,255,255,0.3);transform:translateY(-1px)}
-    .cart-counter{background:#ef4444;color:white;border-radius:50%;width:20px;height:20px;font-size:.75rem;display:flex;align-items:center;justify-content:center;position:absolute;top:-8px;right:-8px}
-    .filters-section{background:white;border-bottom:1px solid #e5e7eb;padding:1.5rem 0;position:sticky;top:120px;z-index:90}
-    .filters-container{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap}
-    .search-box{flex:1;min-width:300px;position:relative}
-    .search-input{width:100%;padding:.75rem 1rem;border:2px solid #e5e7eb;border-radius:.5rem;font-size:1rem}
-    .search-suggestions{position:absolute;top:100%;left:0;right:0;background:white;border:1px solid #e5e7eb;border-radius:.5rem;box-shadow:0 10px 25px rgba(0,0,0,0.1);z-index:1000;max-height:400px;overflow-y:auto;display:none}
-    .filter-buttons{display:flex;gap:.75rem;flex-wrap:wrap}
-    .filter-btn{padding:.5rem 1rem;border:2px solid #e5e7eb;background:white;border-radius:2rem;cursor:pointer;transition:all .3s ease;font-weight:600}
-    .filter-btn.active,.filter-btn:hover{background:#6366f1;color:white;border-color:#6366f1}
-    .main-content{min-height:70vh;padding:2rem 0}
-    .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2rem;margin-bottom:3rem}
-    .product-card{background:white;border-radius:1rem;box-shadow:0 4px 15px rgba(0,0,0,0.08);overflow:hidden;transition:all .3s ease;position:relative}
-    .product-card:hover{transform:translateY(-5px);box-shadow:0 15px 35px rgba(0,0,0,0.15)}
-    .loading-spinner{border:4px solid #f3f4f6;border-top:4px solid #6366f1;border-radius:50%;width:40px;height:40px;animation:spin 1s linear infinite;margin:0 auto}
-    @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-    .no-products{text-align:center;padding:4rem 2rem;color:#6b7280}
-    @media(max-width:768px){.filters-container{flex-direction:column}.search-box{min-width:auto}.filter-buttons{justify-content:center}}
-    </style>
 </head>
 
 <body>
@@ -273,9 +243,9 @@
         </div>
     </footer>
 
-    <!-- External Scripts -->
-    <script src="products-data.js" defer></script>
-    <script src="main.js" defer></script>
+    <!-- External Scripts WITH CACHE BUSTING -->
+    <script src="products-data-263.js?v=50" defer></script>
+    <script src="main.js?v=50" defer></script>
     
     <!-- Performance & Analytics -->
     <script defer>
