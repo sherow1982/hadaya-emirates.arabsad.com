@@ -4,19 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>متجر هدايا الإمارات 🇦🇪 | ساعات وعطور فاخرة</title>
-    <meta name="description" content="متجر إلكتروني فاخر يضم 244 منتجاً من أرقى الساعات والعطور. شحن مجاني في الإمارات وضمان الأصالة 100%">
+    <meta name="description" content="متجر إلكتروني فاخر يضم 263 منتجاً من أرقى الساعات والعطور. شحن مجاني في الإمارات وضمان الأصالة 100%">
     <meta name="keywords" content="متجر إلكتروني, ساعات فاخرة, عطور أصلية, هدايا, الإمارات, رولكس, ديور, شانيل">
+    
+    <!-- CSP for security -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' https: data:;">
     
     <!-- SEO و Open Graph -->
     <link rel="canonical" href="https://hadaya-emirates.arabsad.com/">
     <meta property="og:title" content="متجر هدايا الإمارات - ساعات وعطور فاخرة">
-    <meta property="og:description" content="244 منتج فاخر: ساعات رولكس وعطور أصلية مع شحن مجاني">
+    <meta property="og:description" content="263 منتج فاخر: ساعات رولكس وعطور أصلية مع شحن مجاني">
     <meta property="og:image" content="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200">
     <meta property="og:url" content="https://hadaya-emirates.arabsad.com/">
     
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎁</text></svg>">
     
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
@@ -53,7 +59,7 @@
                 <div class="nav-content">
                     <div class="logo">
                         <h1><a href="/">🇦🇪 متجر هدايا الإمارات</a></h1>
-                        <p class="tagline">أجود الهدايا الفاخرة | 244 منتج مختار</p>
+                        <p class="tagline">أجود الهدايا الفاخرة | 263 منتج مختار</p>
                     </div>
                     
                     <div class="header-actions">
@@ -108,17 +114,24 @@
                 
                 <div class="filter-buttons">
                     <button class="filter-btn active" data-filter="all">
-                        جميع المنتجات <span id="allCount">(244)</span>
+                        جميع المنتجات <span id="allCount">(263)</span>
                     </button>
                     <button class="filter-btn" data-filter="watches">
-                        🕰️ الساعات <span id="watchesCount">(178)</span>
+                        🕰️ الساعات <span id="watchesCount">(197)</span>
                     </button>
                     <button class="filter-btn" data-filter="perfumes">
-                        🌺 العطور <span id="perfumesCount">(66)</span>
+                        🌸 العطور <span id="perfumesCount">(66)</span>
                     </button>
                     <button class="filter-btn" data-filter="featured">
                         ⭐ مميزة <span id="featuredCount">(24)</span>
                     </button>
+                </div>
+                
+                <div class="brand-filters" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap;">
+                    <button class="filter-btn" data-brand="رولكس">رولكس</button>
+                    <button class="filter-btn" data-brand="ديور">ديور</button>
+                    <button class="filter-btn" data-brand="شانيل">شانيل</button>
+                    <button class="filter-btn" data-brand="توم فورد">توم فورد</button>
                 </div>
             </div>
         </div>
@@ -129,8 +142,8 @@
         <div class="container">
             <!-- Results Info -->
             <div id="resultsInfo" class="results-info">
-                <h2>جميع المنتجات <span class="results-count">(244 منتج)</span></h2>
-                <p class="results-description">اكتشف مجموعتنا الفاخرة من 178 ساعة فاخرة و66 عطر أصلي مع ضمان الجودة والأصالة</p>
+                <h2>جميع المنتجات <span class="results-count">(263 منتج)</span></h2>
+                <p class="results-description">اكتشف مجموعتنا الفاخرة من 197 ساعة فاخرة و66 عطر أصلي مع ضمان الجودة والأصالة</p>
             </div>
 
             <!-- Loading State -->
@@ -158,7 +171,7 @@
                     </button>
                 </div>
                 <p class="pagination-info">
-                    عرض <span id="currentRange">1-36</span> من <span id="totalCount">244</span> منتج
+                    عرض <span id="currentRange">1-36</span> من <span id="totalCount">263</span> منتج
                 </p>
             </div>
 
