@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة غير موجودة - جاري البحث عن بديل | هدايا الإمارات</title>
+    <meta name="description" content="عذراً، الصفحة المطلوبة غير موجودة. جاري البحث عن بديل مناسب لك.">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .search-animation {
+            display: inline-block;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .countdown {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+            text-align: center;
+            margin: 1rem 0;
+        }
+        .alternatives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .alternative-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .alternative-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="/" class="logo">
+                        <h1>🎁 هدايا الإمارات</h1>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/" class="nav-link">الرئيسية</a></li>
+                    <li><a href="/#watches" class="nav-link">الساعات</a></li>
+                    <li><a href="/#perfumes" class="nav-link">العطور</a></li>
+                    <li><a href="cart.html" class="nav-link">السلة</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 404 Content -->
+    <section style="padding: 120px 20px 80px; max-width: 1000px; margin: 0 auto; text-align: center;">
+        <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 3rem; border-radius: 20px; margin-bottom: 3rem;">
+            <h1 style="font-size: 3rem; margin-bottom: 1rem;">🔍</h1>
+            <h1 style="font-size: 2rem; margin-bottom: 1rem;">عذراً، الصفحة غير موجودة!</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">لكن لا تقلق... <span class="search-animation">🔎</span> جاري البحث عن بديل مناسب لك</p>
+        </div>
+        
+        <!-- Search Status -->
+        <div id="search-status" style="margin-bottom: 2rem;">
+            <div id="searching" style="color: #667eea; font-size: 1.1rem; font-weight: 600;">
+                <span class="search-animation">⏳</span> جاري البحث في كتالوج المنتجات...
+            </div>
+            <div id="no-alternatives" style="display: none; color: #666; font-size: 1rem;">
+                لم نجد بديلاً مناسباً. سيتم توجيهك للصفحة الرئيسية خلال:
+                <div class="countdown" id="countdown">5</div>
+            </div>
+        </div>
+        
+        <!-- Alternatives Section -->
+        <div id="alternatives-section" style="display: none;">
+            <h2 style="color: #333; margin-bottom: 2rem;">🎯 وجدنا بدائل قد تعجبك</h2>
+            <div class="alternatives-grid" id="alternatives-grid">
+                <!-- Alternatives will be loaded here -->
+            </div>
+        </div>
+        
+        <!-- Quick Links -->
+        <div style="margin-top: 3rem;">
+            <h3 style="color: #333; margin-bottom: 1.5rem;">أو تصفح أقسامنا المميزة</h3>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="/" class="btn btn-primary" style="text-decoration: none;">🏠 الصفحة الرئيسية</a>
+                <a href="/#watches" class="btn btn-secondary" style="text-decoration: none;">⌚ الساعات</a>
+                <a href="/#perfumes" class="btn btn-secondary" style="text-decoration: none;">🌸 العطور</a>
+                <a href="cart.html" class="btn btn-outline" style="text-decoration: none;">🛒 السلة</a>
+            </div>
+        </div>
+        
+        <!-- Help Section -->
+        <div style="margin-top: 3rem; padding: 2rem; background: #f8f9fa; border-radius: 15px;">
+            <h4 style="color: #333; margin-bottom: 1rem;">تحتاج مساعدة؟</h4>
+            <p style="color: #666; margin-bottom: 1.5rem;">فريق خدمة العملاء جاهز لمساعدتك في العثور على ما تبحث عنه</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://wa.me/201110760081?text=مرحباً، أحتاج مساعدة في العثور على منتج" target="_blank" class="btn btn-primary" style="text-decoration: none;">💬 واتساب</a>
+                <a href="tel:+201110760081" class="btn btn-secondary" style="text-decoration: none;">📞 اتصال مباشر</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>هدايا الإمارات</h3>
+                    <p>متجركم المميز للساعات والعطور الفاخرة</p>
+                </div>
+                <div class="footer-section">
+                    <h4>الصفحات القانونية</h4>
+                    <ul>
+                        <li><a href="return-policy.html">سياسة الإرجاع</a></li>
+                        <li><a href="privacy-policy.html">الخصوصية</a></li>
+                        <li><a href="terms-of-service.html">الشروط</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>معلومات الاتصال</h4>
+                    <div class="contact-info">
+                        <p>📧 info@hadaya-emirates.com</p>
+                        <p>📞 +201110760081</p>
+                        <p>📍 دبي، الإمارات العربية المتحدة</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 هدايا الإمارات. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="products-data.js"></script>
+    <script>
+        // Smart 404 Logic
+        let countdown = 5;
+        let alternativesFound = false;
+        
+        // Extract potential search terms from URL
+        function extractSearchTerms() {
+            const path = window.location.pathname;
+            const searchParams = new URLSearchParams(window.location.search);
+            
+            // Extract from URL path
+            let terms = path.split('/').filter(term => term.length > 2);
+            
+            // Extract from query parameters
+            const productName = searchParams.get('product') || searchParams.get('name') || searchParams.get('q');
+            if (productName) {
+                terms.push(...productName.split(/[\s-_]+/));
+            }
+            
+            return terms.map(term => term.toLowerCase().replace(/[^\u0600-\u06FF\w]/g, ''));
+        }
+        
+        // Search for alternatives
+        function searchAlternatives() {
+            const searchTerms = extractSearchTerms();
+            
+            if (searchTerms.length === 0 || !watchesData || !perfumesData) {
+                showNoAlternatives();
+                return;
+            }
+            
+            const allProducts = [...watchesData, ...perfumesData];
+            let matches = [];
+            
+            // Search in product titles
+            searchTerms.forEach(term => {
+                if (term.length < 3) return;
+                
+                allProducts.forEach(product => {
+                    const title = product.title.toLowerCase();
+                    if (title.includes(term) && !matches.find(m => m.id === product.id)) {
+                        matches.push({...product, type: watchesData.includes(product) ? 'watch' : 'perfume'});
+                    }
+                });
+            });
+            
+            if (matches.length > 0) {
+                showAlternatives(matches.slice(0, 6));
+            } else {
+                showNoAlternatives();
+            }
+        }
+        
+        function showAlternatives(products) {
+            alternativesFound = true;
+            document.getElementById('searching').style.display = 'none';
+            document.getElementById('alternatives-section').style.display = 'block';
+            
+            const grid = document.getElementById('alternatives-grid');
+            grid.innerHTML = products.map(product => {
+                const discount = Math.round(((product.price - product.sale_price) / product.price) * 100);
+                const slug = createSlug(product.title);
+                return `
+                    <div class="alternative-card">
+                        <img src="${product.image_link}" alt="${product.title}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                        <h4 style="margin-bottom: 0.5rem; color: #333; font-size: 14px;">${product.title}</h4>
+                        <div style="margin-bottom: 1rem;">
+                            <span style="font-weight: 700; color: #667eea;">${product.sale_price} درهم</span>
+                            <span style="color: #999; text-decoration: line-through; font-size: 12px; margin-right: 8px;">${product.price} درهم</span>
+                        </div>
+                        <a href="/products/${slug}.html" target="_blank" class="btn btn-primary btn-sm" style="text-decoration: none; font-size: 12px;">عرض المنتج</a>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function showNoAlternatives() {
+            document.getElementById('searching').style.display = 'none';
+            document.getElementById('no-alternatives').style.display = 'block';
+            
+            // Start countdown
+            const countdownEl = document.getElementById('countdown');
+            const countdownTimer = setInterval(() => {
+                countdown--;
+                countdownEl.textContent = countdown;
+                
+                if (countdown <= 0) {
+                    clearInterval(countdownTimer);
+                    window.location.href = '/';
+                }
+            }, 1000);
+        }
+        
+        function createSlug(title) {
+            return title.toLowerCase()
+                .replace(/[^\u0600-\u06FF\w\s-]/g, '')
+                .replace(/[\s_-]+/g, '-')
+                .replace(/^-+|-+$/g, '');
+        }
+        
+        // Initialize search after 2 seconds
+        setTimeout(() => {
+            searchAlternatives();
+        }, 2000);
+        
+        // Add some visual feedback
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add loading dots animation
+            const dots = '...';
+            let dotCount = 0;
+            const searchingEl = document.getElementById('searching');
+            
+            const loadingAnimation = setInterval(() => {
+                if (alternativesFound || countdown < 5) {
+                    clearInterval(loadingAnimation);
+                    return;
+                }
+                
+                dotCount = (dotCount + 1) % 4;
+                const currentDots = '.'.repeat(dotCount);
+                if (searchingEl) {
+                    searchingEl.innerHTML = `<span class="search-animation">⏳</span> جاري البحث في كتالوج المنتجات${currentDots}`;
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>
