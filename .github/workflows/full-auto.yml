@@ -1,0 +1,53 @@
+name: Full Auto Workflow
+
+on:
+  pull_request:
+    types: [opened]
+
+concurrency:
+  group: pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  full-automation:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    permissions:
+      pull-requests: write
+      contents: write
+      issues: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Approve & Merge PR
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const pr = context.payload.pull_request;
+            const prNumber = pr.number;
+            
+            // Approve
+            await github.rest.pulls.createReview({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+              event: 'APPROVE'
+            });
+            
+            // Wait 1 second
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Merge immediately
+            try {
+              await github.rest.pulls.merge({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: prNumber,
+                merge_method: 'squash'
+              });
+              console.log('PR merged successfully');
+            } catch (error) {
+              console.log('Merge failed:', error.message);
+            }
