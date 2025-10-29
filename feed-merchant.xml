@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>Emirates Gifts Merchant Feed</title>
+    <link>https://hadaya-emirates.arabsad.com/</link>
+    <description>Google Merchant Center feed for Emirates Gifts</description>
+
+    <!-- Example items built with ImageKit proxy to convert webp to jpg on-the-fly -->
+    <!-- Replace IMAGEKIT_ENDPOINT with your ImageKit endpoint, e.g., https://ik.imagekit.io/your_id -->
+
+    <item>
+      <g:id>24</g:id>
+      <title>ساعة ديور بني موديل 24</title>
+      <link>https://hadaya-emirates.arabsad.com/product.html?slug=%D8%B3%D8%A7%D8%B9%D8%A9-%D8%AF%D9%8A%D9%88%D8%B1-%D8%A8%D9%86%D9%8A-%D9%85%D9%88%D8%AF%D9%8A%D9%84-24</link>
+      <g:price>325.00 AED</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>ديور</g:brand>
+      <g:google_product_category>201</g:google_product_category>
+      <g:image_link>https://ik.imagekit.io/IMAGEKIT_ENDPOINT/tr:w-1000,f-jpg/https://m5zoon.com/public/uploads/products/watch-24.webp</g:image_link>
+      <description>ساعة ديور بنية فاخرة موديل 24.</description>
+    </item>
+
+    <item>
+      <g:id>25</g:id>
+      <title>ساعة ديور أخضر موديل 25</title>
+      <link>https://hadaya-emirates.arabsad.com/product.html?slug=%D8%B3%D8%A7%D8%B9%D8%A9-%D8%AF%D9%8A%D9%88%D8%B1-%D8%A3%D8%AE%D8%B6%D8%B1-%D9%85%D9%88%D8%AF%D9%8A%D9%84-25</link>
+      <g:price>335.00 AED</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>ديور</g:brand>
+      <g:google_product_category>201</g:google_product_category>
+      <g:image_link>https://ik.imagekit.io/IMAGEKIT_ENDPOINT/tr:w-1000,f-jpg/https://m5zoon.com/public/uploads/products/watch-25.webp</g:image_link>
+      <description>ساعة ديور خضراء فاخرة موديل 25.</description>
+    </item>
+
+    <item>
+      <g:id>28</g:id>
+      <title>ساعة ديور رمادي موديل 28</title>
+      <link>https://hadaya-emirates.arabsad.com/product.html?slug=%D8%B3%D8%A7%D8%B9%D8%A9-%D8%AF%D9%8A%D9%88%D8%B1-%D8%B1%D9%85%D8%A7%D8%AF%D9%8A-%D9%85%D9%88%D8%AF%D9%8A%D9%84-28</link>
+      <g:price>315.00 AED</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>ديور</g:brand>
+      <g:google_product_category>201</g:google_product_category>
+      <g:image_link>https://ik.imagekit.io/IMAGEKIT_ENDPOINT/tr:w-1000,f-jpg/https://m5zoon.com/public/uploads/products/watch-28.webp</g:image_link>
+      <description>ساعة ديور رمادية موديل 28.</description>
+    </item>
+
+    <item>
+      <g:id>36</g:id>
+      <title>ساعة رولكس ذهبي موديل 36</title>
+      <link>https://hadaya-emirates.arabsad.com/product.html?slug=%D8%B3%D8%A7%D8%B9%D8%A9-%D8%B1%D9%88%D9%84%D9%83%D8%B3-%D8%B0%D9%87%D8%A8%D9%8A-%D9%85%D9%88%D8%AF%D9%8A%D9%84-36</link>
+      <g:price>345.00 AED</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>رولكس</g:brand>
+      <g:google_product_category>201</g:google_product_category>
+      <g:image_link>https://ik.imagekit.io/IMAGEKIT_ENDPOINT/tr:w-1000,f-jpg/https://m5zoon.com/public/uploads/products/watch-36.webp</g:image_link>
+      <description>ساعة رولكس ذهبية موديل 36.</description>
+    </item>
+
+    <item>
+      <g:id>38</g:id>
+      <title>ساعة اوميغا أسود موديل 38</title>
+      <link>https://hadaya-emirates.arabsad.com/product.html?slug=%D8%B3%D8%A7%D8%B9%D8%A9-%D8%A7%D9%88%D9%85%D9%8A%D8%BA%D8%A7-%D8%A3%D8%B3%D9%88%D8%AF-%D9%85%D9%88%D8%AF%D9%8A%D9%84-38</link>
+      <g:price>329.00 AED</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>اوميغا</g:brand>
+      <g:google_product_category>201</g:google_product_category>
+      <g:image_link>https://ik.imagekit.io/IMAGEKIT_ENDPOINT/tr:w-1000,f-jpg/https://m5zoon.com/public/uploads/products/watch-38.webp</g:image_link>
+      <description>ساعة اوميغا سوداء موديل 38.</description>
+    </item>
+
+    <item>
+      <g:id>39</g:id>
+      <title>ساعة ديور فضي موديل 39</title>
+      <link>https://hadaya-emirates.arabsad.com/product.html?slug=%D8%B3%D8%A7%D8%B9%D8%A9-%D8%AF%D9%8A%D9%88%D8%B1-%D9%81%D8%B6%D9%8A-%D9%85%D9%88%D8%AF%D9%8A%D9%84-39</link>
+      <g:price>339.00 AED</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>ديور</g:brand>
+      <g:google_product_category>201</g:google_product_category>
+      <g:image_link>https://ik.imagekit.io/IMAGEKIT_ENDPOINT/tr:w-1000,f-jpg/https://m5zoon.com/public/uploads/products/watch-39.webp</g:image_link>
+      <description>ساعة ديور فضية موديل 39.</description>
+    </item>
+
+  </channel>
+</rss>
