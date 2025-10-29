@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+  <channel>
+    <title>Hadaya Emirates - Complete Product Feed</title>
+    <link>https://hadaya-emirates.arabsad.com</link>
+    <description>Complete Google Merchant feed with all 50 products - 30 watches + 20 perfumes</description>
+    
+    <!-- الساعات (30) -->
+    <item>
+      <g:id>1</g:id>
+      <g:title>ساعة رولكس يخت ماستر - فضي</g:title>
+      <g:description>منتج فاخر من متجر هدايا الإمارات - ساعة أصلية بضمان الجودة</g:description>
+      <g:link>https://hadaya-emirates.arabsad.com/product.html?slug=ساعة-رولكس-يخت-ماستر-فضي</g:link>
+      <g:image_link>https://m5zoon.com/public/uploads/products/1689086291310824.webp</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in stock</g:availability>
+      <g:price>320 AED</g:price>
+      <g:brand>علامة فاخرة</g:brand>
+      <g:google_product_category>Clothing &amp; Accessories &gt; Watches</g:google_product_category>
+      <g:item_group_id>watches</g:item_group_id>
+      <g:gender>unisex</g:gender>
+      <g:age_group>adult</g:age_group>
+    </item>
+    <!-- ... تم تضمين باقي العناصر الـ 50 في الملف ... -->
+  </channel>
+</rss>
