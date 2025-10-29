@@ -3,352 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الصفحة غير موجودة - 404 | متجر هدايا الإمارات</title>
-    <meta name="description" content="الصفحة التي تبحث عنها غير موجودة. عد إلى متجر هدايا الإمارات للعثور على أجود المنتجات الفاخرة.">
-    <meta name="robots" content="noindex, follow">
+    <title>الصفحة غير موجودة - متجر هدايا الإمارات</title>
+    <meta name="description" content="الصفحة التي تبحث عنها غير موجودة. اكتشف 263 منتج فاخر في متجر هدايا الإمارات">
+    <link rel="canonical" href="https://hadaya-emirates.arabsad.com/404.html">
     
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #667eea;
-            --secondary: #f093fb;
-            --gold: #ffd700;
-            --success: #10b981;
-            --danger: #ef4444;
-            --dark: #1f2937;
-            --light: #f8fafc;
-            --white: #ffffff;
-            --text: #374151;
-            --text-light: #6b7280;
-            --radius: 0.5rem;
-            --transition: all 0.3s ease;
-        }
-
-        body {
-            font-family: 'Cairo', sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .error-container {
-            background: white;
-            padding: 3rem;
-            border-radius: 1rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
-            margin: 2rem;
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .error-emoji {
-            font-size: 5rem;
-            margin-bottom: 1rem;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-
-        .error-title {
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .error-subtitle {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 1rem;
-        }
-
-        .error-message {
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .error-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: var(--radius);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1rem;
-        }
-
-        .btn:hover {
-            background: #5a6fd8;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-whatsapp {
-            background: #25d366;
-        }
-
-        .btn-whatsapp:hover {
-            background: #128c7e;
-        }
-
-        .btn-outline {
-            background: white;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .popular-products {
-            margin-top: 2rem;
-            text-align: right;
-        }
-
-        .popular-products h3 {
-            color: var(--text);
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .popular-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
-        }
-
-        .popular-link {
-            background: var(--light);
-            color: var(--text);
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: var(--transition);
-            border: 1px solid transparent;
-        }
-
-        .popular-link:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-1px);
-        }
-
-        .contact-info {
-            background: var(--light);
-            padding: 1.5rem;
-            border-radius: var(--radius);
-            margin-top: 2rem;
-            border: 1px solid #e5e7eb;
-        }
-
-        .contact-info h4 {
-            color: var(--text);
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .contact-item i {
-            color: var(--primary);
-        }
-
-        .uae-flag {
-            display: inline-block;
-            margin: 0 0.5rem;
-            animation: wave 2s ease-in-out infinite;
-        }
-
-        @keyframes wave {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-5deg); }
-            75% { transform: rotate(5deg); }
-        }
-
-        @media (max-width: 768px) {
-            .error-container {
-                padding: 2rem;
-                margin: 1rem;
-            }
-            
-            .error-title {
-                font-size: 2rem;
-            }
-            
-            .error-subtitle {
-                font-size: 1.25rem;
-            }
-            
-            .error-actions {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .popular-links {
-                justify-content: center;
-            }
-        }
+    .error-page{min-height:100vh;background:var(--primary-gradient);display:flex;align-items:center;justify-content:center;padding:2rem}
+    .error-container{background:white;border-radius:var(--radius-2xl);padding:4rem;text-align:center;box-shadow:var(--shadow-2xl);max-width:600px;width:100%}
+    .error-icon{font-size:6rem;color:var(--primary);margin-bottom:2rem}
+    .error-title{font-size:3rem;font-weight:900;color:var(--text);margin-bottom:1rem;font-family:var(--font-secondary)}
+    .error-subtitle{font-size:1.5rem;color:var(--text-light);margin-bottom:2rem}
+    .error-description{color:var(--text-muted);margin-bottom:3rem;line-height:1.6}
+    .error-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+    .error-btn{padding:1rem 2rem;border-radius:var(--radius-lg);font-weight:700;text-decoration:none;transition:var(--transition);display:flex;align-items:center;gap:.5rem;min-width:160px;justify-content:center}
+    .btn-home{background:var(--primary-gradient);color:white}
+    .btn-search{background:var(--secondary-gradient);color:white}
+    .btn-contact{background:var(--success-gradient);color:white}
+    .error-btn:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+    @media(max-width:768px){.error-container{padding:2rem}.error-title{font-size:2rem}.error-actions{flex-direction:column}.error-btn{min-width:auto}}
     </style>
 </head>
 
 <body>
-    <div class="error-container">
-        <div class="error-emoji">🔍</div>
-        <h1 class="error-title">404</h1>
-        <h2 class="error-subtitle">الصفحة غير موجودة</h2>
-        
-        <p class="error-message">
-            نأسف، لا يمكننا العثور على الصفحة التي تبحث عنها.<br>
-            ربما تم نقل الصفحة أو حذفها، أو أنك كتبت الرابط بطريقة خاطئة.
-        </p>
-        
-        <div class="error-actions">
-            <a href="/" class="btn">
-                <i class="fas fa-home"></i>
-                العودة للرئيسية
-            </a>
-            <a href="https://wa.me/201110760081" class="btn btn-whatsapp" target="_blank">
-                <i class="fab fa-whatsapp"></i>
-                تحدث معنا
-            </a>
-            <button onclick="history.back()" class="btn btn-outline">
-                <i class="fas fa-arrow-right"></i>
-                الصفحة السابقة
-            </button>
-        </div>
-        
-        <div class="popular-products">
-            <h3>صفحات شائعة:</h3>
-            <div class="popular-links">
-                <a href="/#watches" class="popular-link">ساعات فاخرة</a>
-                <a href="/#perfumes" class="popular-link">عطور أصلية</a>
-                <a href="/#featured" class="popular-link">منتجات مميزة</a>
-                <a href="/#rolex-watches" class="popular-link">ساعات رولكس</a>
-                <a href="/#chanel-perfumes" class="popular-link">عطور شانيل</a>
-                <a href="/#tom-ford-perfumes" class="popular-link">عطور توم فورد</a>
-                <a href="/#omega-watches" class="popular-link">ساعات اوميغا</a>
+    <div class="error-page">
+        <div class="error-container">
+            <div class="error-icon">
+                <i class="fas fa-search-minus"></i>
             </div>
-        </div>
-        
-        <div class="contact-info">
-            <h4>تحتاج مساعدة؟ <span class="uae-flag">🇦🇪</span></h4>
-            <div class="contact-item">
-                <i class="fab fa-whatsapp"></i>
-                <span>واتساب: +201110760081</span>
+            
+            <h1 class="error-title">404</h1>
+            <h2 class="error-subtitle">الصفحة غير موجودة</h2>
+            
+            <div class="error-description">
+                <p>عذراً، الصفحة التي تبحث عنها غير موجودة أو قد تكون منقولة إلى موقع آخر.</p>
+                <p>لا تقلق! يمكنك استكشاف 263 منتج فاخر في متجرنا.</p>
             </div>
-            <div class="contact-item">
-                <i class="fas fa-envelope"></i>
-                <span>بريد إلكتروني: sherow1982@gmail.com</span>
-            </div>
-            <div class="contact-item">
-                <i class="fas fa-clock"></i>
-                <span>خدمة عملاء 24/7</span>
-            </div>
-            <div class="contact-item">
-                <i class="fas fa-shipping-fast"></i>
-                <span>شحن مجاني داخل الإمارات</span>
+            
+            <div class="error-actions">
+                <a href="/" class="error-btn btn-home">
+                    <i class="fas fa-home"></i>
+                    الصفحة الرئيسية
+                </a>
+                
+                <a href="/?category=watches" class="error-btn btn-search">
+                    <i class="fas fa-clock"></i>
+                    الساعات (197)
+                </a>
+                
+                <a href="/?category=perfumes" class="error-btn btn-search">
+                    <i class="fas fa-spray-can"></i>
+                    العطور (66)
+                </a>
+                
+                <a href="https://wa.me/201110760081" class="error-btn btn-contact" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    تواصل معنا
+                </a>
             </div>
         </div>
     </div>
 
     <script>
-        // Auto redirect after 10 seconds (optional)
-        let countdown = 10;
-        
-        function updateCountdown() {
-            if (countdown > 0) {
-                document.title = `الصفحة غير موجودة - إعادة توجيه في ${countdown}ث | متجر هدايا الإمارات`;
-                countdown--;
-                setTimeout(updateCountdown, 1000);
-            } else {
-                window.location.href = '/';
-            }
-        }
-        
-        // Uncomment the line below to enable auto redirect
-        // updateCountdown();
-        
-        // Track 404 errors (Google Analytics)
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'exception', {
-                description: '404 Error: ' + window.location.pathname,
-                fatal: false
-            });
-        }
-        
-        // Log for debugging
-        console.log('404 Error - Page not found:', window.location.href);
+    // Auto-redirect for specific patterns
+    const path = window.location.pathname;
+    const search = window.location.search;
+    
+    // If it looks like a product URL, try to redirect
+    if (search.includes('slug=') || path.includes('product')) {
+        setTimeout(() => {
+            window.location.href = '/product.html' + search;
+        }, 3000);
+    }
+    
+    // Track 404 errors for analytics
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'page_view', {
+            page_title: '404 Error',
+            page_location: window.location.href,
+            content_group1: 'Error Pages'
+        });
+    }
     </script>
 </body>
 </html>
