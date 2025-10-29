@@ -1,113 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
 <channel>
-<title>هدايا الإمارات - الساعات والعطور</title>
+<title>هدايا الإمارات - الساعات والعطور الأنيقة</title>
 <link>https://hadaya-emirates.arabsad.com</link>
-<description>متجر هدايا الإمارات للساعات والعطور الأنيقة</description>
+<description>متجر هدايا الإمارات للساعات والعطور الأنيقة والمميزة. أفضل الأسعار في دولة الإمارات مع شحن مجاني وضمان الجودة.</description>
+<language>ar</language>
+<lastBuildDate>Thu, 30 Oct 2025 01:22:00 +0000</lastBuildDate>
 
-<!-- Perfume Products -->
-<item>
-  <g:id>HE-1-PERFUME</g:id>
-  <g:title>عطر أنيق 100 مل - تركيبة عطرية فاخرة</g:title>
-  <g:description>عطر فاخر بتركيبة عطرية راقية وثبات عالي يدوم ساعات طويلة. مثالي للاستخدام اليومي والمناسبات الخاصة. حجم 100 مل بعبوة أنيقة.</g:description>
-  <g:link>https://hadaya-emirates.arabsad.com/products/عطر-أنيق-100-مل.html</g:link>
-  <g:image_link>https://m5zoon.com/public/uploads/products/1722352332177124.webp</g:image_link>
-  <g:price>252 AED</g:price>
-  <g:sale_price>252 AED</g:sale_price>
-  <g:availability>in stock</g:availability>
-  <g:condition>new</g:condition>
-  <g:brand>هدايا الإمارات</g:brand>
-  <g:mpn>HE1P</g:mpn>
-  <g:google_product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:google_product_category>
-  <g:product_type>عطور &gt; عطور نسائية &gt; عطور فاخرة</g:product_type>
-  <g:shipping>
-    <g:country>AE</g:country>
-    <g:service>شحن مجاني</g:service>
-    <g:price>0 AED</g:price>
-  </g:shipping>
-  <g:return_policy>
-    <g:return_policy_label>14-day-return</g:return_policy_label>
-  </g:return_policy>
-</item>
+  <item>
+    <g:id>HW-1-WATCH-AE</g:id>
+    <g:title>ساعة كلاسيكية أنيقة يخت ماستر فضي</g:title>
+    <g:description>ساعة أنيقة مصممة بعناية فائقة مع خامات عالية الجودة. تجمع بين الأناقة والوظائف العملية. مقاومة للماء والخدوش مع آلية دقيقة وموثوقة. مناسبة لجميع المناسبات.</g:description>
+    <g:link>https://hadaya-emirates.arabsad.com/products/ساعة-كلاسيكية-أنيقة-يخت-ماستر-فضي.html</g:link>
+    <g:image_link>https://m5zoon.com/public/uploads/products/1689086291310824.webp</g:image_link>
+    <g:price>320 AED</g:price>
+    <g:sale_price>320 AED</g:sale_price>
+    <g:availability>in stock</g:availability>
+    <g:condition>new</g:condition>
+    <g:brand>هدايا الإمارات</g:brand>
+    <g:mpn>HW1AE</g:mpn>
+    <g:gtin>9780400000001</g:gtin>
+    <g:google_product_category>Apparel &amp; Accessories &gt; Jewelry &gt; Watches</g:google_product_category>
+    <g:product_type>ساعات &gt; ساعات أنيقة &gt; ساعات متنوعة</g:product_type>
+    <g:shipping>
+      <g:country>AE</g:country>
+      <g:service>شحن مجاني</g:service>
+      <g:price>0 AED</g:price>
+      <g:min_handling_time>1</g:min_handling_time>
+      <g:max_handling_time>2</g:max_handling_time>
+      <g:min_transit_time>1</g:min_transit_time>
+      <g:max_transit_time>3</g:max_transit_time>
+    </g:shipping>
+    <g:return_policy>
+      <g:return_policy_label>14-day-return</g:return_policy_label>
+    </g:return_policy>
+    <g:custom_label_0>watches</g:custom_label_0>
+    <g:custom_label_1>premium</g:custom_label_1>
+  </item>
 
-<item>
-  <g:id>HE-2-PERFUME</g:id>
-  <g:title>عطر زهري أنيق - تركيبة عطرية زهرية</g:title>
-  <g:description>عطر زهري فاخر بتركيبة عطرية راقية مناسب للسيدات الأنيقات. ثبات عالي ورائحة مميزة تدوم طوال اليوم.</g:description>
-  <g:link>https://hadaya-emirates.arabsad.com/products/عطر-زهري.html</g:link>
-  <g:image_link>https://m5zoon.com/public/uploads/products/1720344963790342.webp</g:image_link>
-  <g:price>252 AED</g:price>
-  <g:availability>in stock</g:availability>
-  <g:condition>new</g:condition>
-  <g:brand>هدايا الإمارات</g:brand>
-  <g:mpn>HE2P</g:mpn>
-  <g:google_product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:google_product_category>
-  <g:product_type>عطور &gt; عطور نسائية &gt; عطور زهرية</g:product_type>
-  <g:shipping>
-    <g:country>AE</g:country>
-    <g:service>شحن مجاني</g:service>
-    <g:price>0 AED</g:price>
-  </g:shipping>
-</item>
-
-<item>
-  <g:id>HE-3-PERFUME</g:id>
-  <g:title>عطر نسائي فاخر - تركيبة عطرية مميزة</g:title>
-  <g:description>عطر نسائي فاخر بتركيبة عطرية راقية. مناسب لجميع المناسبات والأوقات. ثبات ممتاز ورائحة ساحرة.</g:description>
-  <g:link>https://hadaya-emirates.arabsad.com/products/عطر-نسائي.html</g:link>
-  <g:image_link>https://m5zoon.com/public/uploads/products/1720344971935939.webp</g:image_link>
-  <g:price>252 AED</g:price>
-  <g:availability>in stock</g:availability>
-  <g:condition>new</g:condition>
-  <g:brand>هدايا الإمارات</g:brand>
-  <g:mpn>HE3P</g:mpn>
-  <g:google_product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:google_product_category>
-  <g:shipping>
-    <g:country>AE</g:country>
-    <g:service>شحن مجاني</g:service>
-    <g:price>0 AED</g:price>
-  </g:shipping>
-</item>
-
-<item>
-  <g:id>HW-1-WATCH</g:id>
-  <g:title>ساعة كلاسيكية يخت ماستر فضية</g:title>
-  <g:description>ساعة كلاسيكية أنيقة بتصميم فضي مميز. مصنوعة بعناية فائقة لتناسب ذوقك المميز. تجمع بين الأناقة والوظائف العملية.</g:description>
-  <g:link>https://hadaya-emirates.arabsad.com/products/ساعة-كلاسيكية-يخت-ماستر-فضية.html</g:link>
-  <g:image_link>https://m5zoon.com/public/uploads/products/1689086291310824.webp</g:image_link>
-  <g:price>320 AED</g:price>
-  <g:availability>in stock</g:availability>
-  <g:condition>new</g:condition>
-  <g:brand>هدايا الإمارات</g:brand>
-  <g:mpn>HW1W</g:mpn>
-  <g:google_product_category>Apparel &amp; Accessories &gt; Jewelry &gt; Watches</g:google_product_category>
-  <g:product_type>ساعات &gt; ساعات رجالية &gt; ساعات كلاسيكية</g:product_type>
-  <g:shipping>
-    <g:country>AE</g:country>
-    <g:service>شحن مجاني</g:service>
-    <g:price>0 AED</g:price>
-  </g:shipping>
-</item>
-
-<item>
-  <g:id>HW-2-WATCH</g:id>
-  <g:title>ساعة كلاسيكية 41 ملم 2022</g:title>
-  <g:description>ساعة كلاسيكية أنيقة بقطر 41 ملم. تصميم عصري وخامات عالية الجودة. مناسبة للاستخدام اليومي والمناسبات الرسمية.</g:description>
-  <g:link>https://hadaya-emirates.arabsad.com/products/ساعة-كلاسيكية-41-ملم-2022.html</g:link>
-  <g:image_link>https://m5zoon.com/public/uploads/products/1741223185271965.png</g:image_link>
-  <g:price>325 AED</g:price>
-  <g:availability>in stock</g:availability>
-  <g:condition>new</g:condition>
-  <g:brand>هدايا الإمارات</g:brand>
-  <g:mpn>HW2W</g:mpn>
-  <g:google_product_category>Apparel &amp; Accessories &gt; Jewelry &gt; Watches</g:google_product_category>
-  <g:product_type>ساعات &gt; ساعات رجالية &gt; ساعات عصرية</g:product_type>
-  <g:shipping>
-    <g:country>AE</g:country>
-    <g:service>شحن مجاني</g:service>
-    <g:price>0 AED</g:price>
-  </g:shipping>
-</item>
+  <item>
+    <g:id>HP-1-PERFUME-AE</g:id>
+    <g:title>عطر راقي كلاسيكي 100 مل</g:title>
+    <g:description>عطر فاخر بتركيبة عطرية راقية وثبات عالي. مناسب للاستخدام اليومي والمناسبات الخاصة. رائحة مميزة تعكس أناقتك وتدوم ساعات طويلة. متوفر الآن في متجر هدايا الإمارات.</g:description>
+    <g:link>https://hadaya-emirates.arabsad.com/products/عطر-راقي-كلاسيكي-100-مل.html</g:link>
+    <g:image_link>https://m5zoon.com/public/uploads/products/1722352332177124.webp</g:image_link>
+    <g:price>252 AED</g:price>
+    <g:sale_price>252 AED</g:sale_price>
+    <g:availability>in stock</g:availability>
+    <g:condition>new</g:condition>
+    <g:brand>هدايا الإمارات</g:brand>
+    <g:mpn>HP1AE</g:mpn>
+    <g:gtin>9780500000001</g:gtin>
+    <g:google_product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:google_product_category>
+    <g:product_type>عطور &gt; عطور مميزة &gt; عطور متنوعة</g:product_type>
+    <g:shipping>
+      <g:country>AE</g:country>
+      <g:service>شحن مجاني</g:service>
+      <g:price>0 AED</g:price>
+      <g:min_handling_time>1</g:min_handling_time>
+      <g:max_handling_time>2</g:max_handling_time>
+      <g:min_transit_time>1</g:min_transit_time>
+      <g:max_transit_time>3</g:max_transit_time>
+    </g:shipping>
+    <g:return_policy>
+      <g:return_policy_label>no-return-personal-care</g:return_policy_label>
+    </g:return_policy>
+    <g:custom_label_0>perfumes</g:custom_label_0>
+    <g:custom_label_1>luxury</g:custom_label_1>
+  </item>
 
 </channel>
 </rss>
