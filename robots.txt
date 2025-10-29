@@ -1,57 +1,28 @@
 User-agent: *
 Allow: /
 
-# Sitemaps
+Disallow: /sw.js
+Disallow: /manifest.json
+Disallow: *.js$
+Disallow: *.css$
+
 Sitemap: https://hadaya-emirates.arabsad.com/sitemap.xml
-Sitemap: https://hadaya-emirates.arabsad.com/feed.xml
 
-# Important pages for search engines
-Allow: /index.html
-Allow: /product.html
-Allow: /privacy-policy.html
-Allow: /terms-of-service.html
-Allow: /return-policy.html
-
-# Allow category filtering
-Allow: /?category=*
-Allow: /?search=*
-
-# Feed files
-Allow: /feed.xml
-Allow: /feed-merchant.xml
-Allow: /feed-merchant-complete.xml
-
-# CSS, JS and static assets
-Allow: /style.css
-Allow: /main.js
-Allow: /products-data.js
-Allow: /manifest.json
-
-# Google verification
-Allow: /googlef3dc7a494f07cb5c.html
-
-# Crawl-delay to be respectful
+# Crawl-delay for better server performance
 Crawl-delay: 1
 
-# Special instructions for Google
+# Specific rules for major search engines
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 0
+Crawl-delay: 0.5
 
-# Special instructions for Bing
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
 
-# Block common unwanted bots
-User-agent: CCBot
+# Block problematic bots
+User-agent: AhrefsBot
 Disallow: /
 
-User-agent: ChatGPT-User
-Disallow: /
-
-User-agent: GPTBot
-Disallow: /
-
-User-agent: Google-Extended
+User-agent: MJ12bot
 Disallow: /
