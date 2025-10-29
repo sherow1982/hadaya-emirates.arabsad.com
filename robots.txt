@@ -5,39 +5,53 @@ Allow: /
 Sitemap: https://hadaya-emirates.arabsad.com/sitemap.xml
 Sitemap: https://hadaya-emirates.arabsad.com/feed.xml
 
-# Allow important pages
+# Important pages for search engines
+Allow: /index.html
 Allow: /product.html
 Allow: /privacy-policy.html
 Allow: /terms-of-service.html
 Allow: /return-policy.html
-Allow: /404.html
 
-# Allow CSS and JavaScript
-Allow: /*.css
-Allow: /*.js
-Allow: /*.woff
-Allow: /*.woff2
-Allow: /*.ttf
-Allow: /*.svg
-Allow: /*.png
-Allow: /*.jpg
-Allow: /*.jpeg
-Allow: /*.webp
-Allow: /*.ico
+# Allow category filtering
+Allow: /?category=*
+Allow: /?search=*
 
-# Block sensitive files (if any)
-Disallow: /admin/
-Disallow: /.git/
-Disallow: /logs/
-Disallow: /temp/
+# Feed files
+Allow: /feed.xml
+Allow: /feed-merchant.xml
+Allow: /feed-merchant-complete.xml
 
-# Crawl-delay for respectful crawling
+# CSS, JS and static assets
+Allow: /style.css
+Allow: /main.js
+Allow: /products-data.js
+Allow: /manifest.json
+
+# Google verification
+Allow: /googlef3dc7a494f07cb5c.html
+
+# Crawl-delay to be respectful
 Crawl-delay: 1
 
-# Host directive
-Host: hadaya-emirates.arabsad.com
+# Special instructions for Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
 
-# Comments
-# This is Emirates Gifts Store robots.txt
-# 263 premium products: 197 watches + 66 perfumes
-# Last updated: 2025-10-28
+# Special instructions for Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Block common unwanted bots
+User-agent: CCBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
