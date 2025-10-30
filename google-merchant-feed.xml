@@ -17,13 +17,20 @@
     <g:brand>هدايا الإمارات</g:brand>
     <g:mpn>HE-W-001</g:mpn>
     <g:identifier_exists>false</g:identifier_exists>
-    <g:google_product_category>201</g:google_product_category>
-    <g:product_type>ساعات > ساعات كلاسيكية</g:product_type>
+    <g:google_product_category>Apparel &amp; Accessories &gt; Jewelry &gt; Watches</g:google_product_category>
+    <g:product_type>ساعات &gt; ساعات كلاسيكية</g:product_type>
     <g:shipping>
       <g:country>AE</g:country>
       <g:service>Standard</g:service>
       <g:price>0 AED</g:price>
     </g:shipping>
+    <g:return_policy>
+      <g:return_rule_label>14-day-return-policy</g:return_rule_label>
+      <g:item_conditions>new</g:item_conditions>
+      <g:return_methods>by_mail</g:return_methods>
+      <g:return_fees>free</g:return_fees>
+      <g:return_policy_url>https://hadaya-emirates.arabsad.com/return-policy.html</g:return_policy_url>
+    </g:return_policy>
   </item>
 
   <item>
@@ -38,13 +45,19 @@
     <g:brand>هدايا الإمارات</g:brand>
     <g:mpn>HE-P-001</g:mpn>
     <g:identifier_exists>false</g:identifier_exists>
-    <g:google_product_category>479</g:google_product_category>
-    <g:product_type>عطور > عطور متنوعة</g:product_type>
+    <g:google_product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Perfume &amp; Cologne</g:google_product_category>
+    <g:product_type>عطور &gt; عطور متنوعة</g:product_type>
     <g:shipping>
       <g:country>AE</g:country>
       <g:service>Standard</g:service>
       <g:price>0 AED</g:price>
     </g:shipping>
+    <g:return_policy>
+      <g:return_rule_label>no-return-personal-care</g:return_rule_label>
+      <g:item_conditions>new</g:item_conditions>
+      <g:return_methods>no_returns</g:return_methods>
+      <g:return_policy_url>https://hadaya-emirates.arabsad.com/return-policy.html</g:return_policy_url>
+    </g:return_policy>
   </item>
 
 </channel>
