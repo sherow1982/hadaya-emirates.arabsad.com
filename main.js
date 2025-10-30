@@ -122,3 +122,4 @@ function setupScrollAnimations() {
 
 // تصدير الدوال الضرورية فقط
 window.HadayaStore = { trackPageView };
+
