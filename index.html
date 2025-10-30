@@ -10,35 +10,18 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <meta name="theme-color" content="#667eea">
     
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-H08H2JMRDT"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);} 
-      gtag('js', new Date());
-      gtag('config', 'G-H08H2JMRDT');
-    </script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-H08H2JMRDT');</script>
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="هدايا الإمارات | متجر الساعات والعطور الأنيقة">
-    <meta property="og:description" content="اكتشف مجموعة متميزة من الساعات الأنيقة والعطور الفاخرة بأفضل الأسعار في الإمارات">
-    <meta property="og:image" content="https://hadaya-emirates.arabsad.com/og-image.jpg">
+    <!-- Meta Tags -->
+    <meta property="og:title" content="هدايا الإمارات | متجر الساعات والعطور">
+    <meta property="og:description" content="اكتشف مجموعة متميزة من الساعات الأنيقة والعطور الفاخرة">
     <meta property="og:url" content="https://hadaya-emirates.arabsad.com/">
     <meta property="og:type" content="website">
     
-    <!-- Schema.org -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Store",
-      "name": "هدايا الإمارات",
-      "description": "متجر الساعات والعطور الأنيقة في الإمارات",
-      "url": "https://hadaya-emirates.arabsad.com",
-      "telephone": "+201110760081",
-      "address": {"@type": "PostalAddress","addressCountry": "AE"},
-      "priceRange": "250-500 AED","paymentAccepted": "Cash, Credit Card, Bank Transfer","currenciesAccepted": "AED"
-    }
-    </script>
+    <!-- Schema -->
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Store","name":"هدايا الإمارات","description":"متجر الساعات والعطور في الإمارات","url":"https://hadaya-emirates.arabsad.com","telephone":"+201110760081","address":{"@type":"PostalAddress","addressCountry":"AE"},"priceRange":"250-500 AED"}</script>
     
     <link rel="stylesheet" href="style.css">
 </head>
@@ -52,6 +35,7 @@
                 <ul class="nav-menu">
                     <li><a href="/" class="nav-link active">الرئيسية</a></li>
                     <li><a href="#categories" class="nav-link">الفئات</a></li>
+                    <li><a href="blog/" class="nav-link">المدونة</a></li>
                     <li><a href="cart.html" class="nav-link">السلة</a></li>
                 </ul>
             </div>
@@ -61,16 +45,18 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">عطر زهري</h1>
-                <p class="hero-subtitle">عطر زهري فاخر بتركيبة عطرية رائعة</p>
-                <div class="hero-price">
-                    <span class="price">252 درهم</span>
-                    <span class="old-price">352 درهم</span>
+                <div>
+                    <h1 class="hero-title">عطور فاخرة</h1>
+                    <p class="hero-subtitle">عطور مميزة بروائح ساحرة وثبات طويل</p>
+                    <div class="hero-price">
+                        <span class="price">252 درهم</span>
+                        <span class="old-price">352 درهم</span>
+                    </div>
+                    <a href="https://wa.me/201110760081?text=مرحباً، أريد العطر المعروض في الصفحة الرئيسية" class="cta-button">اشتر عبر واتساب 🛒</a>
                 </div>
-                <a href="https://wa.me/201110760081" class="cta-button">اشتر عبر واتساب 🛒</a>
-            </div>
-            <div class="hero-image">
-                <img src="https://m5zoon.com/public/uploads/products/1722352332177124.webp" alt="عطر زهري" class="hero-product-image">
+                <div class="hero-image">
+                    <img src="https://m5zoon.com/public/uploads/products/1722352332177124.webp" alt="عطور فاخرة" class="hero-product-image">
+                </div>
             </div>
         </div>
     </section>
@@ -107,7 +93,7 @@
                     </div>
                     <div class="category-info">
                         <h3>ساعات أنيقة</h3>
-                        <p>مجموعة متنوعة من الساعات الكلاسيكية والعصرية</p>
+                        <p>مجموعة من الساعات الكلاسيكية والعصرية</p>
                         <a href="#watches" class="category-button">تصفح الساعات ⌚</a>
                     </div>
                 </div>
@@ -127,15 +113,19 @@
 
     <section id="watches" class="products">
         <div class="container">
-            <h2 class="section-title">⌚ الساعات الأكثر مبيعاً</h2>
-            <div class="products-grid" id="watches-grid"></div>
+            <h2 class="section-title">⌚ ساعات أنيقة</h2>
+            <div class="products-grid" id="watches-grid">
+                <!-- سيتم تحميلها بـ JavaScript -->
+            </div>
         </div>
     </section>
 
     <section id="perfumes" class="products">
         <div class="container">
-            <h2 class="section-title">🌸 العطور الأكثر مبيعاً</h2>
-            <div class="products-grid" id="perfumes-grid"></div>
+            <h2 class="section-title">🌸 عطور فاخرة</h2>
+            <div class="products-grid" id="perfumes-grid">
+                <!-- سيتم تحميلها بـ JavaScript -->
+            </div>
         </div>
     </section>
 
@@ -159,6 +149,8 @@
                         <li><a href="privacy-policy.html">سياسة الخصوصية</a></li>
                         <li><a href="terms-of-service.html">شروط الاستخدام</a></li>
                         <li><a href="shipping-policy.html">سياسة الشحن</a></li>
+                        <li><a href="return-policy.html">سياسة الإرجاع</a></li>
+                        <li><a href="blog/">المدونة</a></li>
                     </ul>
                 </div>
             </div>
@@ -169,10 +161,10 @@
     </footer>
 
     <div class="whatsapp-float">
-        <a href="https://wa.me/201110760081" target="_blank">💬</a>
+        <a href="https://wa.me/201110760081?text=مرحباً، أريد الاستفسار عن المنتجات" target="_blank">💬</a>
     </div>
 
-    <!-- Smart Popup -->
+    <!-- Smart Components -->
     <div id="smart-popup" class="popup-overlay" style="display:none;">
       <div class="popup-content">
         <button class="popup-close" onclick="closePopup()">✕</button>
@@ -191,56 +183,53 @@
       </div>
     </div>
 
-    <!-- Inventory Notification -->
     <div id="inventory-notification" class="notification-bar" style="display:none;">
       <div class="notification-content">
         <span class="notification-icon">⚡</span>
-        <span class="notification-text">عروض محدودة! لا تفوت الفرصة</span>
+        <span class="notification-text">عروض محدودة لفترة قصيرة!</span>
         <button class="notification-action" onclick="quickOrder()">اطلب الآن</button>
         <button class="notification-close" onclick="hideNotification()">×</button>
       </div>
     </div>
 
-    <!-- Reviews Widget -->
-    <div id="review-system" class="review-widget" style="display:none;">
-      <div class="review-prompt">
-        <h4>شاركنا رأيك! 💭</h4>
-        <div class="star-rating" data-rating="0">
-          <span class="star" data-value="1">☆</span>
-          <span class="star" data-value="2">☆</span>
-          <span class="star" data-value="3">☆</span>
-          <span class="star" data-value="4">☆</span>
-          <span class="star" data-value="5">☆</span>
-        </div>
-        <textarea id="review-text" placeholder="اكتب تجربتك معنا..." rows="3"></textarea>
-        <button id="submit-review" class="review-submit">إرسال التقييم 📝</button>
-      </div>
-    </div>
-
     <script src="products-data.js"></script>
     <script>
-        function loadProducts() {
-            const watchesGrid = document.getElementById('watches-grid');
-            const perfumesGrid = document.getElementById('perfumes-grid');
-            const sampleWatches = [{title: "ساعة كلاسيكية أنيقة",price: 320,originalPrice: 370,image: "https://m5zoon.com/public/uploads/products/1689086291310824.webp",link: "products/ساعة-كلاسيكية-يخت-ماستر-فضي.html"}];
-            const samplePerfumes = [{title: "عطر فاخر مميز",price: 252,originalPrice: 352,image: "https://m5zoon.com/public/uploads/products/1722352332177124.webp",link: "products/عطر-راقي-كلاسيكي-100-مل.html"}];
-            if (watchesGrid) { watchesGrid.innerHTML = sampleWatches.map(p => `<div class="product-card"><div class="product-image"><img src="${p.image}" alt="${p.title}" loading="lazy"><div class="discount-badge">${Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100)}% خصم</div></div><div class="product-info"><h3 class="product-title">${p.title}</h3><div class="product-price"><span class="current-price">${p.price} درهم</span><span class="old-price">${p.originalPrice} درهم</span></div><div class="product-actions"><a href="${p.link}" class="btn btn-primary">شاهد المزيد</a><a href="https://wa.me/201110760081?text=مرحباً، أريد شراء ${p.title}" class="btn btn-secondary">اشتر الآن</a></div></div></div>`).join(''); }
-            if (perfumesGrid) { perfumesGrid.innerHTML = samplePerfumes.map(p => `<div class="product-card"><div class="product-image"><img src="${p.image}" alt="${p.title}" loading="lazy"><div class="discount-badge">${Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100)}% خصم</div></div><div class="product-info"><h3 class="product-title">${p.title}</h3><div class="product-price"><span class="current-price">${p.price} درهم</span><span class="old-price">${p.originalPrice} درهم</span></div><div class="product-actions"><a href="${p.link}" class="btn btn-primary">شاهد المزيد</a><a href="https://wa.me/201110760081?text=مرحباً، أريد شراء ${p.title}" class="btn btn-secondary">اشتر الآن</a></div></div></div>`).join(''); }
-        }
-        function showSmartPopup() { setTimeout(() => { if (!localStorage.getItem('popup-shown-today')) { document.getElementById('smart-popup').style.display = 'flex'; } }, 5000); document.addEventListener('mouseleave', function(e) { if (e.clientY <= 0 && !localStorage.getItem('popup-shown-today')) { document.getElementById('smart-popup').style.display = 'flex'; } }); }
-        function closePopup() { document.getElementById('smart-popup').style.display = 'none'; localStorage.setItem('popup-shown-today', new Date().toDateString()); }
-        function applyDiscount() { gtag('event', 'promotion_click', {'promotion_id': 'WELCOME15','promotion_name': 'First Visit Discount'}); alert('🎉 تم تطبيق خصم 15%! استخدم الكود WELCOME15 عند الطلب'); closePopup(); }
-        function showInventoryAlert() { setTimeout(() => { if (Math.random() > 0.8) { document.getElementById('inventory-notification').style.display = 'block'; setTimeout(hideNotification, 6000); } }, 10000); }
+        function showSmartPopup() { setTimeout(() => { if (!sessionStorage.getItem('popup-shown')) { document.getElementById('smart-popup').style.display = 'flex'; } }, 3000); }
+        function closePopup() { document.getElementById('smart-popup').style.display = 'none'; sessionStorage.setItem('popup-shown', 'true'); }
+        function applyDiscount() { gtag('event', 'promotion_click', {'promotion_id': 'WELCOME15'}); alert('🎉 تم تطبيق الخصم! استخدم WELCOME15'); closePopup(); }
+        function showInventoryAlert() { setTimeout(() => { if (Math.random() > 0.7) { document.getElementById('inventory-notification').style.display = 'block'; setTimeout(() => document.getElementById('inventory-notification').style.display = 'none', 8000); } }, 5000); }
         function hideNotification() { document.getElementById('inventory-notification').style.display = 'none'; }
-        function quickOrder() { gtag('event', 'urgency_response', {'event_category': 'conversions','event_label': 'homepage_alert'}); window.open('https://wa.me/201110760081?text=مرحباً، أريد الاستفادة من العروض المحدودة', '_blank'); hideNotification(); }
-        class AdvancedAnalytics { constructor() { this.sessionStart = Date.now(); this.scrollDepth = 0; this.timeOnPage = 0; this.interactions = []; this.init(); } init() { this.trackScrollDepth(); this.trackTimeOnPage(); this.trackInteractions(); } trackScrollDepth() { let maxScroll = 0; window.addEventListener('scroll', () => { const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100); if (scrollPercent > maxScroll) { maxScroll = scrollPercent; this.scrollDepth = maxScroll; if ([25, 50, 75, 90].includes(scrollPercent)) { gtag('event', 'scroll', {'event_category': 'engagement','event_label': `${scrollPercent}%`,'value': scrollPercent}); } } }); } trackTimeOnPage() { setInterval(() => { this.timeOnPage = Math.round((Date.now() - this.sessionStart) / 1000); if ([30, 60, 120, 300].includes(this.timeOnPage)) { gtag('event', 'time_on_page', {'event_category': 'engagement','event_label': `${this.timeOnPage}s`,'value': this.timeOnPage}); } }, 1000); } trackInteractions() { document.addEventListener('click', (e) => { if (e.target.closest('.product-card')) { const productTitle = e.target.closest('.product-card').querySelector('.product-title')?.textContent; this.interactions.push({ type: 'product_click', product: productTitle, timestamp: Date.now() }); } if (e.target.textContent.includes('اشتر') || e.target.textContent.includes('أضف')) { gtag('event', 'purchase_intent', {'event_category': 'conversions','event_label': 'homepage'}); } }); } }
-        document.addEventListener('DOMContentLoaded', function() { loadProducts(); showSmartPopup(); showInventoryAlert(); window.hadayaAnalytics = new AdvancedAnalytics(); gtag('event', 'page_view', {'page_title': 'Homepage','page_location': window.location.href}); if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js').then(()=>{}).catch(()=>{}); } });
-        window.addEventListener('beforeunload', () => { if (window.hadayaAnalytics) { window.hadayaAnalytics.sendSessionSummary(); } });
+        function quickOrder() { gtag('event', 'urgency_response', {'event_category': 'conversions'}); window.open('https://wa.me/201110760081?text=مرحباً، أريد الاستفادة من العرض المحدود', '_blank'); hideNotification(); }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            showSmartPopup();
+            showInventoryAlert();
+            
+            gtag('event', 'page_view', {
+                'page_title': 'Homepage',
+                'page_location': window.location.href
+            });
+            
+            // تسجيل Service Worker
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(e => {});
+            }
+            
+            // تأثير scroll للهيدر
+            const header = document.querySelector('.header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
     </script>
 
     <style>
         .popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:10000;display:flex;align-items:center;justify-content:center}
-        .popup-content{background:white;border-radius:20px;padding:2rem;max-width:400px;margin:20px;text-align:center;position:relative;animation:popupSlide 0.3s ease-out}
+        .popup-content{background:white;border-radius:20px;padding:2rem;max-width:400px;text-align:center;position:relative;animation:popupSlide 0.3s ease-out}
         .popup-close{position:absolute;top:15px;right:20px;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#999}
         .popup-icon{font-size:3rem;margin-bottom:1rem}
         .popup-header h3{color:#333;margin-bottom:1rem}
@@ -249,21 +238,12 @@
         .popup-btn{padding:12px 24px;border:none;border-radius:25px;cursor:pointer;font-weight:600;transition:all 0.3s}
         .popup-btn.primary{background:#25d366;color:white}
         .popup-btn.secondary{background:#f0f0f0;color:#666}
-        .popup-btn:hover{transform:translateY(-2px)}
         @keyframes popupSlide{from{transform:translateY(-50px);opacity:0}to{transform:translateY(0);opacity:1}}
         .notification-bar{position:fixed;top:80px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#ff6b6b,#ee5a24);color:white;padding:12px 20px;border-radius:30px;box-shadow:0 5px 20px rgba(0,0,0,0.2);z-index:9999;animation:slideDown 0.5s ease-out}
         .notification-content{display:flex;align-items:center;gap:15px;font-weight:600}
-        .notification-icon{font-size:1.2rem}
         .notification-action{background:white;color:#ff6b6b;border:none;padding:5px 15px;border-radius:15px;cursor:pointer;font-weight:600}
-        .notification-close{background:none;border:none;color:white;font-size:1.2rem;cursor:pointer;margin-left:10px}
+        .notification-close{background:none;border:none;color:white;font-size:1.2rem;cursor:pointer}
         @keyframes slideDown{from{transform:translate(-50%,-100%);opacity:0}to{transform:translate(-50%,0);opacity:1}}
-        .review-widget{background:white;border-radius:15px;padding:1.5rem;margin:2rem 0;box-shadow:0 5px 15px rgba(0,0,0,0.1);max-width:600px;margin-left:auto;margin-right:auto}
-        .review-prompt h4{color:#333;margin-bottom:1rem}
-        .star-rating{margin:1rem 0;font-size:2rem}
-        .star{cursor:pointer;color:#ddd;transition:color 0.2s}
-        .star:hover,.star.active{color:#ffd700}
-        #review-text{width:100%;border:2px solid #e5e7eb;border-radius:10px;padding:10px;margin:1rem 0;font-family:inherit}
-        .review-submit{background:#25d366;color:white;border:none;padding:10px 20px;border-radius:20px;cursor:pointer;font-weight:600}
     </style>
 </body>
 </html>

@@ -1,31 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
 <channel>
-<title>هدايا الإمارات - الساعات والعطور</title>
+<title><![CDATA[هدايا الإمارات - ساعات وعطور]]></title>
 <link>https://hadaya-emirates.arabsad.com</link>
-<description>متجر هدايا الإمارات للساعات والعطور في دولة الإمارات</description>
+<description><![CDATA[متجر هدايا الإمارات للساعات والعطور في دولة الإمارات]]></description>
 
   <item>
-    <g:id>HW-001-UAE</g:id>
-    <g:title>ساعة كلاسيكية أنيقة فضية</g:title>
-    <g:description>ساعة كلاسيكية أنيقة بتصميم فضي راقي مقاومة للماء مع حركة دقيقة وسوار مريح. مناسبة للاستخدام اليومي والمناسبات الرسمية. خامات عالية الجودة وضمان سنتين.</g:description>
+    <g:id>HADAYA-WATCH-001</g:id>
+    <g:title><![CDATA[ساعة كلاسيكية فضية رجالية]]></g:title>
+    <g:description><![CDATA[ساعة كلاسيكية أنيقة بتصميم فضي مقاوم للماء مع حركة دقيقة وسوار مريح من الستانلس ستيل. مناسبة للاستخدام اليومي والمناسبات الرسمية. خامات عالية الجودة مع ضمان لمدة سنتين من الشركة المصنعة.]]></g:description>
     <g:link>https://hadaya-emirates.arabsad.com/products/ساعة-كلاسيكية-يخت-ماستر-فضي.html</g:link>
     <g:image_link>https://m5zoon.com/public/uploads/products/1689086291310824.webp</g:image_link>
     <g:price>320.00 AED</g:price>
     <g:availability>in_stock</g:availability>
     <g:condition>new</g:condition>
-    <g:brand>هدايا الإمارات</g:brand>
-    <g:mpn>HE-W-001</g:mpn>
+    <g:brand>Hadaya Emirates</g:brand>
+    <g:mpn>HE-WATCH-001</g:mpn>
     <g:identifier_exists>false</g:identifier_exists>
     <g:google_product_category>Apparel &amp; Accessories &gt; Jewelry &gt; Watches</g:google_product_category>
-    <g:product_type>ساعات &gt; ساعات كلاسيكية</g:product_type>
+    <g:product_type>Watches &gt; Classic Watches</g:product_type>
+    <g:gender>male</g:gender>
+    <g:age_group>adult</g:age_group>
+    <g:color>Silver</g:color>
+    <g:material>Stainless Steel</g:material>
     <g:shipping>
       <g:country>AE</g:country>
-      <g:service>Standard</g:service>
+      <g:region>Dubai</g:region>
+      <g:service>Standard Shipping</g:service>
       <g:price>0 AED</g:price>
+      <g:min_handling_time>1</g:min_handling_time>
+      <g:max_handling_time>3</g:max_handling_time>
+      <g:min_transit_time>1</g:min_transit_time>
+      <g:max_transit_time>3</g:max_transit_time>
     </g:shipping>
     <g:return_policy>
-      <g:return_rule_label>14-day-return-policy</g:return_rule_label>
+      <g:return_rule_label>14-day-return-watches</g:return_rule_label>
       <g:item_conditions>new</g:item_conditions>
       <g:return_methods>by_mail</g:return_methods>
       <g:return_fees>free</g:return_fees>
@@ -34,26 +43,34 @@
   </item>
 
   <item>
-    <g:id>HP-001-UAE</g:id>
-    <g:title>عطر فاخر مميز 100 مل</g:title>
-    <g:description>عطر فاخر بتركيبة عطرية مميزة وثبات طويل. رائحة أنيقة مناسبة لجميع الأوقات مصنوع من زيوت طبيعية عالية الجودة. عبوة 100 مل مع رذاذ متطور.</g:description>
+    <g:id>HADAYA-PERFUME-001</g:id>
+    <g:title><![CDATA[عطر للجنسين 100 مل]]></g:title>
+    <g:description><![CDATA[عطر فاخر بتركيبة عطرية مميزة وثبات طويل مناسب للجنسين. رائحة أنيقة مناسبة لجميع الأوقات والمناسبات مصنوع من زيوت طبيعية عالية الجودة. عبوة 100 مل مع رذاذ متطور لتوزيع مثالي.]]></g:description>
     <g:link>https://hadaya-emirates.arabsad.com/products/عطر-راقي-كلاسيكي-100-مل.html</g:link>
     <g:image_link>https://m5zoon.com/public/uploads/products/1722352332177124.webp</g:image_link>
     <g:price>252.00 AED</g:price>
     <g:availability>in_stock</g:availability>
     <g:condition>new</g:condition>
-    <g:brand>هدايا الإمارات</g:brand>
-    <g:mpn>HE-P-001</g:mpn>
+    <g:brand>Hadaya Emirates</g:brand>
+    <g:mpn>HE-PERFUME-001</g:mpn>
     <g:identifier_exists>false</g:identifier_exists>
     <g:google_product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Perfume &amp; Cologne</g:google_product_category>
-    <g:product_type>عطور &gt; عطور متنوعة</g:product_type>
+    <g:product_type>Beauty &gt; Fragrances</g:product_type>
+    <g:gender>unisex</g:gender>
+    <g:age_group>adult</g:age_group>
+    <g:size>100ml</g:size>
     <g:shipping>
       <g:country>AE</g:country>
-      <g:service>Standard</g:service>
+      <g:region>Dubai</g:region>
+      <g:service>Standard Shipping</g:service>
       <g:price>0 AED</g:price>
+      <g:min_handling_time>1</g:min_handling_time>
+      <g:max_handling_time>2</g:max_handling_time>
+      <g:min_transit_time>1</g:min_transit_time>
+      <g:max_transit_time>2</g:max_transit_time>
     </g:shipping>
     <g:return_policy>
-      <g:return_rule_label>no-return-personal-care</g:return_rule_label>
+      <g:return_rule_label>no-return-hygiene</g:return_rule_label>
       <g:item_conditions>new</g:item_conditions>
       <g:return_methods>no_returns</g:return_methods>
       <g:return_policy_url>https://hadaya-emirates.arabsad.com/return-policy.html</g:return_policy_url>
