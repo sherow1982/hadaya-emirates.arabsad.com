@@ -1,0 +1,39 @@
+<!-- Interactive Reviews Widget -->
+<div id="review-system" class="review-widget">
+  <div class="review-prompt">
+    <h4>شاركنا رأيك! 💭</h4>
+    <div class="star-rating" data-rating="0">
+      <span class="star" data-value="1">☆</span>
+      <span class="star" data-value="2">☆</span>
+      <span class="star" data-value="3">☆</span>
+      <span class="star" data-value="4">☆</span>
+      <span class="star" data-value="5">☆</span>
+    </div>
+    <textarea id="review-text" placeholder="اكتب تجربتك مع المنتج..." rows="3"></textarea>
+    <button id="submit-review" class="review-submit">إرسال التقييم 📝</button>
+  </div>
+</div>
+
+<style>
+.review-widget{background:white;border-radius:15px;padding:1.5rem;margin:2rem 0;box-shadow:0 5px 15px rgba(0,0,0,0.1)}
+.review-prompt h4{color:#333;margin-bottom:1rem}
+.star-rating{margin:1rem 0;font-size:2rem}
+.star{cursor:pointer;color:#ddd;transition:color 0.2s}
+.star:hover,.star.active{color:#ffd700}
+#review-text{width:100%;border:2px solid #e5e7eb;border-radius:10px;padding:10px;margin:1rem 0;font-family:inherit}
+.review-submit{background:#25d366;color:white;border:none;padding:10px 20px;border-radius:20px;cursor:pointer;font-weight:600}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const stars = document.querySelectorAll('.star');
+  const ratingDiv = document.querySelector('.star-rating');
+  let currentRating = 0;
+  stars.forEach(star => {
+    star.addEventListener('mouseenter', function() { const value = parseInt(this.getAttribute('data-value')); highlightStars(value); });
+    star.addEventListener('click', function() { currentRating = parseInt(this.getAttribute('data-value')); ratingDiv.setAttribute('data-rating', currentRating); highlightStars(currentRating); });
+  });
+  function highlightStars(rating) { stars.forEach((star, index) => { if (index < rating) { star.textContent = '⭐'; star.classList.add('active'); } else { star.textContent = '☆'; star.classList.remove('active'); } }); }
+  document.getElementById('submit-review')?.addEventListener('click', function() { const reviewText = document.getElementById('review-text').value; if (currentRating === 0) { alert('يرجى اختيار تقييم بالنجوم'); return; } if (reviewText.length < 10) { alert('يرجى كتابة مراجعة أطول'); return; } gtag('event', 'review_submitted', {'event_category': 'engagement','rating': currentRating,'review_length': reviewText.length}); alert('شكراً لك! تم إرسال تقييمك بنجاح 🙏'); currentRating = 0; ratingDiv.setAttribute('data-rating', 0); document.getElementById('review-text').value = ''; highlightStars(0); });
+});
+</script>

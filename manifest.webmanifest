@@ -1,0 +1,43 @@
+{
+  "name": "هدايا الإمارات",
+  "short_name": "هدايا الإمارات",
+  "description": "متجر الساعات والعطور الأنيقة في دولة الإمارات العربية المتحدة",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#667eea",
+  "orientation": "portrait-primary",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192x192/667eea/ffffff?text=🎁",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://via.placeholder.com/512x512/667eea/ffffff?text=🎁",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["shopping", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "الساعات",
+      "short_name": "ساعات",
+      "description": "تصفح مجموعة الساعات",
+      "url": "/#watches",
+      "icons": [{"src": "https://via.placeholder.com/96x96/667eea/ffffff?text=⌚", "sizes": "96x96"}]
+    },
+    {
+      "name": "العطور",
+      "short_name": "عطور",
+      "description": "تصفح مجموعة العطور",
+      "url": "/#perfumes",
+      "icons": [{"src": "https://via.placeholder.com/96x96/667eea/ffffff?text=🌸", "sizes": "96x96"}]
+    }
+  ]
+}

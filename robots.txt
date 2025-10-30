@@ -1,27 +1,24 @@
-# هدايا الإمارات - Robots.txt
-# Hadaya Emirates Store
-
 User-agent: *
 Allow: /
 
-# الملفات المهمة
-Sitemap: https://hadaya-emirates.arabsad.com/sitemap.xml
-Sitemap: https://hadaya-emirates.arabsad.com/google-merchant-feed.xml
-
-# صفحات لا يجب فهرستها
-Disallow: /redirect.html
-Disallow: /chatbot.html
-
-# ملفات النظام
-Disallow: /*.js$
-Disallow: /*.css$
-Disallow: /README.md
-
-# تفضيلات لمحركات بحث مختلفة
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
 
-User-agent: Bingbot  
+User-agent: Bingbot
 Allow: /
 Crawl-delay: 2
+
+# XML Sitemap
+Sitemap: https://hadaya-emirates.arabsad.com/sitemap.xml
+
+# Block admin and sensitive areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /api/
+
+# Allow important files
+Allow: /style.css
+Allow: /products-data.js
+Allow: /google-merchant-feed.xml

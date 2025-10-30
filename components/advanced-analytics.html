@@ -1,0 +1,60 @@
+<script>
+class AdvancedAnalytics {
+  constructor() {
+    this.sessionStart = Date.now();
+    this.scrollDepth = 0;
+    this.timeOnPage = 0;
+    this.interactions = [];
+    this.init();
+  }
+  init() {
+    this.trackScrollDepth();
+    this.trackTimeOnPage();
+    this.trackInteractions();
+    this.trackDeviceInfo();
+  }
+  trackScrollDepth() {
+    let maxScroll = 0;
+    window.addEventListener('scroll', () => {
+      const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+      if (scrollPercent > maxScroll) {
+        maxScroll = scrollPercent;
+        this.scrollDepth = maxScroll;
+        if ([25, 50, 75, 90].includes(scrollPercent)) {
+          gtag('event', 'scroll', {'event_category': 'engagement','event_label': `${scrollPercent}%`,'value': scrollPercent});
+        }
+      }
+    });
+  }
+  trackTimeOnPage() {
+    setInterval(() => {
+      this.timeOnPage = Math.round((Date.now() - this.sessionStart) / 1000);
+      if ([30, 60, 120, 300].includes(this.timeOnPage)) {
+        gtag('event', 'time_on_page', {'event_category': 'engagement','event_label': `${this.timeOnPage}s`,'value': this.timeOnPage});
+      }
+    }, 1000);
+  }
+  trackInteractions() {
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.product-card')) {
+        const productTitle = e.target.closest('.product-card').querySelector('.product-title')?.textContent;
+        this.interactions.push({type: 'product_click',product: productTitle,timestamp: Date.now()});
+        gtag('event', 'product_interest', {'event_category': 'products','event_label': productTitle});
+      }
+      if (e.target.textContent.includes('اشتر الآن') || e.target.textContent.includes('أضف')) {
+        gtag('event', 'purchase_intent', {'event_category': 'conversions','event_label': window.location.pathname});
+      }
+    });
+  }
+  trackDeviceInfo() {
+    const deviceInfo = {userAgent: navigator.userAgent,language: navigator.language,cookieEnabled: navigator.cookieEnabled,screenResolution: `${screen.width}x${screen.height}`,viewport: `${window.innerWidth}x${window.innerHeight}`,timezone: Intl.DateTimeFormat().resolvedOptions().timeZone};
+    gtag('event', 'device_info', {'event_category': 'technical','custom_parameters': deviceInfo});
+  }
+  sendSessionSummary() {
+    const summary = {duration: this.timeOnPage,scrollDepth: this.scrollDepth,interactions: this.interactions.length,bounceRate: this.interactions.length === 0 ? 1 : 0};
+    gtag('event', 'session_summary', {'event_category': 'session','custom_parameters': summary});
+  }
+}
+window.hadayaAnalytics = new AdvancedAnalytics();
+window.addEventListener('beforeunload', () => {window.hadayaAnalytics.sendSessionSummary();});
+</script>
