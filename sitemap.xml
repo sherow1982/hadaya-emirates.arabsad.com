@@ -3,13 +3,13 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
   <url>
-    <loc>https://hadaya-emirates.arabsad.com/</loc>
+    <loc>https://sherow1982.github.io/hadaya-emirates.arabsad.com/</loc>
     <lastmod>2025-10-30T01:02:00+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://hadaya-emirates.arabsad.com/products/ساعة-يخت-ماستر-فضي.html</loc>
+    <loc>https://sherow1982.github.io/hadaya-emirates.arabsad.com/products/ساعة-يخت-ماستر-فضي.html</loc>
     <lastmod>2025-10-30T01:02:00+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -19,7 +19,7 @@
     </image:image>
   </url>
   <url>
-    <loc>https://hadaya-emirates.arabsad.com/products/عطر-كوكو-100-مل.html</loc>
+    <loc>https://sherow1982.github.io/hadaya-emirates.arabsad.com/products/عطر-كوكو-100-مل.html</loc>
     <lastmod>2025-10-30T01:02:00+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -29,31 +29,31 @@
     </image:image>
   </url>
   <url>
-    <loc>https://hadaya-emirates.arabsad.com/cart.html</loc>
+    <loc>https://sherow1982.github.io/hadaya-emirates.arabsad.com/cart.html</loc>
     <lastmod>2025-10-30T01:02:00+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hadaya-emirates.arabsad.com/checkout.html</loc>
+    <loc>https://sherow1982.github.io/hadaya-emirates.arabsad.com/checkout.html</loc>
     <lastmod>2025-10-30T01:02:00+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hadaya-emirates.arabsad.com/privacy-policy.html</loc>
+    <loc>https://sherow1982.github.io/hadaya-emirates.arabsad.com/privacy-policy.html</loc>
     <lastmod>2025-10-30T01:02:00+02:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://hadaya-emirates.arabsad.com/terms-of-service.html</loc>
+    <loc>https://sherow1982.github.io/hadaya-emirates.arabsad.com/terms-of-service.html</loc>
     <lastmod>2025-10-30T01:02:00+02:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://hadaya-emirates.arabsad.com/shipping-policy.html</loc>
+    <loc>https://sherow1982.github.io/hadaya-emirates.arabsad.com/shipping-policy.html</loc>
     <lastmod>2025-10-30T01:02:00+02:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
