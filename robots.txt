@@ -10,7 +10,7 @@ Allow: /
 Crawl-delay: 2
 
 # XML Sitemap
-Sitemap: https://hadaya-emirates.arabsad.com/sitemap.xml
+Sitemap: https://sherow1982.github.io/hadaya-emirates.arabsad.com/sitemap.xml
 
 # Block admin and sensitive areas
 Disallow: /admin/
