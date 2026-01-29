@@ -19,32 +19,34 @@ const PERFUMES_DATA = [
 
 /**
  * دالة إنشاء بطاقة المنتج
- * أضفت هنا رابط حول البطاقة بالكامل لضمان التوجه لصفحة المنتج
  */
 function createProductCard(product, type = 'watch') {
     const discount = Math.round(((product.price - product.sale_price) / product.price) * 100);
-    // نفترض أن رابط صفحة المنتج يعتمد على الـ ID
-    const productPageUrl = `product-details.html?id=${product.id}`; 
+    
+    // تصحيح: الرابط يجب أن يوجه إلى مجلد products وملف product.html
+    // استخدام المسار النسبي بدون سلاش في البداية ليعمل على GitHub Pages
+    const productPageUrl = `products/product.html?id=${product.id}`; 
     
     return `
-        <div class="product-card" data-id="${product.id}" data-title="${product.title}">
+        <div class="product-card" data-id="${product.id}" data-title="${product.title}" style="transition: all 0.3s ease; cursor: pointer;">
             <a href="${productPageUrl}" class="product-link-wrapper" style="text-decoration: none; color: inherit; display: block;">
-                <div class="product-image">
-                    <img src="${product.image_link}" alt="${product.title}" loading="lazy">
-                    <div class="discount-badge">${discount}% خصم</div>
+                <div class="product-image" style="position: relative; overflow: hidden; border-radius: 10px;">
+                    <img src="${product.image_link}" alt="${product.title}" loading="lazy" style="width: 100%; display: block;">
+                    <div class="discount-badge" style="position: absolute; top: 10px; right: 10px; background: #ff6b6b; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold;">${discount}% خصم</div>
                 </div>
-                <div class="product-info">
-                    <h3 class="product-title">${product.title}</h3>
+                <div class="product-info" style="padding: 15px 0;">
+                    <h3 class="product-title" style="margin: 0 0 10px 0; font-size: 1.1rem;">${product.title}</h3>
                     <div class="product-price">
-                        <span class="current-price">${product.sale_price} درهم</span>
-                        <span class="old-price">${product.price} درهم</span>
+                        <span class="current-price" style="color: #667eea; font-weight: bold; font-size: 1.2rem;">${product.sale_price} درهم</span>
+                        <span class="old-price" style="text-decoration: line-through; color: #999; margin-right: 10px; font-size: 0.9rem;">${product.price} درهم</span>
                     </div>
                 </div>
             </a>
-            <div class="product-actions">
+            <div class="product-actions" style="margin-top: 10px;">
                 <a href="https://wa.me/201110760081?text=مرحباً، أريد طلب ${product.title} بسعر ${product.sale_price} درهم" 
                    class="btn btn-primary" 
                    target="_blank"
+                   style="display: block; background: #25d366; color: white; text-align: center; padding: 10px; border-radius: 5px; text-decoration: none; font-weight: bold;"
                    onclick="event.stopPropagation();">🛒 اطلب عبر واتساب</a>
             </div>
         </div>
@@ -63,17 +65,23 @@ function loadPerfumes() {
 
 function initInteractions() {
     document.querySelectorAll('.product-card').forEach(card => {
-        // تأثيرات الحركة
-        card.addEventListener('mouseenter', () => card.style.transform = 'translateY(-10px) scale(1.02)');
-        card.addEventListener('mouseleave', () => card.style.transform = 'translateY(0) scale(1)');
+        // تأثيرات الحركة عند تمرير الماوس
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px)';
+            card.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = 'none';
+        });
         
         // تتبع النقرات لـ Google Analytics
         card.addEventListener('click', function(e) {
             const title = this.getAttribute('data-title');
             if (typeof gtag === 'function') {
-                gtag('event', 'view_item', {
-                    'item_name': title,
-                    'item_category': 'products'
+                gtag('event', 'select_content', {
+                    'content_type': 'product',
+                    'item_id': title
                 });
             }
         });
@@ -89,4 +97,9 @@ function loadAllProducts() {
 // التشغيل عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', loadAllProducts);
 
-window.HADAYA_PRODUCTS = {watches: WATCHES_DATA, perfumes: PERFUMES_DATA, loadAll: loadAllProducts};
+// تصدير البيانات للاستخدام في صفحات أخرى
+window.HADAYA_PRODUCTS = {
+    watches: WATCHES_DATA, 
+    perfumes: PERFUMES_DATA, 
+    loadAll: loadAllProducts
+};
