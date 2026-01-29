@@ -35,6 +35,19 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line
 /* Container */
 .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
 
+/* Transparency Banner */
+.banner-section { padding: 1.5rem 0; }
+.transparency-banner { background: linear-gradient(135deg, #d4edda 0%, #cce5ff 100%); border-radius: 15px; padding: 1.5rem; border: 2px solid #28a745; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.banner-content { text-align: center; color: #155724; }
+.banner-main { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 0.5rem; }
+.origin-section { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; font-size: 1.1rem; }
+.flag-emoji { font-size: 1.8rem; }
+.origin-text { color: #155724; }
+.arrow { font-size: 1.5rem; }
+.destinations { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.destination { background: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-weight: 700; font-size: 0.9rem; border: 1px solid #28a745; }
+.banner-note { font-size: 0.9rem; margin: 0; color: #155724; }
+
 /* Typography */
 h1, h2, h3, h4, h5, h6 { font-weight: 700; line-height: 1.3; margin-bottom: 1rem; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 h1 { font-size: clamp(2rem, 5vw, 4rem); } h2 { font-size: clamp(1.75rem, 4vw, 3rem); } h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
